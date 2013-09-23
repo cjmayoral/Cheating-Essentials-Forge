@@ -36,19 +36,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class CheatingEssentialsModule implements Listener {
 
-	
     public EnumGuiCategory type;
-    public boolean enabled;
-	public String name;
-	public String desc;
-	public String credits;
-	public String version;
-	public int keybind;
-	private boolean active;
-    private boolean tick;
-    public int color;
-    private boolean ortho;
-    private boolean forgeEvent;
+    public int keybind, color;
+	public String name, desc, credits, version;
+	private boolean active, tick, enabled, ortho, forgeEvent;
     private final LinkedList<Class<? extends CheatingEssentialsModule>> incompat = new LinkedList<Class<? extends CheatingEssentialsModule>>();
     
     public CheatingEssentialsModule(final String name, final String desc, final int key) {
