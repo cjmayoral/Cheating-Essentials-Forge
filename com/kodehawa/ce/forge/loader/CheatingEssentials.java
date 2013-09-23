@@ -10,6 +10,7 @@ import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.commons.lang3.StringUtils;
+import org.lwjgl.opengl.GL11;
 
 import com.kodehawa.ce.forge.common.events.EventRegisterer;
 import com.kodehawa.ce.forge.common.proxy.CommonProxy;
@@ -43,7 +44,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
- * Forge Class Loader for {@link CheatingEssentials} in {@link MinecraftForge}, mostly created for
+ * Cheating Essentials Forge Class Loader in {@link MinecraftForge}, mostly created for
  * Optifine users and users that like to use other mods with it. It should not be loaded in
  * a server envirioment, but some cheats / hacks are compatible with it.
  * The {@link ReflectionHelper} class is for some cheats that need a private or unaccesible value.
@@ -54,21 +55,21 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @since 25/08/2013
  */
 
-@Mod(modid="Cheating-Essentials", name="Cheating Essentials", version=CE_ForgeLoader.MOD_VERSION, useMetadata=true) //Gets mod data
+@Mod(modid="Cheating-Essentials", name="Cheating Essentials", version=CheatingEssentials.MOD_VERSION, useMetadata=true) //Gets mod data
 @NetworkMod(clientSideRequired=true, serverSideRequired=false) 
 @SideOnly(Side.CLIENT)
 
-public class CE_ForgeLoader {
+public class CheatingEssentials {
 	
     public static TickHandler tickHandler = new TickHandler();
 	
     @Instance("Cheating-Essentials")
-    public static CE_ForgeLoader instance;
+    public static CheatingEssentials instance;
     
     @SidedProxy(clientSide="com.kodehawa.ce.forge.common.proxy.ClientProxy", serverSide="com.kodehawa.ce.forge.common.proxy.CommonProxy")
     public static CommonProxy proxyHandler;
    
-    public static CE_ForgeLoader instance(){
+    public static CheatingEssentials instance(){
     	return instance;
     }
     
@@ -87,7 +88,7 @@ public class CE_ForgeLoader {
 		/* ---------------------------------------------------------------------- */
 		
     	FMLLog.log("Cheating Essentials", Level.INFO,
-    			"Cheating Essentials Forge Loader: " + StringUtils.defaultString(CE_ForgeLoader.class.getName()) +
+    			"Cheating Essentials Forge Loader: " + StringUtils.defaultString(CheatingEssentials.class.getName()) +
     			" in Minecraft Forge " + ForgeVersion.getVersion());
     	FMLLog.log("Cheating Essentials", Level.INFO, "Loading mod instances...");
 	    initializeSingletons();
@@ -116,6 +117,7 @@ public class CE_ForgeLoader {
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
     	logWithCategory("Started Cheating Essentials "+getForgeCEVersion()+" in Minecraft 1.6.2 with Minecraft Forge " + ForgeVersion.getVersion(), EnumLogType.FINEST);
+    	//log("OpenGL version: " + GL11.glGetString(GL11.GL_VERSION));
     }
     
     @EventHandler
@@ -154,12 +156,12 @@ public class CE_ForgeLoader {
 	
 	public void addModule(final CheatingEssentialsModule e) {
         ModuleManager.getInstance().modules.add( e );
-        CE_ForgeLoader.instance().log("Module Loaded: ".concat(StringUtils.upperCase(e.getName()).concat(" ["+e.toString()+"]")));
+        CheatingEssentials.instance().log("Module Loaded: ".concat(StringUtils.upperCase(e.getName()).concat(" ["+e.toString()+"]")));
           if (e.getClass().isAnnotationPresent(ModuleExperimental.class)) {
-        	  CE_ForgeLoader.instance().log("Module \"".concat(e.getName()).concat("\" contains ModuleExperimental annotation, use it as your own risk!"));
+        	  CheatingEssentials.instance().log("Module \"".concat(e.getName()).concat("\" contains ModuleExperimental annotation, use it as your own risk!"));
         	  }
           if (e.getClass().isAnnotationPresent(ModuleTechnical.class)) {
-        	  CE_ForgeLoader.instance().log("Module \"".concat(e.getName()).concat("\" is a technical module!"));
+        	  CheatingEssentials.instance().log("Module \"".concat(e.getName()).concat("\" is a technical module!"));
         	  }
           for(CheatingEssentialsModule module : ModuleManager.getInstance().modules){
               //External Module control.
@@ -169,8 +171,8 @@ public class CE_ForgeLoader {
           }
           }
 	
-	static final String MaV = "3";
-    static final String M = "4";
+	static final String MaV = "3.";
+    static final String M = "4.";
     static final String R = "0";
     static final String RL = "R3";
     public static final String MOD_VERSION = MaV + M + R + RL;

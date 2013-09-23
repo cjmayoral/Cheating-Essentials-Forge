@@ -2,9 +2,9 @@ package com.kodehawa.ce.forge.tick;
 
 import java.util.EnumSet;
 
-import com.kodehawa.ce.module.handlers.ModuleManager;
+import com.kodehawa.ce.event.EventHandler;
+import com.kodehawa.ce.event.events.EventTick;
 import com.kodehawa.ce.util.KeyboardListener;
-import com.kodehawa.ce.util.Tickable;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.IScheduledTickHandler;
@@ -21,10 +21,9 @@ public class TickHandler implements IScheduledTickHandler {
 	public void tickStart(EnumSet<TickType> type, Object... tickData) {
 		
 		if( FMLClientHandler.instance().getClient().theWorld != null ){
-		for(Tickable tickable : ModuleManager.getInstance().modInternalTicksArray){
-			tickable.tick();
-		}
+			EventHandler.getInstance().call(new EventTick(this));
 		    KeyboardListener.getInstance().handleKeys();
+			//EventHandler.getInstance().call(new EventKey(this, Keyboard.getEventKey()));
 		}
 	}
 

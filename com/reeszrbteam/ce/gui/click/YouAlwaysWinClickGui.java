@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import net.minecraft.client.gui.GuiScreen;
 
-import com.kodehawa.ce.forge.loader.CE_ForgeLoader;
+import com.kodehawa.ce.forge.loader.CheatingEssentials;
 import com.reeszrbteam.ce.gui.click.elements.YAWWindow;
 import com.reeszrbteam.ce.gui.click.windows.*;
 

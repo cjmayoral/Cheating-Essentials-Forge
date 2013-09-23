@@ -14,7 +14,7 @@ import net.minecraft.block.Block;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.ce.forge.loader.CE_ForgeLoader;
+import com.kodehawa.ce.forge.loader.CheatingEssentials;
 import com.kodehawa.ce.module.classes.BlockESP;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.handlers.ModuleManager;
@@ -55,7 +55,7 @@ public class FileManager<E, T> {
      */
     public static void saveBlockESPList(){
         try {
-        	CE_ForgeLoader.instance().log("Writting BlockESP block list configuration file...");
+        	CheatingEssentials.instance().log("Writting BlockESP block list configuration file...");
             File file = new File( someDir, "" );
             BufferedWriter bufferedwritter = new BufferedWriter( new FileWriter( file ) );
             for( int i : BlockESP.espList ) {
@@ -64,8 +64,8 @@ public class FileManager<E, T> {
             bufferedwritter.close( );
 
         } catch( Exception ex ) {
-        	CE_ForgeLoader.instance().log("Can't write BlockESP configuration file! Custom blocks for X-Ray will be disabled!");
-        	CE_ForgeLoader.instance().log("Error in CE init: " + ex.toString( ) );
+        	CheatingEssentials.instance().log("Can't write BlockESP configuration file! Custom blocks for X-Ray will be disabled!");
+        	CheatingEssentials.instance().log("Error in CE init: " + ex.toString( ) );
         }
     }
 
@@ -74,7 +74,7 @@ public class FileManager<E, T> {
       */
     public static void saveKeybinding(){
         try{
-        	CE_ForgeLoader.instance().log("Writing keybinding configuration file...");
+        	CheatingEssentials.instance().log("Writing keybinding configuration file...");
             File file = new File(keyDir, "");
             BufferedWriter bufferedwriter = new BufferedWriter( new FileWriter( file ));
             for(CheatingEssentialsModule m : ModuleManager.getInstance().modules){
@@ -84,8 +84,8 @@ public class FileManager<E, T> {
             bufferedwriter.close();
         }
         catch (Exception e){
-        	CE_ForgeLoader.instance().log("Can't write Keybinding configuration file!");
-        	CE_ForgeLoader.instance().log("Error in CE init: " + e.toString());
+        	CheatingEssentials.instance().log("Can't write Keybinding configuration file!");
+        	CheatingEssentials.instance().log("Error in CE init: " + e.toString());
         }
     }
 
@@ -110,8 +110,8 @@ public class FileManager<E, T> {
         }
         catch (Exception e){
             saveKeybinding();
-            CE_ForgeLoader.instance().log("Can't read Keybinding configuration file!");
-            CE_ForgeLoader.instance().log("Error in CE init: " + e.toString());
+            CheatingEssentials.instance().log("Can't read Keybinding configuration file!");
+            CheatingEssentials.instance().log("Error in CE init: " + e.toString());
         }
     }
 
@@ -132,8 +132,8 @@ public class FileManager<E, T> {
             }
             br.close( );
         } catch( Exception ex ) {
-        	CE_ForgeLoader.instance().log("Can't load Block ESP list. Unreliable results!");
-        	CE_ForgeLoader.instance().log( "Error in CE init: " + ex.toString( ) );
+        	CheatingEssentials.instance().log("Can't load Block ESP list. Unreliable results!");
+        	CheatingEssentials.instance().log( "Error in CE init: " + ex.toString( ) );
             ex.printStackTrace( );
             saveBlockESPList( );
         }

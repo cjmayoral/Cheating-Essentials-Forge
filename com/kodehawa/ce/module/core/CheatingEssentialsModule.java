@@ -20,13 +20,10 @@ import com.kodehawa.ce.event.Event;
 import com.kodehawa.ce.event.Listener;
 import com.kodehawa.ce.event.events.EventKey;
 import com.kodehawa.ce.event.events.EventRender3D;
-import com.kodehawa.ce.forge.loader.CE_ForgeLoader;
-import com.kodehawa.ce.module.annotations.ModuleExperimental;
-import com.kodehawa.ce.module.annotations.ModuleTechnical;
+import com.kodehawa.ce.event.events.EventTick;
+import com.kodehawa.ce.forge.loader.CheatingEssentials;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
-import com.kodehawa.ce.module.enums.EnumLogType;
 import com.kodehawa.ce.module.handlers.ModuleManager;
-import com.kodehawa.ce.util.Tickable;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
@@ -37,7 +34,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @author Kodehawa
  */
 @SideOnly(Side.CLIENT)
-public class CheatingEssentialsModule implements Listener, Tickable {
+public class CheatingEssentialsModule implements Listener {
 
 	
     public EnumGuiCategory type;
@@ -56,20 +53,14 @@ public class CheatingEssentialsModule implements Listener, Tickable {
     
     public CheatingEssentialsModule(final String name, final String desc, final int key) {
        this(name, desc, "1.6.2", key, EnumGuiCategory.UTILS, true);
-        com.kodehawa.ce.event.EventHandler.getInstance().registerListener( EventKey.class, this );
-        com.kodehawa.ce.event.EventHandler.getInstance().registerListener( EventRender3D.class, this );
       }
 
     public CheatingEssentialsModule(final String name, final String desc, final EnumGuiCategory type) {
        this(name, desc, "1.6.2", 0, type, true);
-        com.kodehawa.ce.event.EventHandler.getInstance().registerListener( EventKey.class, this );
-        com.kodehawa.ce.event.EventHandler.getInstance().registerListener( EventRender3D.class, this );
        }
     
     public CheatingEssentialsModule(final String name, final String desc, final EnumGuiCategory type, boolean enabled) {
         this(name, desc, "1.6.2", 0, type, enabled);
-         com.kodehawa.ce.event.EventHandler.getInstance().registerListener( EventKey.class, this );
-         com.kodehawa.ce.event.EventHandler.getInstance().registerListener( EventRender3D.class, this );
         }
 
     public CheatingEssentialsModule(final String name, final String desc, final String version, final int key, final EnumGuiCategory type, final boolean enabled) {
@@ -79,22 +70,18 @@ public class CheatingEssentialsModule implements Listener, Tickable {
        this.type = type;
        this.enabled = enabled;
        this.version = version;
-       com.kodehawa.ce.event.EventHandler.getInstance().registerListener( EventKey.class, this );
-       com.kodehawa.ce.event.EventHandler.getInstance().registerListener( EventRender3D.class, this );
     }
         
     public void toggleModule( ){
     	try{
-    		//Toggle the module itself. Prevent use of "public statiz booleanz"
     	active = !active;
     	if (active) {
     		onEnableModule();
     		disableIncompat();
     		ModuleManager.getInstance().enabledModules.add(name);
             if(this.getTick()){
-            ModuleManager.getInstance().addToTick(this); 
+            com.kodehawa.ce.event.EventHandler.getInstance().registerListener(EventTick.class, this);; 
             }
-           
             if(getType() == EnumGuiCategory.NONE){
                 ModuleManager.getInstance().enabledModules.remove(name);
             }
@@ -106,7 +93,7 @@ public class CheatingEssentialsModule implements Listener, Tickable {
     		onDisableModule();
     		ModuleManager.getInstance().enabledModules.remove(name);
             if(this.getTick()){
-                ModuleManager.getInstance().removeFromCurrentTick(this);  
+                com.kodehawa.ce.event.EventHandler.getInstance().unRegisterListener(EventTick.class, this);
                 }
             }
     	  if( this.isActive( ) ) {
@@ -127,30 +114,30 @@ public class CheatingEssentialsModule implements Listener, Tickable {
     	}
     }
 
-    public boolean isActive( ){
+    public boolean isActive(){
     	return active;
     }
 
-    public String getName( ){
+    public String getName(){
     	return this.name;
     }
 
-    public void setName( String s ){
+    public void setName(String s){
     	this.name = s;
     }
 
-    public int getKeybinding( ){
+    public int getKeybinding(){
     	return this.keybind;
     }
 
-    public void setKeybinding( Integer key ){
+    public void setKeybinding(Integer key){
     	this.keybind = key;
     }
-    public void setActive( boolean state ){
+    public void setActive(boolean state){
     	this.enabled = state;
     }
     
-    public boolean getEnabled( ){
+    public boolean getEnabled(){
     	return this.enabled;
     }
     
@@ -167,7 +154,7 @@ public class CheatingEssentialsModule implements Listener, Tickable {
     }
     
     public boolean getEvent( ){
-    	return this.forgeEvent;
+    	return forgeEvent;
     }
 
     public boolean getTick(){
@@ -193,15 +180,20 @@ public class CheatingEssentialsModule implements Listener, Tickable {
     @Override
     public void onEvent( Event e ) {
     	
-        if( e instanceof EventKey ) {
-            if( ( ( EventKey ) e ).getKey( ) == this.getKeybinding( ) ) {
-                toggleModule( );
+        if(e instanceof EventKey) {
+            if(((EventKey)e).getKey() == this.getKeybinding()) {
+                toggleModule();
             }
         }
-        if( this.getRender( ) ) {
-            if( e instanceof EventRender3D ) {
-                this.onRenderInModule( );
+        if(getRender()) {
+            if(e instanceof EventRender3D) {
+                onRenderInModule();
             }
+        }
+        if(getTick()){
+        if(e instanceof EventTick){
+        	tick();
+        }
         }
     }
 
@@ -299,7 +291,7 @@ public class CheatingEssentialsModule implements Listener, Tickable {
         }
 
         if ((getWorld() != null) && (getMinecraft() != null) && (getPlayer() != null)) {
-        	CE_ForgeLoader.instance().log("Disabling " + incompat.getName() + " because it is incompatible with " + getName());
+        	CheatingEssentials.instance().log("Disabling " + incompat.getName() + " because it is incompatible with " + getName());
         }
         //Toggle it again for disabling.
         incompat.toggleModule();

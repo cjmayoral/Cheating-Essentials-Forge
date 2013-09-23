@@ -1,14 +1,14 @@
 
 package com.kodehawa.ce.gui.api.components;
 
-import com.kodehawa.ce.forge.loader.CE_ForgeLoader;
+import com.kodehawa.ce.forge.loader.CheatingEssentials;
 
 public abstract class Item
 {
     /**
      * Reference to the main class
      */
-    public CE_ForgeLoader c;
+    public CheatingEssentials c;
     
 
     /**

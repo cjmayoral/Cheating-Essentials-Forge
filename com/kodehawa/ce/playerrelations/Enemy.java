@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import com.kodehawa.ce.forge.loader.CE_ForgeLoader;
+import com.kodehawa.ce.forge.loader.CheatingEssentials;
 
 import cpw.mods.fml.client.FMLClientHandler;
 
@@ -40,7 +40,7 @@ public class Enemy {
     }
 
     public static void writeEnemyFile(){
-    	CE_ForgeLoader.instance().log("Writing Enemy file...");
+    	CheatingEssentials.instance().log("Writing Enemy file...");
         try{
            FileWriter filewritter = new FileWriter(enemyFile);
            BufferedWriter bufferedwriter = new BufferedWriter(filewritter);

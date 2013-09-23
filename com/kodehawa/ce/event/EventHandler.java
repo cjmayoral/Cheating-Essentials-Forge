@@ -12,6 +12,7 @@ import com.kodehawa.ce.event.events.EventMouseClick;
 import com.kodehawa.ce.event.events.EventMouseDrag;
 import com.kodehawa.ce.event.events.EventRender3D;
 import com.kodehawa.ce.event.events.EventSwing;
+import com.kodehawa.ce.event.events.EventTick;
 
 public class EventHandler
 {
@@ -30,6 +31,7 @@ public class EventHandler
         eventMap.put(EventMouseClick.class, new CopyOnWriteArrayList< Listener >());
         eventMap.put(EventSwing.class, new CopyOnWriteArrayList< Listener >());
         eventMap.put(EventMouseDrag.class, new CopyOnWriteArrayList< Listener >());
+        eventMap.put(EventTick.class, new CopyOnWriteArrayList<Listener>());
     }
 
     public void registerListener(Class < ? extends Event > c, Listener m)
