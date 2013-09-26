@@ -23,7 +23,8 @@ public class ModuleManager {
 		addModule(new Fly()); addModule(new DynamicFly()); addModule(new FastPlace());
 		addModule(new Fullbright()); addModule(new HighJump()); addModule(new Sprint());
 		addModule(new FastBreak()); addModule(new Step()); addModule(new WaterWalk());
-		addModule(new MCUtil_ReloadChunks());
+		addModule(new MCUtil_ReloadChunks()); addModule(new AutoRespawn()); addModule(new EvtNoFall());
+		addModule(new NoFall()); addModule(new CreativeFly());
 	}
 	
     public ModuleAbstract getModuleClass(ModuleAbstract m){

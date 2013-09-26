@@ -1,10 +1,10 @@
 package common.kodehawa.ce.module.core;
 
-import org.apache.commons.lang3.StringUtils;
-
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.entity.player.EntityPlayer;
+
+import org.apache.commons.lang3.StringUtils;
 
 import common.kodehawa.ce.module.enums.Category;
 
@@ -55,13 +55,6 @@ public abstract class ModuleAbstract {
 		return cat;
 	}
 	
-	public String getName(){
-		return moduleName;
-	}
-	
-	public String getVersion(){
-		return moduleVersion;
-	}
 	
 	public boolean getTick(){
 		return tick;
@@ -91,7 +84,7 @@ public abstract class ModuleAbstract {
 		return Minecraft.getMinecraft();
 	}
 	
-	public EntityPlayer getPlayer(){
+	public EntityClientPlayerMP getPlayer(){
 		return getMinecraft().thePlayer;
 	}
 	
