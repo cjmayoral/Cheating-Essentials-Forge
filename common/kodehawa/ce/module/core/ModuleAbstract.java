@@ -1,5 +1,11 @@
 package common.kodehawa.ce.module.core;
 
+import org.apache.commons.lang3.StringUtils;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.entity.player.EntityPlayer;
+
 import common.kodehawa.ce.module.enums.Category;
 
 public abstract class ModuleAbstract {
@@ -9,20 +15,20 @@ public abstract class ModuleAbstract {
 	public Category cat;
 	private boolean state, tick, render;
 	
-	public void setModuleName(String name){
-		moduleName = name;
-	}
-	
-	public void setModuleVersion(String version){
-		moduleVersion = version;
-	}
-	
-	public void setModuleAuth(String author){
-		moduleAuthor = author;
-	}
-	
-	public void setModuleCategory(Category category){
+	public ModuleAbstract(Category category){
 		cat = category;
+	}
+	
+	public String getModuleName(){
+		return StringUtils.defaultString(moduleName);
+	}
+	
+	public String getModuleVersion(){
+		return StringUtils.defaultString(moduleVersion);
+	}
+	
+	public String getModuleAuth(){
+		return StringUtils.defaultString(moduleAuthor);
 	}
 	
 	public void setTick(boolean state){
@@ -79,6 +85,18 @@ public abstract class ModuleAbstract {
 		else{
 			disable();
 		}
+	}
+	
+	public Minecraft getMinecraft(){
+		return Minecraft.getMinecraft();
+	}
+	
+	public EntityPlayer getPlayer(){
+		return getMinecraft().thePlayer;
+	}
+	
+	public WorldClient getWorld(){
+		return getMinecraft().theWorld;
 	}
 	
 	public void enable(){}

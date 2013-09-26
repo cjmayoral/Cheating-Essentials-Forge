@@ -14,7 +14,7 @@ public class DynamicLogger {
 	public static volatile DynamicLogger instance = new DynamicLogger();
 	
 	public void writeLog(String string, Level level){
-		FMLLog.log(level, "Cheating Essentials", string);
+		System.out.println("[Cheating-Essentials]"+" ["+level+"] "+string);
 	}
 	
 	public static DynamicLogger instance(){
