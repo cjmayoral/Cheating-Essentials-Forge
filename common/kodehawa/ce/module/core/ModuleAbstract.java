@@ -3,17 +3,20 @@ package common.kodehawa.ce.module.core;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.commons.lang3.StringUtils;
 
 import common.kodehawa.ce.module.enums.Category;
+import common.kodehawa.ce.module.man.ModuleManager;
+import common.kodehawa.ce.util.Tickable;
 
-public abstract class ModuleAbstract {
+public abstract class ModuleAbstract implements Tickable {
 
 	public String moduleName, moduleVersion, moduleAuthor;
 	public int keybinding;
 	public Category cat;
-	private boolean state, tick, render;
+	private boolean state, tick, render, forgeEvt;
 	
 	public ModuleAbstract(Category category){
 		cat = category;
@@ -21,6 +24,10 @@ public abstract class ModuleAbstract {
 	
 	public String getModuleName(){
 		return StringUtils.defaultString(moduleName);
+	}
+	
+	public int getKeybind(){
+		return keybinding;
 	}
 	
 	public String getModuleVersion(){
@@ -35,27 +42,26 @@ public abstract class ModuleAbstract {
 		tick = state;
 	}
 	
+	public void setForgeEvent(boolean state){
+		forgeEvt = state;
+	}
+	
+	public boolean getForgeEvent(){
+		return forgeEvt;
+	}
+	
 	public void setRender(boolean state){
 		render = state;
 	}
-	
-	public void setKeybinding(int key){
-		keybinding = key;
-	}
-	
-	public boolean isToggled(){
+
+	public boolean isActive(){
 		return state;
-	}
-	
-	public int getKeybinding(){
-		return keybinding;
 	}
 
 	public Category getCategory(){
 		return cat;
 	}
-	
-	
+
 	public boolean getTick(){
 		return tick;
 	}
@@ -66,17 +72,26 @@ public abstract class ModuleAbstract {
 	
 	public void toggle(){
 		state = !state;
-		if(isToggled()){
+		//System.out.println("Module toggled! "+this);
+		if(!isActive()){
 			enable();
 			if(getTick()){
+				ModuleManager.instance().addTick(this);
 				tick();
 			}
 			if(getRender()){
 				doRender();
 			}
+			if(getForgeEvent()){
+				MinecraftForge.EVENT_BUS.register(this);
+			}
 		}
 		else{
 			disable();
+			ModuleManager.instance().removeTick(this);
+			if(getForgeEvent()){
+				MinecraftForge.EVENT_BUS.unregister(this);
+			}
 		}
 	}
 	

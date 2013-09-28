@@ -1,6 +1,6 @@
 package common.kodehawa.ce.module.classes;
 
-import org.apache.commons.lang3.StringUtils;
+import org.lwjgl.input.Keyboard;
 
 import common.kodehawa.ce.module.core.ModuleAbstract;
 import common.kodehawa.ce.module.enums.Category;
@@ -18,9 +18,22 @@ public class Fly extends ModuleAbstract {
 	}
 	
 	@Override
+	public int getKeybind(){
+		return Keyboard.KEY_R;
+	}
+	
+	@Override
 	public String getModuleVersion(){
 		return "1.0";
     }
+	
+	public void enable(){
+		getPlayer().capabilities.isFlying = true;
+	}
+	
+	public void disable(){
+		getPlayer().capabilities.isFlying = false;
+	}
 	
 	public void tick(){
 		getPlayer().capabilities.isFlying = true;

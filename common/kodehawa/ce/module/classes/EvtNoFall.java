@@ -10,6 +10,7 @@ public class EvtNoFall extends ModuleAbstract {
 
 	public EvtNoFall() {
 		super(Category.WORLD);
+		this.setForgeEvent(true);
 	}
 	
 	@Override

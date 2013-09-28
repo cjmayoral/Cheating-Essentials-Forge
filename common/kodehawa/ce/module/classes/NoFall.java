@@ -1,5 +1,7 @@
 package common.kodehawa.ce.module.classes;
 
+import org.lwjgl.input.Keyboard;
+
 import net.minecraft.network.packet.Packet13PlayerLookMove;
 import common.kodehawa.ce.module.core.ModuleAbstract;
 import common.kodehawa.ce.module.enums.Category;
@@ -19,7 +21,13 @@ public class NoFall extends ModuleAbstract {
 	}
 	
 	@Override
+	public int getKeybind(){
+		return Keyboard.KEY_V;
+	}
+	
+	@Override
 	public void tick(){
-		PacketDispatcher.sendPacketToPlayer(new Packet13PlayerLookMove(getPlayer().posX, getPlayer().posY, getPlayer().posZ, -999D, getPlayer().rotationYaw, getPlayer().rotationPitch, false), (Player)getPlayer());
+		getPlayer().sendQueue.addToSendQueue(new Packet13PlayerLookMove(getPlayer().motionX, -999.0D, -999.0D, getPlayer().motionZ,
+				getPlayer().rotationYaw, getPlayer().rotationPitch, !getPlayer().onGround));
 	}
 }

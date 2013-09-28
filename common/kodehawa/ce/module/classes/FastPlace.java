@@ -1,5 +1,7 @@
 package common.kodehawa.ce.module.classes;
 
+import org.lwjgl.input.Keyboard;
+
 import net.minecraft.client.Minecraft;
 import common.kodehawa.ce.module.core.ModuleAbstract;
 import common.kodehawa.ce.module.enums.Category;
@@ -18,8 +20,13 @@ public class FastPlace extends ModuleAbstract {
 	}
 
 	@Override
+	public int getKeybind(){
+		return Keyboard.KEY_K;
+	}
+	
+	@Override
 	public void tick(){
 		Object o = Minecraft.getMinecraft();
-		ReflectionHelper.setField(Minecraft.class, o, "rightClickDelayTimer", 0);
+		ReflectionHelper.setField(Minecraft.class, o, 47 /*rightClickDelayTimer*/, 0);
 	}
 }

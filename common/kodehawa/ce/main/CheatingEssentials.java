@@ -10,6 +10,7 @@ import net.minecraftforge.event.ForgeSubscribe;
 import common.kodehawa.ce.logger.DynamicLogger;
 import common.kodehawa.ce.module.core.ModuleAbstract;
 import common.kodehawa.ce.module.man.ModuleManager;
+import common.kodehawa.ce.tick.TickHandler;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -18,6 +19,8 @@ import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid="Cheating-Essentials", name="Cheating Essentials Reloaded", version="4.0.0")
 public class CheatingEssentials {
@@ -27,7 +30,7 @@ public class CheatingEssentials {
 	
 	@EventHandler
 	public void preInitialization(FMLPreInitializationEvent e){
-		DynamicLogger.instance().writeLog("Loading Cheating Essentials "+modVersion+" in Minecraft Forge " + MinecraftForge.getBrandingVersion(), Level.INFO);
+		DynamicLogger.instance().writeLog("Loading Cheating Essentials "+modVersion+" in " + MinecraftForge.getBrandingVersion(), Level.INFO);
 		/* Cheating Essentials MD START */
 		ModMetadata mMetadata = e.getModMetadata();
 		mMetadata.credits = "Kodehawa";
@@ -41,6 +44,9 @@ public class CheatingEssentials {
 	
 	@EventHandler
 	public void initialization(FMLInitializationEvent e){
+		TickHandler tickhandler = new TickHandler();
+		MinecraftForge.EVENT_BUS.register(this);
+		TickRegistry.registerScheduledTickHandler(tickhandler, Side.CLIENT);
 		loadClasses();
 	}
 	
