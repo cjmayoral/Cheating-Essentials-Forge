@@ -11,7 +11,7 @@ public class Fly extends ModuleAbstract {
 		super(Category.PLAYER);
 		this.setTick(true);
 	}
-
+	
 	@Override
 	public String getModuleName(){
 		return "Fly";
@@ -38,5 +38,4 @@ public class Fly extends ModuleAbstract {
 	public void tick(){
 		getPlayer().capabilities.isFlying = true;
 	}
-	
 }

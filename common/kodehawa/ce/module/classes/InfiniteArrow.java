@@ -1,25 +1,24 @@
 package common.kodehawa.ce.module.classes;
 
 import net.minecraftforge.event.ForgeSubscribe;
-import net.minecraftforge.event.entity.living.*;
+import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 
 import common.kodehawa.ce.module.core.ModuleAbstract;
 import common.kodehawa.ce.module.enums.Category;
 
-public class EvtNoFall extends ModuleAbstract {
+public class InfiniteArrow extends ModuleAbstract {
 
-	public EvtNoFall() {
-		super(Category.WORLD);
+	public InfiniteArrow() {
+		super(Category.PLAYER);
 		this.setForgeEvent(true);
 	}
-	
-	@Override
-	public String getModuleName(){
-		return "Event No Fall";
-	}
 
+	public String getModuleName(){
+		return "Infinite Arrows";
+	}
+	
 	@ForgeSubscribe
-	public void onEvent(LivingFallEvent evt){
+	public void removeLooseArrows(ArrowLooseEvent evt){
 		if(evt.isCancelable()){
 			evt.setCanceled(true);
 		}

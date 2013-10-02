@@ -7,11 +7,15 @@ import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.commons.lang3.StringUtils;
 
+import common.kodehawa.ce.mevents.Event;
+import common.kodehawa.ce.mevents.EventManager;
+import common.kodehawa.ce.mevents.Listener;
+import common.kodehawa.ce.mevents.classes.EventRender;
+import common.kodehawa.ce.mevents.classes.EventTick;
 import common.kodehawa.ce.module.enums.Category;
-import common.kodehawa.ce.module.man.ModuleManager;
 import common.kodehawa.ce.util.Tickable;
 
-public abstract class ModuleAbstract implements Tickable {
+public abstract class ModuleAbstract implements Listener {
 
 	public String moduleName, moduleVersion, moduleAuthor;
 	public int keybinding;
@@ -72,15 +76,13 @@ public abstract class ModuleAbstract implements Tickable {
 	
 	public void toggle(){
 		state = !state;
-		//System.out.println("Module toggled! "+this);
 		if(!isActive()){
 			enable();
 			if(getTick()){
-				ModuleManager.instance().addTick(this);
-				tick();
+				EventManager.instance().registerListener(EventTick.class, this);
 			}
 			if(getRender()){
-				doRender();
+				EventManager.instance().registerListener(EventRender.class, this);
 			}
 			if(getForgeEvent()){
 				MinecraftForge.EVENT_BUS.register(this);
@@ -88,10 +90,25 @@ public abstract class ModuleAbstract implements Tickable {
 		}
 		else{
 			disable();
-			ModuleManager.instance().removeTick(this);
+			if(getTick()){
+			EventManager.instance().unregisterListener(EventTick.class, this);
+			}
 			if(getForgeEvent()){
 				MinecraftForge.EVENT_BUS.unregister(this);
 			}
+			if(getRender()){
+				EventManager.instance().unregisterListener(EventRender.class, this);
+			}
+		}
+	}
+	
+	@Override
+	public void onEvent(Event event){
+		if(event instanceof EventTick){
+			tick();
+		}
+		if(event instanceof EventRender){
+			doRender();
 		}
 	}
 	

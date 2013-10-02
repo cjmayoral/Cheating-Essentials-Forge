@@ -10,32 +10,31 @@ import common.kodehawa.ce.module.man.ModuleManager;
 public class Keybinding {
 
 	private volatile static Keybinding instance = new Keybinding();
-	boolean[] mapping = new boolean[256];
 	
 	public Keybinding(){
-		ModuleManager.getKey();
 		handle();
 	}
 	
 	public void handle(){
 		for(ModuleAbstract module : ModuleManager.instance().avModules){
-			if(Keyboard.isKeyDown(module.getKeybind())){
+			if(checkKey(module.getKeybind())){
 				module.toggle(); break;
 			}
+        }
+	}
+	
+	public boolean checkKey( int i ) {
+		if (Minecraft.getMinecraft().currentScreen != null) {
+			return false;
+		}
+		if (Keyboard.isKeyDown(i) != keyStates [i]) {
+			return keyStates [i] = !keyStates[i];
+		} else {
+			return false;
 		}
 	}
 	
-	public boolean getPressedKey(int key){
-			if(Minecraft.getMinecraft().currentScreen != null){
-				return false;
-			}
-			else if(Keyboard.isKeyDown(key) != mapping[key]){
-				return mapping[key] != mapping[key];
-			}
-			else{
-				return false;
-			}
-		}
+	private boolean keyStates[] = new boolean[256];
 	
 	public static Keybinding instance(){
 		return instance;
