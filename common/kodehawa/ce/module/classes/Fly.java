@@ -1,7 +1,11 @@
 package common.kodehawa.ce.module.classes;
 
+import net.minecraft.server.MinecraftServer;
+
 import org.lwjgl.input.Keyboard;
 
+import common.kodehawa.ce.event.Listener;
+import common.kodehawa.ce.event.classes.EventTick;
 import common.kodehawa.ce.module.core.ModuleAbstract;
 import common.kodehawa.ce.module.enums.Category;
 
@@ -9,7 +13,6 @@ public class Fly extends ModuleAbstract {
 
 	public Fly() {
 		super(Category.PLAYER);
-		this.setTick(true);
 	}
 	
 	@Override
@@ -34,7 +37,8 @@ public class Fly extends ModuleAbstract {
 	public void disable(){
 		getPlayer().capabilities.isFlying = false;
 	}
-	
+
+	@Listener(eventToLoad = EventTick.class)
 	public void tick(){
 		getPlayer().capabilities.isFlying = true;
 	}

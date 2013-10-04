@@ -3,6 +3,9 @@ package common.kodehawa.ce.module.classes;
 import java.util.List;
 
 import com.google.common.collect.Lists;
+
+import common.kodehawa.ce.event.Listener;
+import common.kodehawa.ce.event.classes.EventRender;
 import common.kodehawa.ce.module.core.ModuleAbstract;
 import common.kodehawa.ce.module.enums.Category;
 import common.kodehawa.ce.util.C_BlockCoord;
@@ -13,7 +16,6 @@ public class BlockFinder extends ModuleAbstract {
 	/* This is just the old version. */
 	public BlockFinder() {
 		super(Category.RENDER);
-		this.setRender(true);
 	}
 	
 	private int size = 0, timer = 0;
@@ -27,6 +29,7 @@ public class BlockFinder extends ModuleAbstract {
 	}
 	
 	@Override
+	@Listener(eventToLoad = EventRender.class)
 	public void doRender(){
 		timer++;
 		if(timer >= 35){

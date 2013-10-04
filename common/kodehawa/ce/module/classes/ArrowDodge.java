@@ -4,6 +4,8 @@ import org.lwjgl.input.Keyboard;
 
 import net.minecraft.entity.projectile.EntityArrow;
 
+import common.kodehawa.ce.event.Listener;
+import common.kodehawa.ce.event.classes.EventTick;
 import common.kodehawa.ce.module.core.ModuleAbstract;
 import common.kodehawa.ce.module.enums.Category;
 
@@ -11,7 +13,6 @@ public class ArrowDodge extends ModuleAbstract {
 
 	public ArrowDodge() {
 		super(Category.WORLD);
-		this.setTick(true);
 	}
 	
 	@Override
@@ -24,6 +25,7 @@ public class ArrowDodge extends ModuleAbstract {
 		return Keyboard.KEY_B;
 	}
 	
+	@Listener(eventToLoad = EventTick.class)
 	public void tick(){
 		Object o = getWorld().loadedEntityList;
 		if(o instanceof EntityArrow){

@@ -10,7 +10,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import common.kodehawa.ce.commands.*;
 import common.kodehawa.ce.logger.DynamicLogger;
-import common.kodehawa.ce.mevents.EventManager;
+//import common.kodehawa.ce.mevents.EventManager;
 import common.kodehawa.ce.module.man.ModuleManager;
 import common.kodehawa.ce.tick.TickHandler;
 import common.kodehawa.ce.util.ForgeEvents;
@@ -72,7 +72,7 @@ public class CheatingEssentials {
 	
 	void loadClasses(){
 		ModuleManager.instance();
-		EventManager.instance();
+		//EventManager.instance();
 	}
 	
 	static String majorVersion = "4";

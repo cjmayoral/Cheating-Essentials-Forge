@@ -1,5 +1,7 @@
 package common.kodehawa.ce.module.classes;
 
+import common.kodehawa.ce.event.Listener;
+import common.kodehawa.ce.event.classes.EventTick;
 import common.kodehawa.ce.module.core.ModuleAbstract;
 import common.kodehawa.ce.module.enums.Category;
 
@@ -7,7 +9,6 @@ public class DynamicFly extends ModuleAbstract {
 
 	public DynamicFly() {
 		super(Category.PLAYER);
-		this.setTick(true);
 	}
 
 	@Override
@@ -21,6 +22,7 @@ public class DynamicFly extends ModuleAbstract {
     }
 	
 	@Override 
+	@Listener(eventToLoad = EventTick.class)
 	public void tick(){
 		getPlayer().jumpMovementFactor = 0;
 		

@@ -4,8 +4,8 @@ import java.util.EnumSet;
 
 import net.minecraft.client.Minecraft;
 
-import common.kodehawa.ce.mevents.EventManager;
-import common.kodehawa.ce.mevents.classes.EventTick;
+import common.kodehawa.ce.event.EventManager;
+import common.kodehawa.ce.event.classes.EventTick;
 import common.kodehawa.ce.util.Keybinding;
 
 import cpw.mods.fml.common.IScheduledTickHandler;
@@ -20,8 +20,9 @@ public class TickHandler implements IScheduledTickHandler {
 
 	@Override
 	public void tickEnd(EnumSet<TickType> type, Object... tickData) {
-		if(Minecraft.getMinecraft().theWorld != null)
-			EventManager.instance().fire(new EventTick(this));
+		if(Minecraft.getMinecraft().theWorld != null){
+			EventManager.instance().call(new EventTick(this));
+		}
 	}
 
 	@Override
@@ -40,6 +41,4 @@ public class TickHandler implements IScheduledTickHandler {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-
 }

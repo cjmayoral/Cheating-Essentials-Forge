@@ -2,6 +2,8 @@ package common.kodehawa.ce.module.classes;
 
 import net.minecraft.entity.EntityLiving;
 
+import common.kodehawa.ce.event.Listener;
+import common.kodehawa.ce.event.classes.EventRender;
 import common.kodehawa.ce.module.core.ModuleAbstract;
 import common.kodehawa.ce.module.enums.Category;
 import common.kodehawa.ce.util.GLHelper;
@@ -10,7 +12,6 @@ public class AnimalESP extends ModuleAbstract {
 
 	public AnimalESP() {
 		super(Category.RENDER);
-		this.setRender(true);
 	}
 
 	@Override
@@ -19,6 +20,7 @@ public class AnimalESP extends ModuleAbstract {
 	}
 	
 	@Override
+	@Listener(eventToLoad = EventRender.class)
 	public void doRender(){
 		for(Object o : getWorld().loadedEntityList){
 			if(o instanceof EntityLiving){
