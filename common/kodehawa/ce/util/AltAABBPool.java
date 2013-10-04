@@ -5,7 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 
-public class A_AABBPool
+public class AltAABBPool
 {
     /**
      * Maximum number of times the pool can be "cleaned" before the list is shrunk
@@ -31,7 +31,7 @@ public class A_AABBPool
     /** Number of times this Pool has been cleaned */
     private int numCleans;
 
-    public A_AABBPool(int par1, int par2)
+    public AltAABBPool(int par1, int par2)
     {
         this.maxNumCleans = par1;
         this.numEntriesToRemove = par2;
@@ -41,18 +41,18 @@ public class A_AABBPool
      * Creates a new AABB, or reuses one that's no longer in use. Parameters: minX, minY, minZ, maxX, maxY, maxZ. AABBs
      * returned from this function should only be used for one frame or tick, as after that they will be reused.
      */
-    public A_AxisAlignedBB getAABB(double par1, double par3, double par5, double par7, double par9, double par11)
+    public AltAxisAlignedBB getAABB(double par1, double par3, double par5, double par7, double par9, double par11)
     {
-        A_AxisAlignedBB axisalignedbb;
+        AltAxisAlignedBB axisalignedbb;
 
         if (this.nextPoolIndex >= this.listAABB.size())
         {
-            axisalignedbb = new A_AxisAlignedBB(par1, par3, par5, par7, par9, par11);
+            axisalignedbb = new AltAxisAlignedBB(par1, par3, par5, par7, par9, par11);
             this.listAABB.add(axisalignedbb);
         }
         else
         {
-            axisalignedbb = (A_AxisAlignedBB)this.listAABB.get(this.nextPoolIndex);
+            axisalignedbb = (AltAxisAlignedBB)this.listAABB.get(this.nextPoolIndex);
             axisalignedbb.setBounds(par1, par3, par5, par7, par9, par11);
         }
 

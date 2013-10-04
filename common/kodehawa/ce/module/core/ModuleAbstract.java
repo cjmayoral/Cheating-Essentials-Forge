@@ -11,7 +11,7 @@ import common.kodehawa.ce.event.EventManager;
 import common.kodehawa.ce.module.enums.Category;
 import common.kodehawa.ce.util.Tickable;
 
-public abstract class ModuleAbstract /*implements Listener*/ {
+public abstract class ModuleAbstract {
 
 	public String moduleName, moduleVersion, moduleAuthor;
 	public int keybinding;
@@ -54,9 +54,10 @@ public abstract class ModuleAbstract /*implements Listener*/ {
 	public Category getCategory(){
 		return cat;
 	}
+	
 	public void toggle(){
 		state = !state;
-		if(!isActive()){
+		if(state){
 			enable();
 			EventManager.instance().register(this);
 			if(getForgeEvent()){

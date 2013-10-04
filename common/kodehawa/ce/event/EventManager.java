@@ -38,7 +38,6 @@ public class EventManager {
 		synchronized(listeners){
 			for(Map.Entry<Object, LinkedList<Method>> map : listeners.entrySet()){
 				List<Method> list = map.getValue();
-			    //System.out.println("Listener called: "+event+"!");
 			    for(Method method : list){
 			    	Listener listenerEvent = method.getAnnotation(Listener.class);
 				    if(listenerEvent.eventToLoad().equals(event.getClass())){

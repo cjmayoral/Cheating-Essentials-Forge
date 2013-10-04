@@ -6,9 +6,9 @@ import net.minecraftforge.event.entity.living.*;
 import common.kodehawa.ce.module.core.ModuleAbstract;
 import common.kodehawa.ce.module.enums.Category;
 
-public class EvtNoFall extends ModuleAbstract {
+public class Event_NoFall extends ModuleAbstract {
 
-	public EvtNoFall() {
+	public Event_NoFall() {
 		super(Category.WORLD);
 		this.setForgeEvent(true);
 	}

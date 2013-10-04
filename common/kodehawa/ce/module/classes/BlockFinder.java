@@ -8,7 +8,7 @@ import common.kodehawa.ce.event.Listener;
 import common.kodehawa.ce.event.classes.EventRender;
 import common.kodehawa.ce.module.core.ModuleAbstract;
 import common.kodehawa.ce.module.enums.Category;
-import common.kodehawa.ce.util.C_BlockCoord;
+import common.kodehawa.ce.util.CEBlockCoord;
 import common.kodehawa.ce.util.GLHelper;
 
 public class BlockFinder extends ModuleAbstract {
@@ -21,7 +21,7 @@ public class BlockFinder extends ModuleAbstract {
 	private int size = 0, timer = 0;
 
 	public static List<Integer> espList = Lists.newArrayList();
-	public static C_BlockCoord[] espBlocks = new C_BlockCoord[10000000];
+	public static CEBlockCoord[] espBlocks = new CEBlockCoord[10000000];
 	 
 	@Override
 	public String getModuleName(){
@@ -38,8 +38,8 @@ public class BlockFinder extends ModuleAbstract {
 		}
 		
 		for(int cur = 0; cur < size; cur++) {
-			C_BlockCoord curBlock = espBlocks[cur];
-			GLHelper.startDrawingESPs(curBlock.getDeltaX(), curBlock.getDeltaY(), curBlock.getDeltaZ(), 0.0F, 0.0F, 1.0F, 3.0F);
+			CEBlockCoord curBlock = espBlocks[cur];
+			GLHelper.startDrawingESPs(curBlock.getDeltaX(), curBlock.getDeltaY(), curBlock.getDeltaZ(), 0.0F, 0.0F, 1.0F);
 		}
 	}
 	
@@ -56,7 +56,7 @@ public class BlockFinder extends ModuleAbstract {
 				int ids = getWorld().getBlockId(cX, cY, cZ);
 
 				if (espList.contains(ids)) {
-				espBlocks[size++] = new C_BlockCoord(cX, cY, cZ);
+				espBlocks[size++] = new CEBlockCoord(cX, cY, cZ);
 			}
 			}
 			}

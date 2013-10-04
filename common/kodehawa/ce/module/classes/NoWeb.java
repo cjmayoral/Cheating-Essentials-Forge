@@ -25,7 +25,7 @@ public class NoWeb extends ModuleAbstract {
 	public void tick(){
 		Object o = getPlayer();
 		if(o instanceof EntityPlayerSP){
-			ReflectionHelper.setField(Entity.class, o, "isInWeb", false);
+			ReflectionHelper.setField(Entity.class, o, 27, false);
 		}
 	}
 }

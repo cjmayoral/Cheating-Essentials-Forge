@@ -2,11 +2,11 @@ package common.kodehawa.ce.util;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 
-public final class C_BlockCoord {
+public final class CEBlockCoord {
 	
 	private int x, y, z;
 
-	public C_BlockCoord(int x, int y, int z) {
+	public CEBlockCoord(int x, int y, int z) {
 		this.x = x;
 	    this.y = y;
 	    this.z = z;

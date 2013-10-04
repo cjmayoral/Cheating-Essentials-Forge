@@ -4,10 +4,10 @@ import net.minecraft.util.AABBPool;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 
-public class A_AxisAlignedBB
+public class AltAxisAlignedBB
 {
     /** ThreadLocal AABBPool */
-    private static final ThreadLocal theAABBLocalPool = new A_AABBLocalPool();
+    private static final ThreadLocal theAABBLocalPool = new AltAABBLocalPool();
     public double minX;
     public double minY;
     public double minZ;
@@ -18,20 +18,20 @@ public class A_AxisAlignedBB
     /**
      * Returns a bounding box with the specified bounds. Args: minX, minY, minZ, maxX, maxY, maxZ
      */
-    public static A_AxisAlignedBB getBoundingBox(double par0, double par2, double par4, double par6, double par8, double par10)
+    public static AltAxisAlignedBB getBoundingBox(double par0, double par2, double par4, double par6, double par8, double par10)
     {
-        return new A_AxisAlignedBB(par0, par2, par4, par6, par8, par10);
+        return new AltAxisAlignedBB(par0, par2, par4, par6, par8, par10);
     }
 
     /**
      * Gets the ThreadLocal AABBPool
      */
-    public static A_AABBPool getAABBPool()
+    public static AltAABBPool getAABBPool()
     {
-        return (A_AABBPool)theAABBLocalPool.get();
+        return (AltAABBPool)theAABBLocalPool.get();
     }
 
-    protected A_AxisAlignedBB(double par1, double par3, double par5, double par7, double par9, double par11)
+    public AltAxisAlignedBB(double par1, double par3, double par5, double par7, double par9, double par11)
     {
         this.minX = par1;
         this.minY = par3;
@@ -44,7 +44,7 @@ public class A_AxisAlignedBB
     /**
      * Sets the bounds of the bounding box. Args: minX, minY, minZ, maxX, maxY, maxZ
      */
-    public A_AxisAlignedBB setBounds(double par1, double par3, double par5, double par7, double par9, double par11)
+    public AltAxisAlignedBB setBounds(double par1, double par3, double par5, double par7, double par9, double par11)
     {
         this.minX = par1;
         this.minY = par3;
@@ -58,7 +58,7 @@ public class A_AxisAlignedBB
     /**
      * Adds the coordinates to the bounding box extending it if the point lies outside the current ranges. Args: x, y, z
      */
-    public A_AxisAlignedBB addCoord(double par1, double par3, double par5)
+    public AltAxisAlignedBB addCoord(double par1, double par3, double par5)
     {
         double d3 = this.minX;
         double d4 = this.minY;
@@ -103,7 +103,7 @@ public class A_AxisAlignedBB
      * Returns a bounding box expanded by the specified vector (if negative numbers are given it will shrink). Args: x,
      * y, z
      */
-    public A_AxisAlignedBB expand(double par1, double par3, double par5)
+    public AltAxisAlignedBB expand(double par1, double par3, double par5)
     {
         double d3 = this.minX - par1;
         double d4 = this.minY - par3;
@@ -114,7 +114,7 @@ public class A_AxisAlignedBB
         return getAABBPool().getAABB(d3, d4, d5, d6, d7, d8);
     }
 
-    public A_AxisAlignedBB func_111270_a(A_AxisAlignedBB par1A_AxisAlignedBB)
+    public AltAxisAlignedBB func_111270_a(AltAxisAlignedBB par1A_AxisAlignedBB)
     {
         double d0 = Math.min(this.minX, par1A_AxisAlignedBB.minX);
         double d1 = Math.min(this.minY, par1A_AxisAlignedBB.minY);
@@ -129,7 +129,7 @@ public class A_AxisAlignedBB
      * Returns a bounding box offseted by the specified vector (if negative numbers are given it will shrink). Args: x,
      * y, z
      */
-    public A_AxisAlignedBB getOffsetBoundingBox(double par1, double par3, double par5)
+    public AltAxisAlignedBB getOffsetBoundingBox(double par1, double par3, double par5)
     {
         return getAABBPool().getAABB(this.minX + par1, this.minY + par3, this.minZ + par5, this.maxX + par1, this.maxY + par3, this.maxZ + par5);
     }
@@ -139,7 +139,7 @@ public class A_AxisAlignedBB
      * in the X dimension.  return var2 if the bounding boxes do not overlap or if var2 is closer to 0 then the
      * calculated offset.  Otherwise return the calculated offset.
      */
-    public double calculateXOffset(A_AxisAlignedBB par1A_AxisAlignedBB, double par2)
+    public double calculateXOffset(AltAxisAlignedBB par1A_AxisAlignedBB, double par2)
     {
         if (par1A_AxisAlignedBB.maxY > this.minY && par1A_AxisAlignedBB.minY < this.maxY)
         {
@@ -185,7 +185,7 @@ public class A_AxisAlignedBB
      * in the Y dimension.  return var2 if the bounding boxes do not overlap or if var2 is closer to 0 then the
      * calculated offset.  Otherwise return the calculated offset.
      */
-    public double calculateYOffset(A_AxisAlignedBB par1A_AxisAlignedBB, double par2)
+    public double calculateYOffset(AltAxisAlignedBB par1A_AxisAlignedBB, double par2)
     {
         if (par1A_AxisAlignedBB.maxX > this.minX && par1A_AxisAlignedBB.minX < this.maxX)
         {
@@ -231,7 +231,7 @@ public class A_AxisAlignedBB
      * in the Z dimension.  return var2 if the bounding boxes do not overlap or if var2 is closer to 0 then the
      * calculated offset.  Otherwise return the calculated offset.
      */
-    public double calculateZOffset(A_AxisAlignedBB par1A_AxisAlignedBB, double par2)
+    public double calculateZOffset(AltAxisAlignedBB par1A_AxisAlignedBB, double par2)
     {
         if (par1A_AxisAlignedBB.maxX > this.minX && par1A_AxisAlignedBB.minX < this.maxX)
         {
@@ -275,7 +275,7 @@ public class A_AxisAlignedBB
     /**
      * Returns whether the given bounding box intersects with this one. Args: A_AxisAlignedBB
      */
-    public boolean intersectsWith(A_AxisAlignedBB par1A_AxisAlignedBB)
+    public boolean intersectsWith(AltAxisAlignedBB par1A_AxisAlignedBB)
     {
         return par1A_AxisAlignedBB.maxX > this.minX && par1A_AxisAlignedBB.minX < this.maxX ? (par1A_AxisAlignedBB.maxY > this.minY && par1A_AxisAlignedBB.minY < this.maxY ? par1A_AxisAlignedBB.maxZ > this.minZ && par1A_AxisAlignedBB.minZ < this.maxZ : false) : false;
     }
@@ -283,7 +283,7 @@ public class A_AxisAlignedBB
     /**
      * Offsets the current bounding box by the specified coordinates. Args: x, y, z
      */
-    public A_AxisAlignedBB offset(double par1, double par3, double par5)
+    public AltAxisAlignedBB offset(double par1, double par3, double par5)
     {
         this.minX += par1;
         this.minY += par3;
@@ -316,7 +316,7 @@ public class A_AxisAlignedBB
     /**
      * Returns a bounding box that is inset by the specified amounts
      */
-    public A_AxisAlignedBB contract(double par1, double par3, double par5)
+    public AltAxisAlignedBB contract(double par1, double par3, double par5)
     {
         double d3 = this.minX + par1;
         double d4 = this.minY + par3;
@@ -330,7 +330,7 @@ public class A_AxisAlignedBB
     /**
      * Returns a copy of the bounding box.
      */
-    public A_AxisAlignedBB copy()
+    public AltAxisAlignedBB copy()
     {
         return getAABBPool().getAABB(this.minX, this.minY, this.minZ, this.maxX, this.maxY, this.maxZ);
     }
@@ -475,7 +475,7 @@ public class A_AxisAlignedBB
     /**
      * Sets the bounding box to the same bounds as the bounding box passed in. Args: A_AxisAlignedBB
      */
-    public void setBB(A_AxisAlignedBB par1A_AxisAlignedBB)
+    public void setBB(AltAxisAlignedBB par1A_AxisAlignedBB)
     {
         this.minX = par1A_AxisAlignedBB.minX;
         this.minY = par1A_AxisAlignedBB.minY;

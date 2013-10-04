@@ -13,8 +13,8 @@ public class DynamicLogger {
 
 	public static volatile DynamicLogger instance = new DynamicLogger();
 	
-	public void writeLog(String string, Level level){
-		System.out.println("[Cheating-Essentials]"+" ["+level+"] "+string);
+	public void writeLog(String data, Level level){
+		FMLLog.info(data, "Cheating-Essentials");
 	}
 	
 	public static DynamicLogger instance(){

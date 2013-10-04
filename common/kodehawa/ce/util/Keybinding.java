@@ -23,12 +23,12 @@ public class Keybinding {
         }
 	}
 	
-	public boolean checkKey( int i ) {
+	public boolean checkKey(int i) {
 		if (Minecraft.getMinecraft().currentScreen != null) {
 			return false;
 		}
 		if (Keyboard.isKeyDown(i) != keyStates [i]) {
-			return keyStates [i] = !keyStates[i];
+			return keyStates[i] = !keyStates[i];
 		} else {
 			return false;
 		}

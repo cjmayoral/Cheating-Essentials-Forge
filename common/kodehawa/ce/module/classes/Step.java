@@ -24,6 +24,6 @@ public class Step extends ModuleAbstract {
 	@Listener(eventToLoad = EventTick.class)
 	public void tick(){
 		Object o = getPlayer();
-		ReflectionHelper.setField(Entity.class, o, "stepHeight", 1.0F);
+		ReflectionHelper.setField(Entity.class, o, 42, 1.0F);
 	}
 }

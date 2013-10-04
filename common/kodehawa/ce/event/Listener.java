@@ -17,6 +17,6 @@ public @interface Listener {
 	/*
 	 * What event to load now?
 	 */
-	Class<? extends Object> eventToLoad();
+	Class<? extends Event>[] eventToLoad();
 	
 }

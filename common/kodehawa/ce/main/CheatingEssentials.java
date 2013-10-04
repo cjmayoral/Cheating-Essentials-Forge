@@ -3,14 +3,17 @@ package common.kodehawa.ce.main;
 import java.util.Arrays;
 import java.util.logging.Level;
 
+import javax.annotation.processing.SupportedSourceVersion;
+import javax.lang.model.SourceVersion;
+
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
 
-import common.kodehawa.ce.commands.*;
+import common.kodehawa.ce.commands.CommandModuleList;
+import common.kodehawa.ce.commands.CommandModuleToggle;
 import common.kodehawa.ce.logger.DynamicLogger;
-//import common.kodehawa.ce.mevents.EventManager;
 import common.kodehawa.ce.module.man.ModuleManager;
 import common.kodehawa.ce.tick.TickHandler;
 import common.kodehawa.ce.util.ForgeEvents;
@@ -22,10 +25,11 @@ import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartedEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
+@SupportedSourceVersion(SourceVersion.RELEASE_6)
 @Mod(modid="Cheating-Essentials", name="Cheating Essentials Reloaded", version="4.0.0")
 public class CheatingEssentials {
 
@@ -51,7 +55,7 @@ public class CheatingEssentials {
 	@EventHandler
 	public void initialization(FMLInitializationEvent e){
 		TickRegistry.registerScheduledTickHandler(tickhandler, Side.CLIENT);
-		loadClasses();
+		ModuleManager.instance();
 	}
 	
 	@EventHandler
@@ -60,19 +64,14 @@ public class CheatingEssentials {
 	}
 	
 	@EventHandler
-	public void serverStarted(FMLServerStartedEvent ev){
+	public void serverStarting(FMLServerStartingEvent ev){
 		MinecraftServer server = MinecraftServer.getServer();
 		ICommandManager icommand = server.getCommandManager();
 		ServerCommandManager command = ((ServerCommandManager) icommand);
 		command.registerCommand(new CommandModuleList());
+		command.registerCommand(new CommandModuleToggle());
 		
 		MinecraftForge.EVENT_BUS.register(new ForgeEvents());
-	}
-
-	
-	void loadClasses(){
-		ModuleManager.instance();
-		//EventManager.instance();
 	}
 	
 	static String majorVersion = "4";

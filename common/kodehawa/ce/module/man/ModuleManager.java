@@ -17,8 +17,6 @@ public class ModuleManager {
 
 	private static volatile ModuleManager instance = new ModuleManager();
 	public List<ModuleAbstract> avModules = Lists.newArrayList();
-	public List<Tickable> tickList = Lists.newArrayList();
-
 	
 	public ModuleManager(){
 		loadClasses();
@@ -29,19 +27,13 @@ public class ModuleManager {
 		addModule(new Fly()); addModule(new DynamicFly()); addModule(new FastPlace());
 		addModule(new Fullbright()); addModule(new HighJump()); addModule(new Sprint());
 		addModule(new FastBreak()); addModule(new Step()); addModule(new WaterWalk());
-		addModule(new MCUtil_ReloadChunks()); addModule(new AutoRespawn()); addModule(new EvtNoFall());
+		addModule(new MCUtil_ReloadChunks()); addModule(new AutoRespawn()); addModule(new Event_NoFall());
 		addModule(new NoFall()); addModule(new CreativeFly()); addModule(new ArrowDodge()); 
 		addModule(new ChestFinder()); addModule(new InvisiblePlayer()); addModule(new NoWeb());
 		addModule(new AutoRespawn()); addModule(new BlockFinder()); addModule(new AnimalESP());
 		addModule(new MCUtil_AdvancedTooltips()); addModule(new Unpushable()); addModule(new InfiniteArrow());
-		
+		addModule(new Day()); addModule(new MCUtil_MobHitbox());
 	}
-	
-	public static void getKey(){
-        for(ModuleAbstract m : instance().avModules){
-            m.getKeybind();
-        }
-    }
 	
     public ModuleAbstract getModuleClass(ModuleAbstract m){
     	for(ModuleAbstract m1 : avModules){
@@ -59,14 +51,6 @@ public class ModuleManager {
 	public void addModule(ModuleAbstract m){
 		avModules.add(m);
 		DynamicLogger.instance().writeLog("Loaded Module: "+StringUtils.upperCase(m.getModuleName())+" in Category: "+m.cat+" "+ "[Key: "+Keyboard.getKeyName(m.getKeybind())+"]", Level.INFO);
-	}
-	
-	public void addTick(Tickable t){
-		tickList.add(t);
-	}
-	
-	public void removeTick(Tickable t){
-		tickList.remove(t);
 	}
 	
 	public static ModuleManager instance(){
