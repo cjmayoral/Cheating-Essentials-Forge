@@ -11,6 +11,7 @@ public class Sprint extends ModuleAbstract {
 
 	public Sprint() {
 		super(Category.PLAYER);
+		this.setTick(true);
 	}
 
 	@Override
@@ -24,7 +25,6 @@ public class Sprint extends ModuleAbstract {
 	}
 	
 	@Override
-	@Listener(eventToLoad = EventTick.class)
 	public void tick(){
 		if(getPlayer().moveForward < 0){
 			getPlayer().setSprinting(true);

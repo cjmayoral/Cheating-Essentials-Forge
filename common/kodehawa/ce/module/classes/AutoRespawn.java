@@ -9,6 +9,7 @@ public class AutoRespawn extends ModuleAbstract {
 
 	public AutoRespawn() {
 		super(Category.WORLD);
+		this.setTick(true);
 	}
 	
 	@Override

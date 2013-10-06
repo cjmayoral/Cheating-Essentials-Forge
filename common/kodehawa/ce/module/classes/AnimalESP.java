@@ -15,6 +15,7 @@ public class AnimalESP extends ModuleAbstract {
 
 	public AnimalESP() {
 		super(Category.RENDER);
+		this.setRender(true);
 	}
 
 	@Override
@@ -23,7 +24,6 @@ public class AnimalESP extends ModuleAbstract {
 	}
 	
 	@Override
-	@Listener(eventToLoad = EventRender.class)
 	public void doRender(){
 		for(Object o : getWorld().loadedEntityList){
 			if(o instanceof EntityLiving){

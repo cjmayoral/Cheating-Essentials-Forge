@@ -13,6 +13,7 @@ public class ArrowDodge extends ModuleAbstract {
 
 	public ArrowDodge() {
 		super(Category.WORLD);
+		this.setTick(true);
 	}
 	
 	@Override
@@ -25,7 +26,6 @@ public class ArrowDodge extends ModuleAbstract {
 		return Keyboard.KEY_B;
 	}
 	
-	@Listener(eventToLoad = EventTick.class)
 	public void tick(){
 		Object o = getWorld().loadedEntityList;
 		if(o instanceof EntityArrow){

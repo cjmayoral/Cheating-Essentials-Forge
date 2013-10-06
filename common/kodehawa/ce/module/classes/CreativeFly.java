@@ -7,6 +7,7 @@ public class CreativeFly extends ModuleAbstract {
 
 	public CreativeFly() {
 		super(Category.PLAYER);
+		this.setTick(true);
 	}
 	
 	@Override

@@ -6,17 +6,20 @@ import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.commons.lang3.StringUtils;
+import org.lwjgl.input.Keyboard;
 
-import common.kodehawa.ce.event.EventManager;
 import common.kodehawa.ce.module.enums.Category;
-import common.kodehawa.ce.util.Tickable;
+import common.kodehawa.ce.module.man.ModuleManager;
+import common.kodehawa.ce.util.IRenderable;
+import common.kodehawa.ce.util.ITickable;
 
-public abstract class ModuleAbstract {
+public abstract class ModuleAbstract implements IRenderable, ITickable {
 
 	public String moduleName, moduleVersion, moduleAuthor;
-	public int keybinding;
+	public int keybinding = Keyboard.KEY_NONE;
 	public Category cat;
-	private boolean state, forgeEvt;
+	//Sorry godshawk, but your event system is not working c:
+	private boolean state, forgeEvt, tick, render;
 	
 	public ModuleAbstract(Category category){
 		cat = category;
@@ -42,11 +45,30 @@ public abstract class ModuleAbstract {
 		forgeEvt = state;
 	}
 	
+	public void setKeybinding(int key){
+		keybinding = key;
+	}
+	
+	public void setTick(boolean state){
+		tick = state;
+	}
+	
+	public void setRender(boolean state){
+		render = state;
+	}
+	
 	public boolean getForgeEvent(){
 		return forgeEvt;
 	}
 	
-
+	public boolean getRender(){
+		return render;
+	}
+	
+	public boolean getTick(){
+		return tick;
+	}
+	
 	public boolean isActive(){
 		return state;
 	}
@@ -59,14 +81,24 @@ public abstract class ModuleAbstract {
 		state = !state;
 		if(state){
 			enable();
-			EventManager.instance().register(this);
+			if(getTick()){
+				ModuleManager.instance().tick.add(this);
+			}
+			if(getRender()){
+				ModuleManager.instance().render.add(this);
+			}
 			if(getForgeEvent()){
 				MinecraftForge.EVENT_BUS.register(this);
 			}
 		}
 		else{
 			disable();
-			EventManager.instance().unregister(this);
+			if(getTick()){
+				ModuleManager.instance().tick.remove(this);
+			}
+			if(getRender()){
+				ModuleManager.instance().render.remove(this);
+			}
 			if(getForgeEvent()){
 				MinecraftForge.EVENT_BUS.unregister(this);
 			}

@@ -13,6 +13,7 @@ public class Step extends ModuleAbstract {
 
 	public Step() {
 		super(Category.WORLD);
+		this.setTick(true);
 	}
 	
 	@Override
@@ -21,7 +22,6 @@ public class Step extends ModuleAbstract {
 	}
 
 	@Override
-	@Listener(eventToLoad = EventTick.class)
 	public void tick(){
 		Object o = getPlayer();
 		ReflectionHelper.setField(Entity.class, o, 42, 1.0F);

@@ -2,11 +2,9 @@ package common.kodehawa.ce.tick;
 
 import java.util.EnumSet;
 
-import net.minecraft.client.Minecraft;
-
-import common.kodehawa.ce.event.EventManager;
-import common.kodehawa.ce.event.classes.EventTick;
+import common.kodehawa.ce.module.man.ModuleManager;
 import common.kodehawa.ce.util.Keybinding;
+import common.kodehawa.ce.util.ITickable;
 
 import cpw.mods.fml.common.IScheduledTickHandler;
 import cpw.mods.fml.common.TickType;
@@ -20,8 +18,8 @@ public class TickHandler implements IScheduledTickHandler {
 
 	@Override
 	public void tickEnd(EnumSet<TickType> type, Object... tickData) {
-		if(Minecraft.getMinecraft().theWorld != null){
-			EventManager.instance().call(new EventTick(this));
+		for(ITickable tick : ModuleManager.instance().tick){
+			tick.tick();
 		}
 	}
 
@@ -38,7 +36,6 @@ public class TickHandler implements IScheduledTickHandler {
 
 	@Override
 	public int nextTickSpacing() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }

@@ -29,7 +29,6 @@ public class BlockFinder extends ModuleAbstract {
 	}
 	
 	@Override
-	@Listener(eventToLoad = EventRender.class)
 	public void doRender(){
 		timer++;
 		if(timer >= 35){

@@ -16,6 +16,7 @@ public class ChestFinder extends ModuleAbstract {
 
 	public ChestFinder() {
 		super(Category.RENDER);
+		this.setRender(true);
 	}
 
 	@Override

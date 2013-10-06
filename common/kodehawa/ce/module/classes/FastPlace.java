@@ -13,6 +13,7 @@ public class FastPlace extends ModuleAbstract {
 
 	public FastPlace() {
 		super(Category.WORLD);
+	    this.setTick(true);
 	}
 	
 	@Override

@@ -13,6 +13,7 @@ public class NoWeb extends ModuleAbstract {
 
 	public NoWeb() {
 		super(Category.PLAYER);
+		this.setTick(true);
 	}
 
 	@Override
@@ -21,7 +22,6 @@ public class NoWeb extends ModuleAbstract {
 	}
 	
 	@Override
-	@Listener(eventToLoad = EventTick.class)
 	public void tick(){
 		Object o = getPlayer();
 		if(o instanceof EntityPlayerSP){

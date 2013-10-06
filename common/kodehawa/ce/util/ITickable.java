@@ -1,7 +1,6 @@
 package common.kodehawa.ce.util;
 
-public interface Tickable {
+public interface ITickable {
 
 	public void tick();
-	
 }

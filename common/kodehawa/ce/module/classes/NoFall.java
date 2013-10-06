@@ -14,6 +14,7 @@ public class NoFall extends ModuleAbstract {
 
 	public NoFall() {
 		super(Category.PLAYER);
+		this.setTick(true);
 	}
 	
 	@Override
@@ -27,7 +28,6 @@ public class NoFall extends ModuleAbstract {
 	}
 	
 	@Override
-	@Listener(eventToLoad = EventTick.class)
 	public void tick(){
 		getPlayer().sendQueue.addToSendQueue(new Packet13PlayerLookMove(getPlayer().motionX, -999.0D, -999.0D, getPlayer().motionZ,
 				getPlayer().rotationYaw, getPlayer().rotationPitch, !getPlayer().onGround));

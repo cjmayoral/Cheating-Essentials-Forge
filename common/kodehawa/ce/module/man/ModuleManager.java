@@ -9,14 +9,42 @@ import org.lwjgl.input.Keyboard;
 
 import com.google.common.collect.Lists;
 import common.kodehawa.ce.logger.DynamicLogger;
-import common.kodehawa.ce.module.classes.*;
+import common.kodehawa.ce.module.classes.AnimalESP;
+import common.kodehawa.ce.module.classes.ArrowDodge;
+import common.kodehawa.ce.module.classes.AutoRespawn;
+import common.kodehawa.ce.module.classes.BlockFinder;
+import common.kodehawa.ce.module.classes.ChestFinder;
+import common.kodehawa.ce.module.classes.CreativeFly;
+import common.kodehawa.ce.module.classes.Day;
+import common.kodehawa.ce.module.classes.DynamicFly;
+import common.kodehawa.ce.module.classes.Event_NoFall;
+import common.kodehawa.ce.module.classes.FastBreak;
+import common.kodehawa.ce.module.classes.FastPlace;
+import common.kodehawa.ce.module.classes.Fly;
+import common.kodehawa.ce.module.classes.Fullbright;
+import common.kodehawa.ce.module.classes.HighJump;
+import common.kodehawa.ce.module.classes.InfiniteArrow;
+import common.kodehawa.ce.module.classes.InvisiblePlayer;
+import common.kodehawa.ce.module.classes.MCUtil_AdvancedTooltips;
+import common.kodehawa.ce.module.classes.MCUtil_MobHitbox;
+import common.kodehawa.ce.module.classes.MCUtil_ReloadChunks;
+import common.kodehawa.ce.module.classes.NoFall;
+import common.kodehawa.ce.module.classes.NoWeb;
+import common.kodehawa.ce.module.classes.Sprint;
+import common.kodehawa.ce.module.classes.Step;
+import common.kodehawa.ce.module.classes.Unpushable;
+import common.kodehawa.ce.module.classes.WaterWalk;
 import common.kodehawa.ce.module.core.ModuleAbstract;
-import common.kodehawa.ce.util.Tickable;
+import common.kodehawa.ce.util.IRenderable;
+import common.kodehawa.ce.util.ITickable;
 
 public class ModuleManager {
 
 	private static volatile ModuleManager instance = new ModuleManager();
 	public List<ModuleAbstract> avModules = Lists.newArrayList();
+	public List<ITickable> tick = Lists.newArrayList();
+	public List<IRenderable> render = Lists.newArrayList();
+
 	
 	public ModuleManager(){
 		loadClasses();

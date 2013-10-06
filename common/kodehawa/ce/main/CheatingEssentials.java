@@ -16,6 +16,7 @@ import common.kodehawa.ce.commands.CommandModuleToggle;
 import common.kodehawa.ce.logger.DynamicLogger;
 import common.kodehawa.ce.module.man.ModuleManager;
 import common.kodehawa.ce.tick.TickHandler;
+import common.kodehawa.ce.util.ConfigManager;
 import common.kodehawa.ce.util.ForgeEvents;
 
 import cpw.mods.fml.common.Mod;
@@ -55,7 +56,7 @@ public class CheatingEssentials {
 	@EventHandler
 	public void initialization(FMLInitializationEvent e){
 		TickRegistry.registerScheduledTickHandler(tickhandler, Side.CLIENT);
-		ModuleManager.instance();
+		load();
 	}
 	
 	@EventHandler
@@ -72,6 +73,11 @@ public class CheatingEssentials {
 		command.registerCommand(new CommandModuleToggle());
 		
 		MinecraftForge.EVENT_BUS.register(new ForgeEvents());
+	}
+	
+	private void load(){
+		ModuleManager.instance();
+		ConfigManager.instance();
 	}
 	
 	static String majorVersion = "4";

@@ -9,10 +9,10 @@ public class Tracers extends ModuleAbstract {
 
 	public Tracers() {
 		super(Category.RENDER);
+		this.setRender(true);
 	}
 
 	@Override
-	@Listener(eventToLoad = EventRender.class)
 	public void doRender(){
 		
 	}
