@@ -8,12 +8,14 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 import net.minecraft.client.Minecraft;
 
 import org.lwjgl.input.Keyboard;
 
+import com.google.common.collect.Lists;
 import common.kodehawa.ce.logger.DynamicLogger;
 import common.kodehawa.ce.module.core.ModuleAbstract;
 import common.kodehawa.ce.module.man.ModuleManager;
@@ -21,14 +23,20 @@ import common.kodehawa.ce.module.man.ModuleManager;
 public class ConfigManager {
 
 	private static ConfigManager instance = new ConfigManager();
-	public boolean universalDebug = false;
 	private File keybindConfig = new File(Minecraft.getMinecraft().mcDataDir, "/config/Cheating Essentials/CEKeybind.txt");
 	private File debugConfig = new File(Minecraft.getMinecraft().mcDataDir, "/config/Cheating Essentials/CEDebug.txt");
-	
+	private File friendConfig = new File(Minecraft.getMinecraft().mcDataDir, "/config/Cheating Essentials/CEFriends.txt");
+	private File enemyConfig = new File(Minecraft.getMinecraft().mcDataDir, "/config/Cheating Essentials/CEEnemies.txt");
+	public ArrayList<String> friends = Lists.newArrayList();
+	public ArrayList<String> enemies = Lists.newArrayList();
+	public boolean universalDebug = false;
+
 	public ConfigManager() {
 		write();
 		readDebugConfig();
 		readKeybindConfig();
+		addDefaultFriends();
+		readFriendsConfig();
 	}
 	
 	public void writeKeybindConfig(){
@@ -38,7 +46,7 @@ public class ConfigManager {
 			BufferedWriter bufferedwriter = new BufferedWriter(filewriter);
 			for(ModuleAbstract module : ModuleManager.instance().avModules){
 				String s = Keyboard.getKeyName(module.getKeybind());
-			    bufferedwriter.write(/* 0 */"ce_key:" + /* 1 */module.getModuleName().toLowerCase().replace(" ", "") + ":" + /* 2 */s +"\r\n");
+			    bufferedwriter.write(/* 0 */"ce_key:" + /* 1 */module.getModuleName().toLowerCase().replaceAll(" ", "") + ":" + /* 2 */s +"\r\n");
 			}
 			bufferedwriter.close();
 		}
@@ -59,12 +67,13 @@ public class ConfigManager {
 				String line = key.trim();
 				String[] string = line.split(":");
 				String module1 = string[1];
-				int keybinding = Keyboard.getKeyIndex(string[2].toUpperCase());
+				String keybinding = string[2].toUpperCase();
 				for(ModuleAbstract module : ModuleManager.instance().avModules){
-					if(module1.equalsIgnoreCase(module.getModuleName().toLowerCase().replace(" ", ""))){
-						module.setKeybinding(keybinding);
+					if(module1.equalsIgnoreCase(module.getModuleName().toLowerCase().replaceAll(" ", ""))){
+						module.setKeybinding(Keyboard.getKeyIndex(keybinding));
+						int newkey = Keyboard.getKeyIndex(keybinding);
 						if(universalDebug){
-							DynamicLogger.instance().writeLog("[CM] Binded: "+module.getModuleName()+" | "+Keyboard.getKeyName(keybinding), Level.INFO); break;
+							DynamicLogger.instance().writeLog("[CM] Binded: "+module.getModuleName()+" | "+Keyboard.getKeyName(newkey), Level.INFO); break;
 						}
 					}
 					else{
@@ -72,33 +81,54 @@ public class ConfigManager {
 							DynamicLogger.instance().writeLog("[CM] Failed to recognize module: "+string[1]+" || Key: "+string[2], Level.WARNING); break;
 						}
 					}
+					}
 				}
 			}
-		} 
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
+	public void writeFriendsConfig(){
+		try{
+			FileWriter filewriter = new FileWriter(friendConfig);
+			BufferedWriter bufferedwriter = new BufferedWriter(filewriter);
+			for(String s : friends){
+				bufferedwriter.write(s+"\r\n");
+			}
+			bufferedwriter.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void readFriendsConfig(){
+		DynamicLogger.instance().writeLog("[CM] Loading Friend Config File...", Level.INFO);
+		try{
+			FileInputStream imputstream = new FileInputStream(friendConfig.getAbsolutePath());
+			DataInputStream datastream = new DataInputStream(imputstream);
+			BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(datastream));
+			String s;
+			while((s = bufferedreader.readLine()) != null){
+				friends.add(s);
+			}
+			bufferedreader.close();
+		}
+		catch(Exception e){
+		}
+	}
+	
 	public void writeDebugConfig(){
-		BufferedWriter bufferedwriter = null;
 		try{
 			FileWriter filewriter = new FileWriter(debugConfig);
-			bufferedwriter = new BufferedWriter(filewriter);
+			BufferedWriter bufferedwriter = new BufferedWriter(filewriter);
 			String s = String.valueOf(universalDebug);
 			bufferedwriter.write("debug:" + s);
+			bufferedwriter.close();
 		}
 		catch(Exception exception){
 			exception.printStackTrace();
-		}
-		finally{
-			if(bufferedwriter != null){
-				try {
-					bufferedwriter.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
 		}
 	}
 	
@@ -144,7 +174,18 @@ public class ConfigManager {
 			try{ debugConfig.createNewFile(); } catch(Exception e){ e.printStackTrace(); }
 			writeDebugConfig();
 		}
+		if(!friendConfig.exists()){
+			friendConfig.getParentFile().mkdirs();
+			try{ friendConfig.createNewFile(); } catch(Exception e){ e.printStackTrace(); }
+			writeFriendsConfig();
+		}
 	}
+	
+	private void addDefaultFriends(){
+		friends.add("Kodehawa");
+		friends.add("DCK1998");
+	}
+	
 	public static ConfigManager instance(){
 		return instance;
 	}

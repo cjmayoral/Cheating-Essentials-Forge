@@ -38,7 +38,7 @@ public class CommandModuleList extends CommandBase {
 	@Override
 	public void processCommand(ICommandSender icommandsender, String[] astring) {
 		for(ModuleAbstract module : ModuleManager.instance().avModules){
-			icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText("Module: "+module.getModuleName() + "|| Key: ["+Keyboard.getKeyName(module.getKeybind())+"]"));
+			icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText("Module: "+module.getModuleName() + " - Key: ["+Keyboard.getKeyName(module.getKeybind())+"]"));
 		}
 	}
 

@@ -11,7 +11,7 @@ import cpw.mods.fml.common.FMLLog;
  */
 public class DynamicLogger {
 
-	public static volatile DynamicLogger instance = new DynamicLogger();
+	private static volatile DynamicLogger instance = new DynamicLogger();
 	
 	public void writeLog(String data, Level level){
 		FMLLog.info(data, "Cheating-Essentials");
