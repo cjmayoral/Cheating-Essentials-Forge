@@ -19,7 +19,7 @@ public class HighJump extends ModuleAbstract {
 	
 	@Override
 	public void enable(){
-		getPlayer().addPotionEffect(new PotionEffect(Potion.jump.getId(), 9999999, 9999999));
+		getPlayer().addPotionEffect(new PotionEffect(Potion.jump.getId(), 9999999, 2));
 	}
 	
 	@Override

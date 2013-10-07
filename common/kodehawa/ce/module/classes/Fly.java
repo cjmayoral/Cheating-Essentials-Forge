@@ -10,18 +10,14 @@ public class Fly extends ModuleAbstract {
 	public Fly() {
 		super(Category.PLAYER);
 		this.setTick(true);
+		this.setKeybinding(Keyboard.KEY_R);
 	}
 	
 	@Override
 	public String getModuleName(){
 		return "Fly";
 	}
-	
-	@Override
-	public int getKeybind(){
-		return Keyboard.KEY_R;
-	}
-	
+
 	public void enable(){
 		getPlayer().capabilities.isFlying = true;
 	}

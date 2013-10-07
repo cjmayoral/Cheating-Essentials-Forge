@@ -15,16 +15,12 @@ public class NoFall extends ModuleAbstract {
 	public NoFall() {
 		super(Category.PLAYER);
 		this.setTick(true);
+		this.setKeybinding(Keyboard.KEY_V);
 	}
 	
 	@Override
 	public String getModuleName(){
 		return "No Fall";
-	}
-	
-	@Override
-	public int getKeybind(){
-		return Keyboard.KEY_V;
 	}
 	
 	@Override

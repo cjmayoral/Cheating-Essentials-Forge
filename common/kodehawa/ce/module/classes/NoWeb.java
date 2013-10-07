@@ -1,5 +1,7 @@
 package common.kodehawa.ce.module.classes;
 
+import org.lwjgl.input.Keyboard;
+
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 
@@ -14,6 +16,7 @@ public class NoWeb extends ModuleAbstract {
 	public NoWeb() {
 		super(Category.PLAYER);
 		this.setTick(true);
+		this.setKeybinding(Keyboard.KEY_NUMPAD5);
 	}
 
 	@Override

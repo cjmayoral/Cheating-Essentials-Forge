@@ -9,6 +9,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 
 import net.minecraft.client.Minecraft;
@@ -69,21 +71,23 @@ public class ConfigManager {
 				String module1 = string[1];
 				String keybinding = string[2].toUpperCase();
 				for(ModuleAbstract module : ModuleManager.instance().avModules){
-					if(module1.equalsIgnoreCase(module.getModuleName().toLowerCase().replaceAll(" ", ""))){
-						module.setKeybinding(Keyboard.getKeyIndex(keybinding));
-						int newkey = Keyboard.getKeyIndex(keybinding);
-						if(universalDebug){
-							DynamicLogger.instance().writeLog("[CM] Binded: "+module.getModuleName()+" | "+Keyboard.getKeyName(newkey), Level.INFO); break;
+					//Add the modules to another List.
+					List<String> modules = Arrays.asList(module.getModuleName());
+					//Iterate into all modules.
+					for(int i = 0; i < modules.size(); ++i){
+						//See if the iterated module is the same than the one in the file
+						if(module1.equalsIgnoreCase(modules.get(i).toLowerCase().replaceAll(" ", ""))){
+							//If the module name in the list is the same than the declared in the file, set new keybinding
+							module.setKeybinding(Keyboard.getKeyIndex(keybinding));
+							if(universalDebug){
+								//Debug it, if in the debug configuration is enabled "debug".
+								DynamicLogger.instance().writeLog("[CM] Binded: "+module.getModuleName()+" | "+Keyboard.getKeyName(module.getKeybind()), Level.INFO); break;
+							}
 						}
-					}
-					else{
-						if(universalDebug){
-							DynamicLogger.instance().writeLog("[CM] Failed to recognize module: "+string[1]+" || Key: "+string[2], Level.WARNING); break;
-						}
-					}
 					}
 				}
 			}
+		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}

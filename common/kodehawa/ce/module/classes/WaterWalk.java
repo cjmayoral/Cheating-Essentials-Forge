@@ -12,16 +12,12 @@ public class WaterWalk extends ModuleAbstract {
 	public WaterWalk() {
 		super(Category.WORLD);
 		this.setTick(true);
+		this.setKeybinding(Keyboard.KEY_J);
 	}
 
 	@Override
 	public String getModuleName(){
 		return "Water Walk";
-	}
-	
-	@Override
-	public int getKeybind(){
-		return Keyboard.KEY_J;
 	}
 	
 	@Override

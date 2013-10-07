@@ -9,16 +9,12 @@ public class Fullbright extends ModuleAbstract {
 
 	public Fullbright() {
 		super(Category.WORLD);
+		this.setKeybinding(Keyboard.KEY_F);
 	}
 
 	@Override
 	public String getModuleName(){
 		return "Fullbright";
-	}
-	
-	@Override
-	public int getKeybind(){
-		return Keyboard.KEY_F;
 	}
 	
 	@Override
