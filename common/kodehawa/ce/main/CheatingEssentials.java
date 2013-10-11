@@ -11,8 +11,7 @@ import net.minecraft.command.ServerCommandManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
 
-import common.kodehawa.ce.commands.CommandModuleList;
-import common.kodehawa.ce.commands.CommandModuleToggle;
+import common.kodehawa.ce.commands.*;
 import common.kodehawa.ce.logger.DynamicLogger;
 import common.kodehawa.ce.module.man.ModuleManager;
 import common.kodehawa.ce.tick.TickHandler;
@@ -71,6 +70,8 @@ public class CheatingEssentials {
 		ServerCommandManager command = ((ServerCommandManager) icommand);
 		command.registerCommand(new CommandModuleList());
 		command.registerCommand(new CommandModuleToggle());
+		command.registerCommand(new CommandSMKeybind());
+		
 		
 		MinecraftForge.EVENT_BUS.register(new ForgeEvents());
 	}

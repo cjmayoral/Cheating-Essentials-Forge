@@ -25,19 +25,24 @@ import common.kodehawa.ce.module.man.ModuleManager;
 public class ConfigManager {
 
 	private static ConfigManager instance = new ConfigManager();
-	private File keybindConfig = new File(Minecraft.getMinecraft().mcDataDir, "/config/Cheating Essentials/CEKeybind.txt");
-	private File debugConfig = new File(Minecraft.getMinecraft().mcDataDir, "/config/Cheating Essentials/CEDebug.txt");
-	private File friendConfig = new File(Minecraft.getMinecraft().mcDataDir, "/config/Cheating Essentials/CEFriends.txt");
-	private File enemyConfig = new File(Minecraft.getMinecraft().mcDataDir, "/config/Cheating Essentials/CEEnemies.txt");
+	private File mcdata = Minecraft.getMinecraft().mcDataDir;
+	private String configPath = "/config/Cheating Essentials/";
+	private File keybindConfig = new File(mcdata, configPath+"CEKeybindConfig.txt");
+	private File debugConfig = new File(mcdata, configPath+"CEDebugConfig.txt");
+	private File testConfig = new File(mcdata, configPath+"CETestConfig.txt");
+	private File friendConfig = new File(mcdata, configPath+"CEFriends.txt");
+	private File enemyConfig = new File(mcdata, configPath+"CEEnemies.txt");
 	public ArrayList<String> friends = Lists.newArrayList();
 	public ArrayList<String> enemies = Lists.newArrayList();
 	public boolean universalDebug = false;
-
+	public boolean universalTest = false;
+	
 	public ConfigManager() {
+		friends.add("Kodehawa");
+		friends.add("DCK1998");
 		write();
-		readDebugConfig();
+		readBooleanConfig();
 		readKeybindConfig();
-		addDefaultFriends();
 		readFriendsConfig();
 	}
 	
@@ -57,7 +62,6 @@ public class ConfigManager {
 		}
 	}
 	
-	@SuppressWarnings("resource")
 	public void readKeybindConfig(){
 		try {
 			DynamicLogger.instance().writeLog("[CM] Reading Keybinding Configuration File...", Level.INFO);
@@ -115,7 +119,7 @@ public class ConfigManager {
 			BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(datastream));
 			String s;
 			while((s = bufferedreader.readLine()) != null){
-				friends.add(s);
+				friends.add(s.toLowerCase().trim());
 			}
 			bufferedreader.close();
 		}
@@ -123,12 +127,13 @@ public class ConfigManager {
 		}
 	}
 	
-	public void writeDebugConfig(){
+	public void writeBooleanConfig(){
 		try{
 			FileWriter filewriter = new FileWriter(debugConfig);
 			BufferedWriter bufferedwriter = new BufferedWriter(filewriter);
 			String s = String.valueOf(universalDebug);
-			bufferedwriter.write("debug:" + s);
+			String string = String.valueOf(universalTest);
+			bufferedwriter.write("ce.config.enableDebug:" + s);
 			bufferedwriter.close();
 		}
 		catch(Exception exception){
@@ -136,7 +141,7 @@ public class ConfigManager {
 		}
 	}
 	
-	public void readDebugConfig(){
+	public void readBooleanConfig(){
 		FileInputStream imputstream;
 		try {
 			imputstream = new FileInputStream(debugConfig.getAbsolutePath());
@@ -148,7 +153,6 @@ public class ConfigManager {
 				String[] values = line.split(":");
 				String value1 = values[1];
 				try{
-					//System.out.println(value1);
 					if(value1.equalsIgnoreCase("true") || value1.equalsIgnoreCase("false")){
 						universalDebug = Boolean.parseBoolean(value1);
 					}
@@ -176,7 +180,7 @@ public class ConfigManager {
 		if(!debugConfig.exists()){
 			debugConfig.getParentFile().mkdirs();
 			try{ debugConfig.createNewFile(); } catch(Exception e){ e.printStackTrace(); }
-			writeDebugConfig();
+			writeBooleanConfig();
 		}
 		if(!friendConfig.exists()){
 			friendConfig.getParentFile().mkdirs();
@@ -184,11 +188,7 @@ public class ConfigManager {
 			writeFriendsConfig();
 		}
 	}
-	
-	private void addDefaultFriends(){
-		friends.add("Kodehawa");
-		friends.add("DCK1998");
-	}
+
 	
 	public static ConfigManager instance(){
 		return instance;

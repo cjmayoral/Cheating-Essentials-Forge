@@ -4,8 +4,6 @@ import net.minecraft.entity.EntityLiving;
 
 import org.lwjgl.opengl.GL11;
 
-import common.kodehawa.ce.event.Listener;
-import common.kodehawa.ce.event.classes.EventRender;
 import common.kodehawa.ce.module.core.ModuleAbstract;
 import common.kodehawa.ce.module.enums.Category;
 import common.kodehawa.ce.util.AltAxisAlignedBB;

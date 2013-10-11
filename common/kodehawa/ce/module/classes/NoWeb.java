@@ -1,12 +1,10 @@
 package common.kodehawa.ce.module.classes;
 
-import org.lwjgl.input.Keyboard;
-
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 
-import common.kodehawa.ce.event.Listener;
-import common.kodehawa.ce.event.classes.EventTick;
+import org.lwjgl.input.Keyboard;
+
 import common.kodehawa.ce.module.core.ModuleAbstract;
 import common.kodehawa.ce.module.enums.Category;
 import common.kodehawa.ce.reflect.ReflectionHelper;

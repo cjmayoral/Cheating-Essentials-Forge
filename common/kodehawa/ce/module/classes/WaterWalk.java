@@ -2,8 +2,6 @@ package common.kodehawa.ce.module.classes;
 
 import org.lwjgl.input.Keyboard;
 
-import common.kodehawa.ce.event.Listener;
-import common.kodehawa.ce.event.classes.EventTick;
 import common.kodehawa.ce.module.core.ModuleAbstract;
 import common.kodehawa.ce.module.enums.Category;
 
