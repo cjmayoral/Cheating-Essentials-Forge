@@ -4,14 +4,15 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.EventPriority;
 import net.minecraftforge.event.ForgeSubscribe;
 
+import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.man.ModuleManager;
 
 public class ForgeEvents {
 
-	@ForgeSubscribe(priority=EventPriority.HIGH)
+	@ForgeSubscribe(priority=EventPriority.HIGHEST)
 	public void onRenderWorldLastEvent(RenderWorldLastEvent evt){
-		for(IRenderable render : ModuleManager.instance().render){
-			render.doRender();
+		for(AbstractModule modules : ModuleManager.instance().avModules){
+			if(modules.getRender()){ modules.doRender(); }
 		}
 	}
 }

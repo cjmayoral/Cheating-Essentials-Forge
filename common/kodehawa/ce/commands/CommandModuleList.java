@@ -10,7 +10,7 @@ import net.minecraft.util.ChatMessageComponent;
 
 import org.lwjgl.input.Keyboard;
 
-import common.kodehawa.ce.module.core.ModuleAbstract;
+import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.man.ModuleManager;
 
 public class CommandModuleList extends CommandBase {
@@ -37,7 +37,7 @@ public class CommandModuleList extends CommandBase {
 
 	@Override
 	public void processCommand(ICommandSender icommandsender, String[] astring) {
-		for(ModuleAbstract module : ModuleManager.instance().avModules){
+		for(AbstractModule module : ModuleManager.instance().avModules){
 			icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText("Module: "+module.getModuleName() + " - Key: ["+Keyboard.getKeyName(module.getKeybind())+"]"));
 		}
 	}

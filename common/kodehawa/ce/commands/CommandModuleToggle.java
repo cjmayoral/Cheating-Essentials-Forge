@@ -4,7 +4,7 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatMessageComponent;
 
-import common.kodehawa.ce.module.core.ModuleAbstract;
+import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.man.ModuleManager;
 
 public class CommandModuleToggle extends CommandBase {
@@ -16,16 +16,22 @@ public class CommandModuleToggle extends CommandBase {
 
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender) {
-		return "/module <modulenametoenable>";
+		return "<module name to enable>";
 	}
 
 	@Override
 	public void processCommand(ICommandSender icommandsender, String[] astring) {
-		for(ModuleAbstract module : ModuleManager.instance().avModules){
+		for(AbstractModule module : ModuleManager.instance().avModules){
 			if(module.getModuleName().replace(" ", "").equalsIgnoreCase(astring[0])){
-				module.toggle(); break;
+				module.toggle(); 
+				icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText("Toggled Module: "+module.getModuleName()+" -- Module State: "+ (module.isActive() ? ("Active") : ("Disabled") )));
+				break;
 			}
 		}
 	}
 
+	@Override
+	public boolean canCommandSenderUseCommand(ICommandSender icommandsender) {
+		return true;
+	}
 }

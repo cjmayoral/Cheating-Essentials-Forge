@@ -4,12 +4,12 @@ import net.minecraft.entity.EntityLiving;
 
 import org.lwjgl.opengl.GL11;
 
-import common.kodehawa.ce.module.core.ModuleAbstract;
+import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.enums.Category;
 import common.kodehawa.ce.util.AltAxisAlignedBB;
 import common.kodehawa.ce.util.GLHelper;
 
-public class AnimalESP extends ModuleAbstract {
+public class AnimalESP extends AbstractModule {
 
 	public AnimalESP() {
 		super(Category.RENDER);

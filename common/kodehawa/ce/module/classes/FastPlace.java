@@ -4,11 +4,11 @@ import net.minecraft.client.Minecraft;
 
 import org.lwjgl.input.Keyboard;
 
-import common.kodehawa.ce.module.core.ModuleAbstract;
+import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.enums.Category;
 import common.kodehawa.ce.reflect.ReflectionHelper;
 
-public class FastPlace extends ModuleAbstract {
+public class FastPlace extends AbstractModule {
 
 	public FastPlace() {
 		super(Category.WORLD);

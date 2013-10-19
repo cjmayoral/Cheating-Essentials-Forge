@@ -1,9 +1,9 @@
 package common.kodehawa.ce.module.classes;
 
-import common.kodehawa.ce.module.core.ModuleAbstract;
+import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.enums.Category;
 
-public class AutoRespawn extends ModuleAbstract {
+public class AutoRespawn extends AbstractModule {
 
 	public AutoRespawn() {
 		super(Category.WORLD);

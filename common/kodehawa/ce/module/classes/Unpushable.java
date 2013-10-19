@@ -1,9 +1,9 @@
 package common.kodehawa.ce.module.classes;
 
-import common.kodehawa.ce.module.core.ModuleAbstract;
+import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.enums.Category;
 
-public class Unpushable extends ModuleAbstract {
+public class Unpushable extends AbstractModule {
 
 	public Unpushable() {
 		super(Category.PLAYER);

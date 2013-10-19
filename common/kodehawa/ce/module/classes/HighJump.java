@@ -3,10 +3,10 @@ package common.kodehawa.ce.module.classes;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 
-import common.kodehawa.ce.module.core.ModuleAbstract;
+import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.enums.Category;
 
-public class HighJump extends ModuleAbstract {
+public class HighJump extends AbstractModule {
 
 	public HighJump() {
 		super(Category.PLAYER);

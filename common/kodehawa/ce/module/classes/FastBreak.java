@@ -3,10 +3,10 @@ package common.kodehawa.ce.module.classes;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 
-import common.kodehawa.ce.module.core.ModuleAbstract;
+import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.enums.Category;
 
-public class FastBreak extends ModuleAbstract {
+public class FastBreak extends AbstractModule {
 
 	public FastBreak() {
 		super(Category.WORLD);

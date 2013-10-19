@@ -12,10 +12,11 @@ import net.minecraft.block.BlockRedstoneOre;
 import com.google.common.collect.Lists;
 
 import common.kodehawa.ce.logger.DynamicLogger;
-import common.kodehawa.ce.module.core.ModuleAbstract;
+import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.enums.Category;
+import common.kodehawa.ce.util.ConfigManager;
 
-public class XRay extends ModuleAbstract{
+public class XRay extends AbstractModule{
 
 	public List<Integer> blocksToRender = Lists.newArrayList();
 	public List<Integer> blocksToIgnore = Lists.newArrayList();
@@ -34,7 +35,6 @@ public class XRay extends ModuleAbstract{
 	
 	@Override
 	public void enable(){
-		addDefaultList();
 		getMinecraft().renderGlobal.loadRenderers();
 	}
 	
@@ -46,12 +46,11 @@ public class XRay extends ModuleAbstract{
 	@Override
 	public void tick(){}
 	
-	void addDefaultList(){
+	private void addDefaultList(){
 		for(Block block : Block.blocksList){
 			if(block instanceof BlockOre || block instanceof BlockRedstoneOre){
 				if(!blocksToIgnore.contains(block.blockID)){
 					blocksToRender.add(block.blockID);
-					DynamicLogger.instance().writeLogWithPrefix("<X-Ray>", "Added to default X-Ray list: " + block.getLocalizedName() + " " + "("+block.getUnlocalizedName()+")", Level.INFO, 1);
 				}
 			}
 		}

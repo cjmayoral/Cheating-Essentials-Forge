@@ -6,25 +6,21 @@ import net.minecraft.tileentity.TileEntityEnderChest;
 
 import org.lwjgl.input.Keyboard;
 
-import common.kodehawa.ce.module.core.ModuleAbstract;
+import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.enums.Category;
 import common.kodehawa.ce.util.GLHelper;
 
-public class ChestFinder extends ModuleAbstract {
+public class ChestFinder extends AbstractModule {
 
 	public ChestFinder() {
 		super(Category.RENDER);
 		this.setRender(true);
+		this.setKeybinding(Keyboard.KEY_N);
 	}
 
 	@Override
 	public String getModuleName(){
 		return "Chest Finder";
-	}
-	
-	@Override
-	public int getKeybind(){
-		return Keyboard.KEY_N;
 	}
 	
 	@Override

@@ -19,7 +19,7 @@ import org.lwjgl.input.Keyboard;
 
 import com.google.common.collect.Lists;
 import common.kodehawa.ce.logger.DynamicLogger;
-import common.kodehawa.ce.module.core.ModuleAbstract;
+import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.man.ModuleManager;
 
 public class ConfigManager {
@@ -38,12 +38,11 @@ public class ConfigManager {
 	public boolean universalTest = false;
 	
 	public ConfigManager() {
-		friends.add("Kodehawa");
-		friends.add("DCK1998");
+		addDefaultFriends();
 		write();
 		readBooleanConfig();
-		readKeybindConfig();
 		readFriendsConfig();
+		readKeybindConfig();
 	}
 	
 	public void writeKeybindConfig(){
@@ -51,7 +50,7 @@ public class ConfigManager {
 		try{
 			FileWriter filewriter = new FileWriter(keybindConfig);
 			BufferedWriter bufferedwriter = new BufferedWriter(filewriter);
-			for(ModuleAbstract module : ModuleManager.instance().avModules){
+			for(AbstractModule module : ModuleManager.instance().avModules){
 				String s = Keyboard.getKeyName(module.getKeybind());
 			    bufferedwriter.write(/* 0 */"ce_key:" + /* 1 */module.getModuleName().toLowerCase().replaceAll(" ", "") + ":" + /* 2 */s +"\r\n");
 			}
@@ -74,7 +73,7 @@ public class ConfigManager {
 				String[] string = line.split(":");
 				String module1 = string[1];
 				String keybinding = string[2].toUpperCase();
-				for(ModuleAbstract module : ModuleManager.instance().avModules){
+				for(AbstractModule module : ModuleManager.instance().avModules){
 					//Add the modules to another List.
 					List<String> modules = Arrays.asList(module.getModuleName());
 					//Iterate into all modules.
@@ -169,6 +168,11 @@ public class ConfigManager {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void addDefaultFriends(){
+		friends.add("Kodehawa");
+		friends.add("ReesZRB");
 	}
 	
 	private void write(){

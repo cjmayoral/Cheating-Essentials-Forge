@@ -2,11 +2,11 @@ package common.kodehawa.ce.module.classes;
 
 import net.minecraft.entity.EntityLivingBase;
 
-import common.kodehawa.ce.module.core.ModuleAbstract;
+import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.enums.Category;
 import common.kodehawa.ce.reflect.ReflectionHelper;
 
-public class DynamicFly extends ModuleAbstract {
+public class DynamicFly extends AbstractModule {
 
 	public DynamicFly() {
 		super(Category.PLAYER);

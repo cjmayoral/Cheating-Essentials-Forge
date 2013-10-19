@@ -4,10 +4,10 @@ import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.WorldServer;
 
-import common.kodehawa.ce.module.core.ModuleAbstract;
+import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.enums.Category;
 
-public class Day extends ModuleAbstract {
+public class Day extends AbstractModule {
 
 	public Day() {
 		super(Category.WORLD);
@@ -19,7 +19,6 @@ public class Day extends ModuleAbstract {
 	}
 	
 	public void enable(){
-		WorldClient world = getWorld();
-		world.setWorldTime(0L);
+		
 	}
 }

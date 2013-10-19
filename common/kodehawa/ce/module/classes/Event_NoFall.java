@@ -3,10 +3,10 @@ package common.kodehawa.ce.module.classes;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.*;
 
-import common.kodehawa.ce.module.core.ModuleAbstract;
+import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.enums.Category;
 
-public class Event_NoFall extends ModuleAbstract {
+public class Event_NoFall extends AbstractModule {
 
 	public Event_NoFall() {
 		super(Category.WORLD);

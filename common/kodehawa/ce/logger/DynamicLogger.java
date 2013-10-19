@@ -48,7 +48,7 @@ public class DynamicLogger {
 			FMLLog.log(p1+prefix, level , data);
 		}
 		if(mode == 2){
-			System.out.println(prefix + " " + level + " " + data);
+			System.out.println("["+prefix+"]"+ " " + level + " " + data);
 		}
 	}
 	

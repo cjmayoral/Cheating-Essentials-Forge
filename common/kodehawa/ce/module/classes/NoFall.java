@@ -4,10 +4,10 @@ import net.minecraft.network.packet.Packet13PlayerLookMove;
 
 import org.lwjgl.input.Keyboard;
 
-import common.kodehawa.ce.module.core.ModuleAbstract;
+import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.enums.Category;
 
-public class NoFall extends ModuleAbstract {
+public class NoFall extends AbstractModule {
 
 	public NoFall() {
 		super(Category.PLAYER);

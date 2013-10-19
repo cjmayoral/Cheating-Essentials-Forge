@@ -15,7 +15,9 @@ import common.kodehawa.ce.commands.*;
 import common.kodehawa.ce.logger.DynamicLogger;
 import common.kodehawa.ce.module.man.ModuleManager;
 import common.kodehawa.ce.tick.TickHandler;
+import common.kodehawa.ce.util.CEInitializationError;
 import common.kodehawa.ce.util.ConfigManager;
+import common.kodehawa.ce.util.CrashManager;
 import common.kodehawa.ce.util.ForgeEvents;
 
 import cpw.mods.fml.common.Mod;
@@ -36,11 +38,11 @@ public class CheatingEssentials {
 	@Instance("Cheating-Essentials")
 	public static CheatingEssentials main;
 	TickHandler tickhandler = new TickHandler();
-
 	
 	@EventHandler
 	public void preInitialization(FMLPreInitializationEvent e){
 		DynamicLogger.instance().writeLog("Loading Cheating Essentials "+modVersion+" in " + MinecraftForge.getBrandingVersion(), Level.INFO);
+		
 		/* Cheating Essentials MD START */
 		ModMetadata mMetadata = e.getModMetadata();
 		mMetadata.credits = "Kodehawa";
@@ -50,12 +52,18 @@ public class CheatingEssentials {
 		mMetadata.authorList = Arrays.asList(new String[] { "Kodehawa" });
 		mMetadata.url = "http://www.minecraftforum.net/topic/1846289-";
 		/* Cheating Essentials MD FINISH */
+		
 	}
 	
 	@EventHandler
 	public void initialization(FMLInitializationEvent e){
 		TickRegistry.registerScheduledTickHandler(tickhandler, Side.CLIENT);
-		load();
+		try{
+			load();
+		}
+		catch(CEInitializationError error){
+			CrashManager.instance().propagate("Error on Cheating Essentials Instance Loading", error);
+		}
 	}
 	
 	@EventHandler
@@ -65,18 +73,22 @@ public class CheatingEssentials {
 	
 	@EventHandler
 	public void serverStarting(FMLServerStartingEvent ev){
+		
+		/* COMMAND REGISTERER START */
 		MinecraftServer server = MinecraftServer.getServer();
 		ICommandManager icommand = server.getCommandManager();
 		ServerCommandManager command = ((ServerCommandManager) icommand);
 		command.registerCommand(new CommandModuleList());
 		command.registerCommand(new CommandModuleToggle());
 		command.registerCommand(new CommandSMKeybind());
-		
+		command.registerCommand(new CommandAddFriend());
+		command.registerCommand(new CommandAddEnemy());
+		/* COMMAND REGISTERER FINISH */
 		
 		MinecraftForge.EVENT_BUS.register(new ForgeEvents());
 	}
 	
-	private void load(){
+	private void load() throws CEInitializationError {
 		ModuleManager.instance();
 		ConfigManager.instance();
 	}

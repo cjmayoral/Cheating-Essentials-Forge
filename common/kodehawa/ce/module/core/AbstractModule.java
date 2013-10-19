@@ -13,7 +13,7 @@ import common.kodehawa.ce.module.man.ModuleManager;
 import common.kodehawa.ce.util.IRenderable;
 import common.kodehawa.ce.util.ITickable;
 
-public abstract class ModuleAbstract implements IRenderable, ITickable {
+public abstract class AbstractModule implements IRenderable, ITickable {
 
 	public String moduleName, moduleVersion, moduleAuthor;
 	public int keybinding = Keyboard.KEY_NONE;
@@ -21,7 +21,7 @@ public abstract class ModuleAbstract implements IRenderable, ITickable {
 	//Sorry godshawk, but your event system is not working c:
 	private boolean state, forgeEvt, tick, render;
 	
-	public ModuleAbstract(Category category){
+	public AbstractModule(Category category){
 		cat = category;
 	}
 	
@@ -81,27 +81,17 @@ public abstract class ModuleAbstract implements IRenderable, ITickable {
 		state = !state;
 		if(state){
 			enable();
-			if(getTick()){
-				ModuleManager.instance().tick.add(this);
-			}
-			if(getRender()){
-				ModuleManager.instance().render.add(this);
-			}
-			if(getForgeEvent()){
-				MinecraftForge.EVENT_BUS.register(this);
-			}
+			if(!(getCategory() == Category.NONE)){ ModuleManager.instance().enabled.add(this.getModuleName()); }
+			if(getTick()){ ModuleManager.instance().tick.add(this); }
+			if(getRender()){ ModuleManager.instance().render.add(this); doRender(); }
+			if(getForgeEvent()){ MinecraftForge.EVENT_BUS.register(this); }
 		}
 		else{
 			disable();
-			if(getTick()){
-				ModuleManager.instance().tick.remove(this);
-			}
-			if(getRender()){
-				ModuleManager.instance().render.remove(this);
-			}
-			if(getForgeEvent()){
-				MinecraftForge.EVENT_BUS.unregister(this);
-			}
+			if(!(getCategory() == Category.NONE)){ ModuleManager.instance().enabled.remove(this); }
+			if(getTick()){ ModuleManager.instance().tick.remove(this); }
+			if(getRender()){ ModuleManager.instance().render.remove(this); }
+			if(getForgeEvent()){ MinecraftForge.EVENT_BUS.unregister(this); }
 		}
 	}
 	

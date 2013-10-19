@@ -4,7 +4,7 @@ import net.minecraft.client.Minecraft;
 
 import org.lwjgl.input.Keyboard;
 
-import common.kodehawa.ce.module.core.ModuleAbstract;
+import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.man.ModuleManager;
 
 public class Keybinding {
@@ -16,7 +16,7 @@ public class Keybinding {
 	}
 	
 	public void handle(){
-		for(ModuleAbstract module : ModuleManager.instance().avModules){
+		for(AbstractModule module : ModuleManager.instance().avModules){
 			if(checkKey(module.getKeybind())){
 				module.toggle(); break;
 			}

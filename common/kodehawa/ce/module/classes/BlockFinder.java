@@ -2,17 +2,20 @@ package common.kodehawa.ce.module.classes;
 
 import java.util.List;
 
+import org.lwjgl.input.Keyboard;
+
 import com.google.common.collect.Lists;
-import common.kodehawa.ce.module.core.ModuleAbstract;
+import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.enums.Category;
 import common.kodehawa.ce.util.CEBlockCoord;
 import common.kodehawa.ce.util.GLHelper;
 
-public class BlockFinder extends ModuleAbstract {
+public class BlockFinder extends AbstractModule {
 
 	/* This is just the old version. */
 	public BlockFinder() {
 		super(Category.RENDER);
+		this.setKeybinding(Keyboard.KEY_NUMPAD1);
 	}
 	
 	private int size = 0, timer = 0;
@@ -45,17 +48,15 @@ public class BlockFinder extends ModuleAbstract {
 		for(int y = 0; y < 128; y++) {
 			for(int x = 0; x < radius; x++) {
 			for(int z = 0; z < radius; z++) {
-				
 				int cX = (int)getMinecraft().thePlayer.posX - (int)radius/2+x;
 				int cY = y;
 				int cZ = (int)getMinecraft().thePlayer.posZ - (int)radius/2+z;
 				int ids = getWorld().getBlockId(cX, cY, cZ);
-
 				if (espList.contains(ids)) {
-				espBlocks[size++] = new CEBlockCoord(cX, cY, cZ);
-			}
-			}
+					espBlocks[size++] = new CEBlockCoord(cX, cY, cZ);
+				}
 			}
 		}
 	}
+}
 }

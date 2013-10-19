@@ -1,9 +1,9 @@
 package common.kodehawa.ce.module.classes;
 
-import common.kodehawa.ce.module.core.ModuleAbstract;
+import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.enums.Category;
 
-public class MCUtil_ReloadChunks extends ModuleAbstract {
+public class MCUtil_ReloadChunks extends AbstractModule {
 
 	public MCUtil_ReloadChunks() {
 		super(Category.UTILS);
