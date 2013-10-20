@@ -92,7 +92,8 @@ public class YAWWindow
 					if(x >= button.getX() + dragX && y >= button.getY() + 1 + dragY && x <= button.getX() + 23 + dragX && y <= button.getY() + 10 + dragY)
 					{
 						button.isOverButton = true;
-					}else
+					}
+					else
 					{
 						button.isOverButton = false;
 					}

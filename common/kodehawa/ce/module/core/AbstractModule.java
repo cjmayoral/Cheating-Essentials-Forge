@@ -8,12 +8,15 @@ import net.minecraftforge.common.MinecraftForge;
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.input.Keyboard;
 
+import common.kodehawa.ce.event.Event;
+import common.kodehawa.ce.event.EventHandler;
+import common.kodehawa.ce.event.Listener;
+import common.kodehawa.ce.event.events.EventRender;
+import common.kodehawa.ce.event.events.EventTick;
 import common.kodehawa.ce.module.enums.Category;
 import common.kodehawa.ce.module.man.ModuleManager;
-import common.kodehawa.ce.util.IRenderable;
-import common.kodehawa.ce.util.ITickable;
 
-public abstract class AbstractModule implements IRenderable, ITickable {
+public abstract class AbstractModule implements Listener {
 
 	public String moduleName, moduleVersion, moduleAuthor;
 	public int keybinding = Keyboard.KEY_NONE;
@@ -82,15 +85,15 @@ public abstract class AbstractModule implements IRenderable, ITickable {
 		if(state){
 			enable();
 			if(!(getCategory() == Category.NONE)){ ModuleManager.instance().enabled.add(this.getModuleName()); }
-			if(getTick()){ ModuleManager.instance().tick.add(this); }
-			if(getRender()){ ModuleManager.instance().render.add(this); doRender(); }
+			if(getTick()){ EventHandler.getInstance().registerListener(EventTick.class, this); }
+			if(getRender()){ EventHandler.getInstance().registerListener(EventRender.class, this); }
 			if(getForgeEvent()){ MinecraftForge.EVENT_BUS.register(this); }
 		}
 		else{
 			disable();
-			if(!(getCategory() == Category.NONE)){ ModuleManager.instance().enabled.remove(this); }
-			if(getTick()){ ModuleManager.instance().tick.remove(this); }
-			if(getRender()){ ModuleManager.instance().render.remove(this); }
+			if(!(getCategory() == Category.NONE)){ ModuleManager.instance().enabled.remove(this.getModuleName()); }
+			if(getTick()){ EventHandler.getInstance().unRegisterListener(EventTick.class, this); }
+			if(getRender()){ EventHandler.getInstance().unRegisterListener(EventRender.class, this); }
 			if(getForgeEvent()){ MinecraftForge.EVENT_BUS.unregister(this); }
 		}
 	}
@@ -105,6 +108,16 @@ public abstract class AbstractModule implements IRenderable, ITickable {
 	
 	public WorldClient getWorld(){
 		return getMinecraft().theWorld;
+	}
+	
+	@Override
+	public void onEvent(Event evt){
+		if(evt instanceof EventTick){
+			this.tick();
+		}
+		if(evt instanceof EventRender){
+			this.doRender();
+		}
 	}
 	
 	public void enable(){}

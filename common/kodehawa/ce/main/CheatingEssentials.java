@@ -6,11 +6,11 @@ import java.util.logging.Level;
 import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
-
 import common.kodehawa.ce.commands.*;
 import common.kodehawa.ce.logger.DynamicLogger;
 import common.kodehawa.ce.module.man.ModuleManager;
@@ -19,7 +19,6 @@ import common.kodehawa.ce.util.CEInitializationError;
 import common.kodehawa.ce.util.ConfigManager;
 import common.kodehawa.ce.util.CrashManager;
 import common.kodehawa.ce.util.ForgeEvents;
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -42,7 +41,9 @@ public class CheatingEssentials {
 	@EventHandler
 	public void preInitialization(FMLPreInitializationEvent e){
 		DynamicLogger.instance().writeLog("Loading Cheating Essentials "+modVersion+" in " + MinecraftForge.getBrandingVersion(), Level.INFO);
-		
+		MinecraftForge.EVENT_BUS.register(new ForgeEvents());
+
+		Minecraft.getMinecraft().mcProfiler.startSection("Cheating Essentials Starting");
 		/* Cheating Essentials MD START */
 		ModMetadata mMetadata = e.getModMetadata();
 		mMetadata.credits = "Kodehawa";
@@ -52,7 +53,6 @@ public class CheatingEssentials {
 		mMetadata.authorList = Arrays.asList(new String[] { "Kodehawa" });
 		mMetadata.url = "http://www.minecraftforum.net/topic/1846289-";
 		/* Cheating Essentials MD FINISH */
-		
 	}
 	
 	@EventHandler
@@ -68,12 +68,12 @@ public class CheatingEssentials {
 	
 	@EventHandler
 	public void postInitialization(FMLPostInitializationEvent e){
+		Minecraft.getMinecraft().mcProfiler.startSection("Cheating Essentials Start");
 		DynamicLogger.instance().writeLog("Cheating Essentials v4 succefully started in Minecraft 1.6.4", Level.INFO);
 	}
 	
 	@EventHandler
 	public void serverStarting(FMLServerStartingEvent ev){
-		
 		/* COMMAND REGISTERER START */
 		MinecraftServer server = MinecraftServer.getServer();
 		ICommandManager icommand = server.getCommandManager();
@@ -83,9 +83,10 @@ public class CheatingEssentials {
 		command.registerCommand(new CommandSMKeybind());
 		command.registerCommand(new CommandAddFriend());
 		command.registerCommand(new CommandAddEnemy());
+		command.registerCommand(new CommandFlySpeed());
+		command.registerCommand(new CommandStepHeight());
 		/* COMMAND REGISTERER FINISH */
 		
-		MinecraftForge.EVENT_BUS.register(new ForgeEvents());
 	}
 	
 	private void load() throws CEInitializationError {

@@ -9,6 +9,7 @@ import org.lwjgl.input.Keyboard;
 import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.enums.Category;
 import common.kodehawa.ce.util.GLHelper;
+import common.kodehawa.reeszrbteam.ce.util.CEUtils;
 
 public class ChestFinder extends AbstractModule {
 
@@ -32,7 +33,7 @@ public class ChestFinder extends AbstractModule {
 		    }
 			if(o instanceof TileEntityEnderChest){
 				TileEntityEnderChest c1 = (TileEntityEnderChest)o;
-			    draw(c1, c1.xCoord, c1.yCoord, c1.zCoord, c1.prevLidAngle);
+			    draw2(c1, c1.xCoord, c1.yCoord, c1.zCoord, c1.prevLidAngle);
 		    }
 		}
 	}
@@ -40,15 +41,15 @@ public class ChestFinder extends AbstractModule {
 	public void draw(TileEntityChest c, double x, double y, double z, float f1){
 		if(c.xCoord == 0 && c.yCoord == 0 && c.zCoord == 0){
 			getMinecraft().entityRenderer.disableLightmap(f1);
-			GLHelper.startDrawingESPs(x - RenderManager.renderPosX, y - RenderManager.renderPosY, z - RenderManager.renderPosZ, 1.5F, 0.1F, 0.9F);
+			CEUtils.drawESP(x - RenderManager.renderPosX, y - RenderManager.renderPosY, z - RenderManager.renderPosZ, 1.5F, 0.1F, 0.9F);
 			getMinecraft().entityRenderer.enableLightmap(f1);
 		}
 	}
 	
-    public void draw(TileEntityEnderChest c, double x, double y, double z, float f1){
+    public void draw2(TileEntityEnderChest c, double x, double y, double z, float f1){
 		if(c.xCoord == 0 && c.yCoord == 0 && c.zCoord == 0){
 			getMinecraft().entityRenderer.disableLightmap(f1);
-			GLHelper.startDrawingESPs(x - RenderManager.renderPosX, y - RenderManager.renderPosY, z - RenderManager.renderPosZ, 1.5F, 0.1F, 0.9F);
+			CEUtils.drawESP(x - RenderManager.renderPosX, y - RenderManager.renderPosY, z - RenderManager.renderPosZ, 1.5F, 0.1F, 0.9F);
 			getMinecraft().entityRenderer.enableLightmap(f1);
 		}
 	}

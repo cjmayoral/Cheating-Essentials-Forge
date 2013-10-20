@@ -30,7 +30,7 @@ public class WindowHub extends YAWWindow
 					int yPosition = (12 * size) + 18 + dragY;
 					CEUtils.drawGradientBorderedRect(4 + dragX, 12 + yPosition, getX() + 88 + dragX, yPosition + 24, 1.0F, 0xFF444444, !window.isOpen() ? 0xFF777777 : 0xFF555555, !window.isOpen() ? 0xFF555555 : 0xFF666666);
 
-					drawCenteredTTFString(window.getTitle(), 38 + dragX, yPosition + 14, window.isOpen() ? 0x55FFFF : 0xBBBBBB);
+					drawCenteredTTFString(window.getTitle().equalsIgnoreCase("Enabled:") ? "Active Mods" : window.getTitle(), 38 + dragX, yPosition + 14, window.isOpen() ? 0x55FFFF : 0xBBBBBB);
 					size++;
 				}
 			}

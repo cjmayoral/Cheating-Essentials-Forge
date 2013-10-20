@@ -1,5 +1,6 @@
 package common.kodehawa.ce.module.man;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
@@ -8,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.input.Keyboard;
 
 import com.google.common.collect.Lists;
+
 import common.kodehawa.ce.logger.DynamicLogger;
 import common.kodehawa.ce.module.classes.DynamicFly;
 import common.kodehawa.ce.module.core.AbstractModule;
@@ -19,6 +21,7 @@ public class ModuleManager {
 
 	private static volatile ModuleManager instance = new ModuleManager();
 	public List<AbstractModule> avModules = Lists.newArrayList();
+	public List<AbstractModule> enabled2 = Lists.newArrayList();
 	public List<String> enabled = Lists.newArrayList();
 	public List<ITickable> tick = Lists.newArrayList();
 	public List<IRenderable> render = Lists.newArrayList();
@@ -29,10 +32,13 @@ public class ModuleManager {
 	}
 
 	private void load(String packageName){
-		String[] moduleClasses = new String[]{"Fly", "Speed", "DynamicFly", "FastPlace", "Fullbright", "HighJump", "Sprint", "FastBreak", "Step", "WaterWalk",
+		String[] moduleClasses = new String[]{
+				"Fly", "Speed", "DynamicFly", "FastPlace", "Fullbright", "HighJump", "Sprint", "FastBreak", "Step", "WaterWalk",
 				"MCUtil_ReloadChunks", "AutoRespawn", "Event_NoFall", "NoFall", "CreativeFly", "ChestFinder", /*"InvisiblePlayer",*/ "NoWeb", "BlockFinder",
 				"AnimalESP", /*"ArrowDodge",*/  "MCUtil_AdvancedTooltips", "Spectate", "Sneak", "AutoSprint", "Walk", "Unpushable", /*"InfiniteArrow",*/ "Day",
-				"MCUtil_MobHitbox", "XRay", };
+				"MCUtil_MobHitbox", "XRay", "Test", 
+		};
+		
 		for(int i = 0; i < moduleClasses.length; ++i){
 			try {
 				Class clazz = Class.forName(packageName+moduleClasses[i]);

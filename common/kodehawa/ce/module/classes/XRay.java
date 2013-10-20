@@ -44,7 +44,9 @@ public class XRay extends AbstractModule{
 	}
 	
 	@Override
-	public void tick(){}
+	public void tick(){
+		//TODO: Add shit here when we finish X-RAY
+	}
 	
 	private void addDefaultList(){
 		for(Block block : Block.blocksList){

@@ -13,6 +13,8 @@ public class Step extends AbstractModule {
 		this.setTick(true);
 	}
 	
+	public static float DEFAULT_STEP_HEIGHT = 1.0F;
+	
 	@Override
 	public String getModuleName(){
 		return "Step";
