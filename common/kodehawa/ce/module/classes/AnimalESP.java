@@ -13,7 +13,7 @@ public class AnimalESP extends AbstractModule {
 
 	public AnimalESP() {
 		super(Category.RENDER);
-		this.setRender(true);
+		super.setRender(true);
 	}
 
 	@Override
@@ -23,13 +23,15 @@ public class AnimalESP extends AbstractModule {
 	
 	@Override
 	public void doRender(){
-		for(Object o : getWorld().loadedEntityList){
-			if(o instanceof EntityLiving){
-				EntityLiving living = (EntityLiving)o;
-				double x = living.lastTickPosX + (living.posX - living.lastTickPosX);
-				double y = living.lastTickPosY + (living.posY - living.lastTickPosY);
-				double z = living.lastTickPosZ + (living.posZ - living.lastTickPosZ);
-				drawESP(x, y, z, living, living.height - 0.1, living.width - 0.1);
+		if(isActive()){
+			for(Object o : getWorld().loadedEntityList){
+				if(o instanceof EntityLiving){
+					EntityLiving living = (EntityLiving)o;
+					double x = living.lastTickPosX + (living.posX - living.lastTickPosX);
+					double y = living.lastTickPosY + (living.posY - living.lastTickPosY);
+					double z = living.lastTickPosZ + (living.posZ - living.lastTickPosZ);
+					drawESP(x, y, z, living, living.height - 0.1, living.width - 0.1);
+				}
 			}
 		}
 	}

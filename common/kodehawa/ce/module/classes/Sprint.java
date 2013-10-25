@@ -9,7 +9,7 @@ public class Sprint extends AbstractModule {
 
 	public Sprint() {
 		super(Category.PLAYER);
-		this.setTick(true);
+		super.setTick(true);
 		this.setKeybinding(Keyboard.KEY_H);
 	}
 
@@ -20,7 +20,7 @@ public class Sprint extends AbstractModule {
 	
 	@Override
 	public void tick(){
-		if(getPlayer().moveForward < 0){
+		if(getPlayer().moveForward > 0){
 			getPlayer().setSprinting(true);
 		}
 	}

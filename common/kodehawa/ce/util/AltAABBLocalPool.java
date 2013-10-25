@@ -2,7 +2,7 @@ package common.kodehawa.ce.util;
 
 import net.minecraft.util.AABBPool;
 
-public class AltAABBLocalPool extends ThreadLocal
+public final class AltAABBLocalPool extends ThreadLocal
 {
     protected AABBPool createNewDefaultPool()
     {

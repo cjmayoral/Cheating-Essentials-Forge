@@ -11,14 +11,13 @@ import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
+
 import common.kodehawa.ce.commands.*;
 import common.kodehawa.ce.logger.DynamicLogger;
 import common.kodehawa.ce.module.man.ModuleManager;
 import common.kodehawa.ce.tick.TickHandler;
-import common.kodehawa.ce.util.CEInitializationError;
-import common.kodehawa.ce.util.ConfigManager;
-import common.kodehawa.ce.util.CrashManager;
-import common.kodehawa.ce.util.ForgeEvents;
+import common.kodehawa.ce.util.*;
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -27,8 +26,22 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
+
+/**
+ * Note from author:
+ * You have the RIGHT to say that my code is horrible.
+ * You have the RIGHT to say that this is like a Hacked Client.
+ * You have the RIGHT to say that this code is skidded.
+ * But it's my code, it's not skidded and the HC GUI and the Module System is the thing that makes this looks like a HC, but this is NOT.
+ * ReesZRB, one of the persons that working in CE since 3.1, is a HC coder, and he obviously makes the GUI looks like that, but
+ * I like how it looks. A lot of people likes how it looks. We have the RIGHT to do anything that we want with our code.
+ * If this is Open Source IT'S for let's people to LEARN, not for see you making critisism to it with VERY BAD fundaments.
+ * Thanks.-
+ * @author Kodehawa
+ */
 
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 @Mod(modid="Cheating-Essentials", name="Cheating Essentials Reloaded", version="4.0.0")
@@ -44,7 +57,9 @@ public class CheatingEssentials {
 		MinecraftForge.EVENT_BUS.register(new ForgeEvents());
 
 		Minecraft.getMinecraft().mcProfiler.startSection("Cheating Essentials Starting");
-		/* Cheating Essentials MD START */
+		
+		/********* Cheating Essentials METADATA DECLARATION START *********/
+		
 		ModMetadata mMetadata = e.getModMetadata();
 		mMetadata.credits = "Kodehawa";
 		mMetadata.description = "The most complete Forge cheating mod, with a lot of options and configurable cheats!";
@@ -52,7 +67,8 @@ public class CheatingEssentials {
 		mMetadata.version = this.modVersion;
 		mMetadata.authorList = Arrays.asList(new String[] { "Kodehawa" });
 		mMetadata.url = "http://www.minecraftforum.net/topic/1846289-";
-		/* Cheating Essentials MD FINISH */
+		
+		/********* Cheating Essentials METADATA DECLARATION FINISH *********/
 	}
 	
 	@EventHandler
@@ -75,28 +91,35 @@ public class CheatingEssentials {
 	@EventHandler
 	public void serverStarting(FMLServerStartingEvent ev){
 		/* COMMAND REGISTERER START */
+		
 		MinecraftServer server = MinecraftServer.getServer();
 		ICommandManager icommand = server.getCommandManager();
 		ServerCommandManager command = ((ServerCommandManager) icommand);
-		command.registerCommand(new CommandModuleList());
-		command.registerCommand(new CommandModuleToggle());
-		command.registerCommand(new CommandSMKeybind());
-		command.registerCommand(new CommandAddFriend());
-		command.registerCommand(new CommandAddEnemy());
-		command.registerCommand(new CommandFlySpeed());
-		command.registerCommand(new CommandStepHeight());
+		
+		/* 1 */ command.registerCommand(new CommandModuleList());
+		/* 2 */ command.registerCommand(new CommandModuleToggle());
+		/* 3 */ command.registerCommand(new CommandSMKeybind());
+		/* 4 */ command.registerCommand(new CommandAddFriend());
+		/* 5 */ command.registerCommand(new CommandAddEnemy());
+		/* 6 */ command.registerCommand(new CommandFlySpeed());
+		/* 7 */ command.registerCommand(new CommandStepHeight());
+		/* 8 */ command.registerCommand(new CommandBreadcrumbClear());
+		/* 9 */ command.registerCommand(new CommandBlockESP());
+		
 		/* COMMAND REGISTERER FINISH */
 		
 	}
 	
 	private void load() throws CEInitializationError {
+		NetworkRegistry.instance().registerConnectionHandler(new CEConnectionHandler());
 		ModuleManager.instance();
 		ConfigManager.instance();
 	}
 	
-	static String majorVersion = "4";
-	static String minorVersion = "0";
-	static String revision = "0";
-	static String status = "Pre-Alpha";
+	public static CheatingEssentials mainInstance(){
+		return main;
+	}
+	
+	private String majorVersion = "4", minorVersion = "0", revision = "0", status = "Alpha";
 	public final String modVersion = majorVersion+"."+minorVersion+"."+revision+" "+status;
 }

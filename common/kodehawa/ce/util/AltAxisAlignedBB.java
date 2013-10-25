@@ -1,6 +1,8 @@
 package common.kodehawa.ce.util;
 
+
 import net.minecraft.util.AABBPool;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 
@@ -26,9 +28,9 @@ public class AltAxisAlignedBB
     /**
      * Gets the ThreadLocal AABBPool
      */
-    public static AltAABBPool getAABBPool()
+    public static AABBPool getAABBPool()
     {
-        return (AltAABBPool)theAABBLocalPool.get();
+        return (AABBPool)theAABBLocalPool.get();
     }
 
     public AltAxisAlignedBB(double par1, double par3, double par5, double par7, double par9, double par11)
@@ -58,78 +60,79 @@ public class AltAxisAlignedBB
     /**
      * Adds the coordinates to the bounding box extending it if the point lies outside the current ranges. Args: x, y, z
      */
-    public AltAxisAlignedBB addCoord(double par1, double par3, double par5)
+    public AxisAlignedBB addCoord(double par1, double par3, double par5)
     {
-        double d3 = this.minX;
-        double d4 = this.minY;
-        double d5 = this.minZ;
-        double d6 = this.maxX;
-        double d7 = this.maxY;
-        double d8 = this.maxZ;
+        double var7 = this.minX;
+        double var9 = this.minY;
+        double var11 = this.minZ;
+        double var13 = this.maxX;
+        double var15 = this.maxY;
+        double var17 = this.maxZ;
 
         if (par1 < 0.0D)
         {
-            d3 += par1;
+            var7 += par1;
         }
 
         if (par1 > 0.0D)
         {
-            d6 += par1;
+            var13 += par1;
         }
 
         if (par3 < 0.0D)
         {
-            d4 += par3;
+            var9 += par3;
         }
 
         if (par3 > 0.0D)
         {
-            d7 += par3;
+            var15 += par3;
         }
 
         if (par5 < 0.0D)
         {
-            d5 += par5;
+            var11 += par5;
         }
 
         if (par5 > 0.0D)
         {
-            d8 += par5;
+            var17 += par5;
         }
 
-        return getAABBPool().getAABB(d3, d4, d5, d6, d7, d8);
+        return getAABBPool().getAABB(var7, var9, var11, var13, var15, var17);
     }
+
     /**
      * Returns a bounding box expanded by the specified vector (if negative numbers are given it will shrink). Args: x,
      * y, z
      */
-    public AltAxisAlignedBB expand(double par1, double par3, double par5)
+    public AxisAlignedBB expand(double par1, double par3, double par5)
     {
-        double d3 = this.minX - par1;
-        double d4 = this.minY - par3;
-        double d5 = this.minZ - par5;
-        double d6 = this.maxX + par1;
-        double d7 = this.maxY + par3;
-        double d8 = this.maxZ + par5;
-        return getAABBPool().getAABB(d3, d4, d5, d6, d7, d8);
+        double var7 = this.minX - par1;
+        double var9 = this.minY - par3;
+        double var11 = this.minZ - par5;
+        double var13 = this.maxX + par1;
+        double var15 = this.maxY + par3;
+        double var17 = this.maxZ + par5;
+        return getAABBPool().getAABB(var7, var9, var11, var13, var15, var17);
     }
 
-    public AltAxisAlignedBB func_111270_a(AltAxisAlignedBB par1A_AxisAlignedBB)
+    public AxisAlignedBB func_111270_a(AltAxisAlignedBB par1AxisAlignedBB)
     {
-        double d0 = Math.min(this.minX, par1A_AxisAlignedBB.minX);
-        double d1 = Math.min(this.minY, par1A_AxisAlignedBB.minY);
-        double d2 = Math.min(this.minZ, par1A_AxisAlignedBB.minZ);
-        double d3 = Math.max(this.maxX, par1A_AxisAlignedBB.maxX);
-        double d4 = Math.max(this.maxY, par1A_AxisAlignedBB.maxY);
-        double d5 = Math.max(this.maxZ, par1A_AxisAlignedBB.maxZ);
-        return getAABBPool().getAABB(d0, d1, d2, d3, d4, d5);
+        double var2 = Math.min(this.minX, par1AxisAlignedBB.minX);
+        double var4 = Math.min(this.minY, par1AxisAlignedBB.minY);
+        double var6 = Math.min(this.minZ, par1AxisAlignedBB.minZ);
+        double var8 = Math.max(this.maxX, par1AxisAlignedBB.maxX);
+        double var10 = Math.max(this.maxY, par1AxisAlignedBB.maxY);
+        double var12 = Math.max(this.maxZ, par1AxisAlignedBB.maxZ);
+        return getAABBPool().getAABB(var2, var4, var6, var8, var10, var12);
     }
 
     /**
      * Returns a bounding box offseted by the specified vector (if negative numbers are given it will shrink). Args: x,
      * y, z
      */
-    public AltAxisAlignedBB getOffsetBoundingBox(double par1, double par3, double par5)
+    public AxisAlignedBB getOffsetBoundingBox(double par1, double par3, double par5)
     {
         return getAABBPool().getAABB(this.minX + par1, this.minY + par3, this.minZ + par5, this.maxX + par1, this.maxY + par3, this.maxZ + par5);
     }
@@ -139,31 +142,31 @@ public class AltAxisAlignedBB
      * in the X dimension.  return var2 if the bounding boxes do not overlap or if var2 is closer to 0 then the
      * calculated offset.  Otherwise return the calculated offset.
      */
-    public double calculateXOffset(AltAxisAlignedBB par1A_AxisAlignedBB, double par2)
+    public double calculateXOffset(AltAxisAlignedBB par1AxisAlignedBB, double par2)
     {
-        if (par1A_AxisAlignedBB.maxY > this.minY && par1A_AxisAlignedBB.minY < this.maxY)
+        if (par1AxisAlignedBB.maxY > this.minY && par1AxisAlignedBB.minY < this.maxY)
         {
-            if (par1A_AxisAlignedBB.maxZ > this.minZ && par1A_AxisAlignedBB.minZ < this.maxZ)
+            if (par1AxisAlignedBB.maxZ > this.minZ && par1AxisAlignedBB.minZ < this.maxZ)
             {
-                double d1;
+                double var4;
 
-                if (par2 > 0.0D && par1A_AxisAlignedBB.maxX <= this.minX)
+                if (par2 > 0.0D && par1AxisAlignedBB.maxX <= this.minX)
                 {
-                    d1 = this.minX - par1A_AxisAlignedBB.maxX;
+                    var4 = this.minX - par1AxisAlignedBB.maxX;
 
-                    if (d1 < par2)
+                    if (var4 < par2)
                     {
-                        par2 = d1;
+                        par2 = var4;
                     }
                 }
 
-                if (par2 < 0.0D && par1A_AxisAlignedBB.minX >= this.maxX)
+                if (par2 < 0.0D && par1AxisAlignedBB.minX >= this.maxX)
                 {
-                    d1 = this.maxX - par1A_AxisAlignedBB.minX;
+                    var4 = this.maxX - par1AxisAlignedBB.minX;
 
-                    if (d1 > par2)
+                    if (var4 > par2)
                     {
-                        par2 = d1;
+                        par2 = var4;
                     }
                 }
 
@@ -185,31 +188,31 @@ public class AltAxisAlignedBB
      * in the Y dimension.  return var2 if the bounding boxes do not overlap or if var2 is closer to 0 then the
      * calculated offset.  Otherwise return the calculated offset.
      */
-    public double calculateYOffset(AltAxisAlignedBB par1A_AxisAlignedBB, double par2)
+    public double calculateYOffset(AltAxisAlignedBB par1AxisAlignedBB, double par2)
     {
-        if (par1A_AxisAlignedBB.maxX > this.minX && par1A_AxisAlignedBB.minX < this.maxX)
+        if (par1AxisAlignedBB.maxX > this.minX && par1AxisAlignedBB.minX < this.maxX)
         {
-            if (par1A_AxisAlignedBB.maxZ > this.minZ && par1A_AxisAlignedBB.minZ < this.maxZ)
+            if (par1AxisAlignedBB.maxZ > this.minZ && par1AxisAlignedBB.minZ < this.maxZ)
             {
-                double d1;
+                double var4;
 
-                if (par2 > 0.0D && par1A_AxisAlignedBB.maxY <= this.minY)
+                if (par2 > 0.0D && par1AxisAlignedBB.maxY <= this.minY)
                 {
-                    d1 = this.minY - par1A_AxisAlignedBB.maxY;
+                    var4 = this.minY - par1AxisAlignedBB.maxY;
 
-                    if (d1 < par2)
+                    if (var4 < par2)
                     {
-                        par2 = d1;
+                        par2 = var4;
                     }
                 }
 
-                if (par2 < 0.0D && par1A_AxisAlignedBB.minY >= this.maxY)
+                if (par2 < 0.0D && par1AxisAlignedBB.minY >= this.maxY)
                 {
-                    d1 = this.maxY - par1A_AxisAlignedBB.minY;
+                    var4 = this.maxY - par1AxisAlignedBB.minY;
 
-                    if (d1 > par2)
+                    if (var4 > par2)
                     {
-                        par2 = d1;
+                        par2 = var4;
                     }
                 }
 
@@ -231,31 +234,31 @@ public class AltAxisAlignedBB
      * in the Z dimension.  return var2 if the bounding boxes do not overlap or if var2 is closer to 0 then the
      * calculated offset.  Otherwise return the calculated offset.
      */
-    public double calculateZOffset(AltAxisAlignedBB par1A_AxisAlignedBB, double par2)
+    public double calculateZOffset(AltAxisAlignedBB par1AxisAlignedBB, double par2)
     {
-        if (par1A_AxisAlignedBB.maxX > this.minX && par1A_AxisAlignedBB.minX < this.maxX)
+        if (par1AxisAlignedBB.maxX > this.minX && par1AxisAlignedBB.minX < this.maxX)
         {
-            if (par1A_AxisAlignedBB.maxY > this.minY && par1A_AxisAlignedBB.minY < this.maxY)
+            if (par1AxisAlignedBB.maxY > this.minY && par1AxisAlignedBB.minY < this.maxY)
             {
-                double d1;
+                double var4;
 
-                if (par2 > 0.0D && par1A_AxisAlignedBB.maxZ <= this.minZ)
+                if (par2 > 0.0D && par1AxisAlignedBB.maxZ <= this.minZ)
                 {
-                    d1 = this.minZ - par1A_AxisAlignedBB.maxZ;
+                    var4 = this.minZ - par1AxisAlignedBB.maxZ;
 
-                    if (d1 < par2)
+                    if (var4 < par2)
                     {
-                        par2 = d1;
+                        par2 = var4;
                     }
                 }
 
-                if (par2 < 0.0D && par1A_AxisAlignedBB.minZ >= this.maxZ)
+                if (par2 < 0.0D && par1AxisAlignedBB.minZ >= this.maxZ)
                 {
-                    d1 = this.maxZ - par1A_AxisAlignedBB.minZ;
+                    var4 = this.maxZ - par1AxisAlignedBB.minZ;
 
-                    if (d1 > par2)
+                    if (var4 > par2)
                     {
-                        par2 = d1;
+                        par2 = var4;
                     }
                 }
 
@@ -273,11 +276,11 @@ public class AltAxisAlignedBB
     }
 
     /**
-     * Returns whether the given bounding box intersects with this one. Args: A_AxisAlignedBB
+     * Returns whether the given bounding box intersects with this one. Args: axisAlignedBB
      */
-    public boolean intersectsWith(AltAxisAlignedBB par1A_AxisAlignedBB)
+    public boolean intersectsWith(AltAxisAlignedBB par1AxisAlignedBB)
     {
-        return par1A_AxisAlignedBB.maxX > this.minX && par1A_AxisAlignedBB.minX < this.maxX ? (par1A_AxisAlignedBB.maxY > this.minY && par1A_AxisAlignedBB.minY < this.maxY ? par1A_AxisAlignedBB.maxZ > this.minZ && par1A_AxisAlignedBB.minZ < this.maxZ : false) : false;
+        return par1AxisAlignedBB.maxX > this.minX && par1AxisAlignedBB.minX < this.maxX ? (par1AxisAlignedBB.maxY > this.minY && par1AxisAlignedBB.minY < this.maxY ? par1AxisAlignedBB.maxZ > this.minZ && par1AxisAlignedBB.minZ < this.maxZ : false) : false;
     }
 
     /**
@@ -307,144 +310,144 @@ public class AltAxisAlignedBB
      */
     public double getAverageEdgeLength()
     {
-        double d0 = this.maxX - this.minX;
-        double d1 = this.maxY - this.minY;
-        double d2 = this.maxZ - this.minZ;
-        return (d0 + d1 + d2) / 3.0D;
+        double var1 = this.maxX - this.minX;
+        double var3 = this.maxY - this.minY;
+        double var5 = this.maxZ - this.minZ;
+        return (var1 + var3 + var5) / 3.0D;
     }
 
     /**
      * Returns a bounding box that is inset by the specified amounts
      */
-    public AltAxisAlignedBB contract(double par1, double par3, double par5)
+    public AxisAlignedBB contract(double par1, double par3, double par5)
     {
-        double d3 = this.minX + par1;
-        double d4 = this.minY + par3;
-        double d5 = this.minZ + par5;
-        double d6 = this.maxX - par1;
-        double d7 = this.maxY - par3;
-        double d8 = this.maxZ - par5;
-        return getAABBPool().getAABB(d3, d4, d5, d6, d7, d8);
+        double var7 = this.minX + par1;
+        double var9 = this.minY + par3;
+        double var11 = this.minZ + par5;
+        double var13 = this.maxX - par1;
+        double var15 = this.maxY - par3;
+        double var17 = this.maxZ - par5;
+        return getAABBPool().getAABB(var7, var9, var11, var13, var15, var17);
     }
 
     /**
      * Returns a copy of the bounding box.
      */
-    public AltAxisAlignedBB copy()
+    public AxisAlignedBB copy()
     {
         return getAABBPool().getAABB(this.minX, this.minY, this.minZ, this.maxX, this.maxY, this.maxZ);
     }
 
     public MovingObjectPosition calculateIntercept(Vec3 par1Vec3, Vec3 par2Vec3)
     {
-        Vec3 vec32 = par1Vec3.getIntermediateWithXValue(par2Vec3, this.minX);
-        Vec3 vec33 = par1Vec3.getIntermediateWithXValue(par2Vec3, this.maxX);
-        Vec3 vec34 = par1Vec3.getIntermediateWithYValue(par2Vec3, this.minY);
-        Vec3 vec35 = par1Vec3.getIntermediateWithYValue(par2Vec3, this.maxY);
-        Vec3 vec36 = par1Vec3.getIntermediateWithZValue(par2Vec3, this.minZ);
-        Vec3 vec37 = par1Vec3.getIntermediateWithZValue(par2Vec3, this.maxZ);
+        Vec3 var3 = par1Vec3.getIntermediateWithXValue(par2Vec3, this.minX);
+        Vec3 var4 = par1Vec3.getIntermediateWithXValue(par2Vec3, this.maxX);
+        Vec3 var5 = par1Vec3.getIntermediateWithYValue(par2Vec3, this.minY);
+        Vec3 var6 = par1Vec3.getIntermediateWithYValue(par2Vec3, this.maxY);
+        Vec3 var7 = par1Vec3.getIntermediateWithZValue(par2Vec3, this.minZ);
+        Vec3 var8 = par1Vec3.getIntermediateWithZValue(par2Vec3, this.maxZ);
 
-        if (!this.isVecInYZ(vec32))
+        if (!this.isVecInYZ(var3))
         {
-            vec32 = null;
+            var3 = null;
         }
 
-        if (!this.isVecInYZ(vec33))
+        if (!this.isVecInYZ(var4))
         {
-            vec33 = null;
+            var4 = null;
         }
 
-        if (!this.isVecInXZ(vec34))
+        if (!this.isVecInXZ(var5))
         {
-            vec34 = null;
+            var5 = null;
         }
 
-        if (!this.isVecInXZ(vec35))
+        if (!this.isVecInXZ(var6))
         {
-            vec35 = null;
+            var6 = null;
         }
 
-        if (!this.isVecInXY(vec36))
+        if (!this.isVecInXY(var7))
         {
-            vec36 = null;
+            var7 = null;
         }
 
-        if (!this.isVecInXY(vec37))
+        if (!this.isVecInXY(var8))
         {
-            vec37 = null;
+            var8 = null;
         }
 
-        Vec3 vec38 = null;
+        Vec3 var9 = null;
 
-        if (vec32 != null && (vec38 == null || par1Vec3.squareDistanceTo(vec32) < par1Vec3.squareDistanceTo(vec38)))
+        if (var3 != null && (var9 == null || par1Vec3.squareDistanceTo(var3) < par1Vec3.squareDistanceTo(var9)))
         {
-            vec38 = vec32;
+            var9 = var3;
         }
 
-        if (vec33 != null && (vec38 == null || par1Vec3.squareDistanceTo(vec33) < par1Vec3.squareDistanceTo(vec38)))
+        if (var4 != null && (var9 == null || par1Vec3.squareDistanceTo(var4) < par1Vec3.squareDistanceTo(var9)))
         {
-            vec38 = vec33;
+            var9 = var4;
         }
 
-        if (vec34 != null && (vec38 == null || par1Vec3.squareDistanceTo(vec34) < par1Vec3.squareDistanceTo(vec38)))
+        if (var5 != null && (var9 == null || par1Vec3.squareDistanceTo(var5) < par1Vec3.squareDistanceTo(var9)))
         {
-            vec38 = vec34;
+            var9 = var5;
         }
 
-        if (vec35 != null && (vec38 == null || par1Vec3.squareDistanceTo(vec35) < par1Vec3.squareDistanceTo(vec38)))
+        if (var6 != null && (var9 == null || par1Vec3.squareDistanceTo(var6) < par1Vec3.squareDistanceTo(var9)))
         {
-            vec38 = vec35;
+            var9 = var6;
         }
 
-        if (vec36 != null && (vec38 == null || par1Vec3.squareDistanceTo(vec36) < par1Vec3.squareDistanceTo(vec38)))
+        if (var7 != null && (var9 == null || par1Vec3.squareDistanceTo(var7) < par1Vec3.squareDistanceTo(var9)))
         {
-            vec38 = vec36;
+            var9 = var7;
         }
 
-        if (vec37 != null && (vec38 == null || par1Vec3.squareDistanceTo(vec37) < par1Vec3.squareDistanceTo(vec38)))
+        if (var8 != null && (var9 == null || par1Vec3.squareDistanceTo(var8) < par1Vec3.squareDistanceTo(var9)))
         {
-            vec38 = vec37;
+            var9 = var8;
         }
 
-        if (vec38 == null)
+        if (var9 == null)
         {
             return null;
         }
         else
         {
-            byte b0 = -1;
+            byte var10 = -1;
 
-            if (vec38 == vec32)
+            if (var9 == var3)
             {
-                b0 = 4;
+                var10 = 4;
             }
 
-            if (vec38 == vec33)
+            if (var9 == var4)
             {
-                b0 = 5;
+                var10 = 5;
             }
 
-            if (vec38 == vec34)
+            if (var9 == var5)
             {
-                b0 = 0;
+                var10 = 0;
             }
 
-            if (vec38 == vec35)
+            if (var9 == var6)
             {
-                b0 = 1;
+                var10 = 1;
             }
 
-            if (vec38 == vec36)
+            if (var9 == var7)
             {
-                b0 = 2;
+                var10 = 2;
             }
 
-            if (vec38 == vec37)
+            if (var9 == var8)
             {
-                b0 = 3;
+                var10 = 3;
             }
 
-            return new MovingObjectPosition(0, 0, 0, b0, vec38);
+            return new MovingObjectPosition(0, 0, 0, var10, var9);
         }
     }
 
@@ -473,16 +476,16 @@ public class AltAxisAlignedBB
     }
 
     /**
-     * Sets the bounding box to the same bounds as the bounding box passed in. Args: A_AxisAlignedBB
+     * Sets the bounding box to the same bounds as the bounding box passed in. Args: axisAlignedBB
      */
-    public void setBB(AltAxisAlignedBB par1A_AxisAlignedBB)
+    public void setBB(AltAxisAlignedBB par1AxisAlignedBB)
     {
-        this.minX = par1A_AxisAlignedBB.minX;
-        this.minY = par1A_AxisAlignedBB.minY;
-        this.minZ = par1A_AxisAlignedBB.minZ;
-        this.maxX = par1A_AxisAlignedBB.maxX;
-        this.maxY = par1A_AxisAlignedBB.maxY;
-        this.maxZ = par1A_AxisAlignedBB.maxZ;
+        this.minX = par1AxisAlignedBB.minX;
+        this.minY = par1AxisAlignedBB.minY;
+        this.minZ = par1AxisAlignedBB.minZ;
+        this.maxX = par1AxisAlignedBB.maxX;
+        this.maxY = par1AxisAlignedBB.maxY;
+        this.maxZ = par1AxisAlignedBB.maxZ;
     }
 
     public String toString()

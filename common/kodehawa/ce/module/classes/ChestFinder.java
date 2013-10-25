@@ -15,7 +15,7 @@ public class ChestFinder extends AbstractModule {
 
 	public ChestFinder() {
 		super(Category.RENDER);
-		this.setRender(true);
+		super.setRender(true);
 		this.setKeybinding(Keyboard.KEY_N);
 	}
 
@@ -26,31 +26,33 @@ public class ChestFinder extends AbstractModule {
 	
 	@Override
 	public void doRender(){
-		for(Object o : getWorld().loadedEntityList){
-			if(o instanceof TileEntityChest){
-				TileEntityChest c = (TileEntityChest)o;
-			    draw(c, c.xCoord, c.yCoord, c.zCoord, c.prevLidAngle);
-		    }
-			if(o instanceof TileEntityEnderChest){
-				TileEntityEnderChest c1 = (TileEntityEnderChest)o;
-			    draw2(c1, c1.xCoord, c1.yCoord, c1.zCoord, c1.prevLidAngle);
-		    }
+		if(isActive()){
+			for(Object o : getWorld().loadedEntityList){
+				if(o instanceof TileEntityChest){
+					TileEntityChest c = (TileEntityChest)o;
+				    draw(c, c.xCoord, c.yCoord, c.zCoord, c.prevLidAngle);
+			    }
+				if(o instanceof TileEntityEnderChest){
+					TileEntityEnderChest c1 = (TileEntityEnderChest)o;
+				    draw2(c1, c1.xCoord, c1.yCoord, c1.zCoord, c1.prevLidAngle);
+			    }
+			}
 		}
 	}
 	
 	public void draw(TileEntityChest c, double x, double y, double z, float f1){
-		if(c.xCoord == 0 && c.yCoord == 0 && c.zCoord == 0){
+		//if(c.xCoord == 0 && c.yCoord == 0 && c.zCoord == 0){
 			getMinecraft().entityRenderer.disableLightmap(f1);
 			CEUtils.drawESP(x - RenderManager.renderPosX, y - RenderManager.renderPosY, z - RenderManager.renderPosZ, 1.5F, 0.1F, 0.9F);
 			getMinecraft().entityRenderer.enableLightmap(f1);
-		}
+		//}
 	}
 	
     public void draw2(TileEntityEnderChest c, double x, double y, double z, float f1){
-		if(c.xCoord == 0 && c.yCoord == 0 && c.zCoord == 0){
+		//if(c.xCoord == 0 && c.yCoord == 0 && c.zCoord == 0){
 			getMinecraft().entityRenderer.disableLightmap(f1);
 			CEUtils.drawESP(x - RenderManager.renderPosX, y - RenderManager.renderPosY, z - RenderManager.renderPosZ, 1.5F, 0.1F, 0.9F);
 			getMinecraft().entityRenderer.enableLightmap(f1);
-		}
+		//}
 	}
 }

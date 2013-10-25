@@ -29,7 +29,7 @@ public abstract class AbstractModule implements Listener {
 	}
 	
 	public String getModuleName(){
-		return StringUtils.defaultString(moduleName);
+		return (moduleName == null ? this.getClass().toString() : moduleName); //As a placeholder
 	}
 	
 	public int getKeybind(){
