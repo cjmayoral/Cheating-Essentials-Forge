@@ -1,11 +1,11 @@
 package common.kodehawa.ce.module.classes;
 
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 
 import org.lwjgl.opengl.GL11;
 
-import common.kodehawa.ce.main.CheatingEssentials;
 import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.enums.Category;
 import common.kodehawa.ce.util.ConfigManager;
@@ -14,9 +14,13 @@ public class Tracers extends AbstractModule {
 
 	public Tracers() {
 		super(Category.RENDER);
-		this.setRender(true);
+		super.setRender(true);
 	}
 
+	public String getModuleName(){
+		return "Tracers";
+	}
+	
 	@Override
 	public void doRender(){
 		try{

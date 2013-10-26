@@ -30,11 +30,11 @@ public class WindowActives extends YAWWindow {
 			if(isExtended())
 			{				
 				for(int i = 0; i < ModuleManager.instance().enabled.size(); i++){
-					CEUtils.drawGradientBorderedRect(getX() + dragX, getY() + 14 + dragY, getX() + 90 + dragX, getY() + 14 + dragY + ModuleManager.instance().enabled.size() + ((12*(i+1)) - (i*3)), 0.5F, 0xFF000000, 0xFF999999, 0xFF777777);
+					CEUtils.drawGradientBorderedRect(getX() + dragX, getY() + 14 + dragY, getX() + 90 + dragX, getY() + 14 + dragY + ModuleManager.instance().enabled.size() + ((12*(i+1)) - (i*4)), 0.5F, 0xFF000000, 0xFF999999, 0xFF777777);
 				}
 					for(int i = 0; i < ModuleManager.instance().enabled.size(); i++){
 					Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(" " + ModuleManager.instance().enabled.get(i), getX() + dragX,
-							getY() + dragY + 1 + ModuleManager.instance().enabled.size() + ((12*(i+1)) - (i*3)), 0x55FFFF );
+							(i <= 5 ? getY() : getY() - 8) + dragY + 1 + ModuleManager.instance().enabled.size() + ((12*(i+1)) - (i*3)), 0x55FFFF);
 				}
 				
 				for(YAWButton button: buttons)
@@ -44,10 +44,5 @@ public class WindowActives extends YAWWindow {
 			}
 		}
 	}
-	
-	public static void drawCenteredString(String string, int x, int y, int color)
-    {
-		Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(string, x - Minecraft.getMinecraft().fontRenderer.getStringWidth(string) / 4, y, color);
-    }
 }
 

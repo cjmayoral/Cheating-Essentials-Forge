@@ -35,10 +35,10 @@ import cpw.mods.fml.relauncher.Side;
  * You have the RIGHT to say that my code is horrible.
  * You have the RIGHT to say that this is like a Hacked Client.
  * You have the RIGHT to say that this code is skidded.
- * But it's my code, it's not skidded and the HC GUI and the Module System is the thing that makes this looks like a HC, but this is NOT.
- * ReesZRB, one of the persons that working in CE since 3.1, is a HC coder, and he obviously makes the GUI looks like that, but
- * I like how it looks. A lot of people likes how it looks. We have the RIGHT to do anything that we want with our code.
- * If this is Open Source IT'S for let's people to LEARN, not for see you making critisism to it with VERY BAD fundaments.
+ * But it's my code, it's not skidded and the HC GUI and the Module System is the thing that makes this looks like a HC, but this is
+ * NOT. ReesZRB, one of the persons that's working in CE since 3.1, is a HC coder, and he obviously makes the GUI looks like that, 
+ * but I like how it looks. A lot of people likes how it looks. We have the RIGHT to do anything that we want with our code.
+ * If this is Open Source IT'S for let's people to LEARN, not for see you making criticism to it with VERY BAD arguments.
  * Thanks.-
  * @author Kodehawa
  */

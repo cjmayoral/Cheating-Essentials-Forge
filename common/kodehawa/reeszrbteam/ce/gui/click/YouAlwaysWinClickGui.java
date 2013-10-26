@@ -34,7 +34,6 @@ public class YouAlwaysWinClickGui extends GuiScreen
 		guiHub.setOpen(true);
 	}
 	
-	
 	public void onGuiClosed(){}
 
 	public static void sendPanelToFront(YAWWindow window)

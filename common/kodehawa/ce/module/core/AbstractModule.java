@@ -23,6 +23,7 @@ public abstract class AbstractModule implements Listener {
 	public Category cat;
 	//Sorry godshawk, but your event system is not working c:
 	private boolean state, forgeEvt, tick, render;
+	public static boolean forceRenderCancel;
 	
 	public AbstractModule(Category category){
 		cat = category;
@@ -93,7 +94,7 @@ public abstract class AbstractModule implements Listener {
 			disable();
 			if(!(getCategory() == Category.NONE)){ ModuleManager.instance().enabled.remove(this.getModuleName()); }
 			if(getTick()){ EventHandler.getInstance().unRegisterListener(EventTick.class, this); }
-			if(getRender()){ EventHandler.getInstance().unRegisterListener(EventRender.class, this); }
+			if(getRender() && !forceRenderCancel){ EventHandler.getInstance().unRegisterListener(EventRender.class, this); }
 			if(getForgeEvent()){ MinecraftForge.EVENT_BUS.unregister(this); }
 		}
 	}

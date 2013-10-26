@@ -447,7 +447,7 @@ public class GLHelper {
 		GL11.glEnable(GL11.GL_LINE_SMOOTH);
 		GL11.glDisable(2929);
 		GL11.glDepthMask(false);
-		GL11.glColor4d(r, g, b, 0.1825F);
+		GL11.glColor4d(r, g, b, 0.185F);
 		drawBoundingBox(new AltAxisAlignedBB(d, d1, d2, d + 1.0, d1 + 1.0, d2 + 1.0));
 		GL11.glColor4d(r, g, b, 1.0F);
 		drawOutlinedBoundingBox(new AltAxisAlignedBB(d, d1, d2, d + 1.0, d1 + 1.0, d2 + 1.0));

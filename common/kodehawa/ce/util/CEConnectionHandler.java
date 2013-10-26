@@ -18,8 +18,7 @@ import cpw.mods.fml.common.network.Player;
 public class CEConnectionHandler implements IConnectionHandler {
 
 	public void playerLoggedIn(Player player, NetHandler netHandler, INetworkManager manager) {
-		//Shouldn't print the player name?
-		Minecraft.getMinecraft().thePlayer.addChatMessage(EnumChatFormatting.BOLD + "Cheating Essentials ("+CheatingEssentials.mainInstance().modVersion+")"+" loaded succefully. Loaded Modules: "+ModuleManager.instance().avModules.size());
+		//Minecraft.getMinecraft().thePlayer.addChatMessage(EnumChatFormatting.BOLD + "Cheating Essentials ("+CheatingEssentials.mainInstance().modVersion+")"+" loaded succefully. Loaded Modules: "+ModuleManager.instance().avModules.size());
 	}
 	
 	public void clientLoggedIn(NetHandler clientHandler, INetworkManager manager, Packet1Login login) {

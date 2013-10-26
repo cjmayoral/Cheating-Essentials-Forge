@@ -24,7 +24,7 @@ public class ModuleManager {
 				"Fly", "Speed", "DynamicFly", "FastPlace", "Fullbright", "HighJump", "Sprint", "FastBreak", "Step", "WaterWalk",
 				"MCUtil_ReloadChunks", "AutoRespawn", "Event_NoFall", "NoFall", "CreativeFly", "ChestFinder", "InvisiblePlayer", "NoWeb", "BlockFinder",
 				"AnimalESP", "MCUtil_AdvancedTooltips", "Spectate", "Sneak", "AutoSprint", "Walk", "Unpushable", "Day",
-				"MCUtil_MobHitbox", "XRay", "MobAura", "Breadcrumb" 
+				"MCUtil_MobHitbox", "XRay", "MobAura", "Breadcrumb", "Tracers" 
 		};
 		
 		for(int i = 0; i < moduleClasses.length; ++i){
@@ -38,7 +38,7 @@ public class ModuleManager {
 					DynamicLogger.instance().writeLog("Not recognized module", Level.INFO);
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				DynamicLogger.instance().writeLog("Can't load some mode module: "+e, Level.WARNING);
 			}
 		}
 	}

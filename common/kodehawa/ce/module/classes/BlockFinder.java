@@ -12,7 +12,6 @@ import common.kodehawa.ce.util.GLHelper;
 
 public class BlockFinder extends AbstractModule {
 
-	/* This is just the old version. */
 	public BlockFinder() {
 		super(Category.RENDER);
 		super.setRender(true);

@@ -30,17 +30,12 @@ public class WindowHub extends YAWWindow
 					int yPosition = (12 * size) + 18 + dragY;
 					CEUtils.drawGradientBorderedRect(4 + dragX, 12 + yPosition, getX() + 88 + dragX, yPosition + 24, 1.0F, 0xFF444444, !window.isOpen() ? 0xFF777777 : 0xFF555555, !window.isOpen() ? 0xFF555555 : 0xFF666666);
 
-					drawCenteredTTFString(window.getTitle().equalsIgnoreCase("Enabled:") ? "Active Mods" : window.getTitle(), 38 + dragX, yPosition + 14, window.isOpen() ? 0x55FFFF : 0xBBBBBB);
+					Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(window.getTitle().equalsIgnoreCase("Enabled:") ? "ArrayList" : window.getTitle(), 76 - Minecraft.getMinecraft().fontRenderer.getStringWidth(window.getTitle()) / 2 + this.dragX - 30, yPosition + 15, window.isOpen() ? 0x55FFFF : 0xBBBBBB);    
 					size++;
 				}
 			}
 		}
 	}
-	
-    public void drawCenteredTTFString(String par2Str, int par3, int par4, int par5)
-    {
-    	Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(par2Str, par3 - Minecraft.getMinecraft().fontRenderer.getStringWidth(par2Str) / 4, par4, par5);
-    }
 	
 	@Override
 	public void mouseClicked(int x, int y, int button)
