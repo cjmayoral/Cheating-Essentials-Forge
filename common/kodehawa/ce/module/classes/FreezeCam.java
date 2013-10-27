@@ -1,56 +1,61 @@
 package common.kodehawa.ce.module.classes;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.Entity;
 
 import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.enums.Category;
-import common.kodehawa.ce.module.man.ModuleManager;
 import common.kodehawa.ce.util.EntitySpectator;
 
-public class Spectate extends AbstractModule {
+public class FreezeCam extends AbstractModule {
 	
-	private LocationHelper loc;
-
-	public Spectate() {
+	/**
+	 * Modified Spectator, to yoloswag u
+	 */
+	public FreezeCam() {
 		super(Category.RENDER);
 	}
+
+	LocationHelper location;
 	
+	@Override
 	public String getModuleName(){
-		return "Spectator";
+		return "Freeze Cam";
 	}
 	
 	@Override
 	public String showHelp(){
-		return "Creates another player entity (EntitySpectator) for be able to spectate your own player";
+		return "Freeze the player camera for do a control of the PJ from another entity. Useful for make videos";
 	}
-
+	
+	@Override
 	public void enable(){
-		ModuleManager.instance().getModuleClass(DynamicFly.class).toggle();
-		doSpectate();
+		doFreezeCam();
 	}
 	
+	@Override
 	public void disable(){
-		ModuleManager.instance().getModuleClass(DynamicFly.class).toggle();
-		undoSpectate();
+		undoFreezeCam();
 	}
 	
-	public void doSpectate(){
+	public void doFreezeCam(){
 		if(getWorld() instanceof WorldClient){
-			loc = new LocationHelper(getPlayer());
+			location = new LocationHelper(getPlayer());
 			EntitySpectator spectator = new EntitySpectator(getWorld(), getPlayer().username);
-			spectator.setPositionAndRotation(loc.posX, loc.posY, loc.posZ, loc.rotationYaw, loc.rotationPitch);
+			spectator.setPositionAndRotation(location.posX, location.posY, location.posZ, location.rotationYaw, location.rotationPitch);
 			spectator.inventory.copyInventory(getPlayer().inventory);
 			getWorld().addEntityToWorld(-1, spectator);
+			Minecraft.getMinecraft().renderViewEntity = spectator;
 		}
 	}
 	
-	public void undoSpectate(){
+	public void undoFreezeCam(){
 		getWorld().removeEntityFromWorld(-1);
-		getPlayer().setPositionAndRotation(loc.posX, loc.posY, loc.posZ, loc.rotationYaw, loc.rotationPitch);
+		Minecraft.getMinecraft().renderViewEntity = getPlayer();
 	}
 	
-	public class LocationHelper {
+    class LocationHelper {
 
 		public double posX;
 	    public double posY;

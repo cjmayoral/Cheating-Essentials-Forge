@@ -21,7 +21,6 @@ public abstract class AbstractModule implements Listener {
 	public String moduleName, moduleVersion, moduleAuthor, help = "NULL_HELP_REACHED";
 	public int keybinding = Keyboard.KEY_NONE;
 	public Category cat;
-	//Sorry godshawk, but your event system is not working c:
 	private boolean state, forgeEvt, tick, render;
 	public static boolean forceRenderCancel;
 	
