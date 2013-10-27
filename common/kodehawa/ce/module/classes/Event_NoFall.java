@@ -17,6 +17,11 @@ public class Event_NoFall extends AbstractModule {
 	public String getModuleName(){
 		return "Event No Fall";
 	}
+	
+	@Override
+	public String showHelp(){
+		return "Removes fall damage to ALL entities";
+	}
 
 	@ForgeSubscribe
 	public void onEvent(LivingFallEvent evt){

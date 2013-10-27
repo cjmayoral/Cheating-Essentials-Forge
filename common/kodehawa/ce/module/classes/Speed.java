@@ -20,6 +20,11 @@ public class Speed extends AbstractModule {
 		return "Speed";
 	}
 	
+	@Override
+	public String showHelp(){
+		return "Makes the player to run faster.";
+	}
+	
 	public void tick(){
 		Object o = getPlayer();
 		if(getPlayer().onGround && !Minecraft.getMinecraft().gameSettings.keyBindJump.pressed){

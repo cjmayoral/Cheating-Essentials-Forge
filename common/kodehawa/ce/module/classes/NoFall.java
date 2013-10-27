@@ -21,6 +21,11 @@ public class NoFall extends AbstractModule {
 	}
 	
 	@Override
+	public String showHelp(){
+		return "Avoid player fall damage calculations and removes player fall damage itself";
+	}
+	
+	@Override
 	public void tick(){
 		getPlayer().sendQueue.addToSendQueue(new Packet13PlayerLookMove(getPlayer().motionX, -999.0D, -999.0D, getPlayer().motionZ,
 				getPlayer().rotationYaw, getPlayer().rotationPitch, !getPlayer().onGround));

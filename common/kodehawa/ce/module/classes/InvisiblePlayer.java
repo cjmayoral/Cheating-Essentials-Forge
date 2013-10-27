@@ -18,6 +18,11 @@ public class InvisiblePlayer extends AbstractModule {
 	}
 
 	@Override
+	public String showHelp(){
+		return "Makes the player... invisible :)";
+	}
+	
+	@Override
 	public void tick(){
 		getPlayer().setInvisible(true);
 	}

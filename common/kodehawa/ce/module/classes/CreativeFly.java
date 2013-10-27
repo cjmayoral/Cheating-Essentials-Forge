@@ -16,6 +16,11 @@ public class CreativeFly extends AbstractModule {
 	}
 	
 	@Override
+	public String showHelp(){
+		return "Fly like in creative mode!";
+	}
+	
+	@Override
 	public void enable(){
 		getPlayer().capabilities.allowFlying = true;
 		getPlayer().sendPlayerAbilities();

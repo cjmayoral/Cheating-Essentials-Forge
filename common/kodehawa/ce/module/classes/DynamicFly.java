@@ -18,6 +18,11 @@ public class DynamicFly extends AbstractModule {
 		return "Dynamic Fly";
 	}
 	
+	@Override
+	public String showHelp(){
+		return "Another way to fly. Also called static fly";
+	}
+	
 	@Override 
 	public void tick(){
 		Object o = getPlayer();

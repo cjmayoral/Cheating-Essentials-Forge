@@ -19,6 +19,11 @@ public class Sprint extends AbstractModule {
 	}
 	
 	@Override
+	public String showHelp(){
+		return "Sprints automatically when you should be walking.";
+	}
+	
+	@Override
 	public void tick(){
 		if(getPlayer().moveForward > 0){
 			getPlayer().setSprinting(true);

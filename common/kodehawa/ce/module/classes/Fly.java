@@ -17,6 +17,11 @@ public class Fly extends AbstractModule {
 	public String getModuleName(){
 		return "Fly";
 	}
+	
+	@Override
+	public String showHelp(){
+		return "I believe I can fly (8)~";
+	}
 
 	public void enable(){
 		getPlayer().capabilities.isFlying = true;

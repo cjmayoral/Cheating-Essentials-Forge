@@ -1,6 +1,8 @@
 package common.kodehawa.ce.module.classes;
 
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.client.entity.EntityOtherPlayerMP;
+import net.minecraft.entity.EntityLivingBase;
 
 import org.lwjgl.opengl.GL11;
 
@@ -25,18 +27,20 @@ public class AnimalESP extends AbstractModule {
 	public void doRender(){
 		if(isActive()){
 			for(Object o : getWorld().loadedEntityList){
-				if(o instanceof EntityLiving){
-					EntityLiving living = (EntityLiving)o;
-					double x = living.lastTickPosX + (living.posX - living.lastTickPosX);
-					double y = living.lastTickPosY + (living.posY - living.lastTickPosY);
-					double z = living.lastTickPosZ + (living.posZ - living.lastTickPosZ);
-					drawESP(x, y, z, living, living.height - 0.1, living.width - 0.1);
+				if(o instanceof EntityLivingBase){
+					EntityLivingBase living = (EntityLivingBase)o;
+					if(!(living instanceof EntityClientPlayerMP) && !(living instanceof EntityOtherPlayerMP)){
+						double x = living.lastTickPosX + (living.posX - living.lastTickPosX);
+						double y = living.lastTickPosY + (living.posY - living.lastTickPosY);
+						double z = living.lastTickPosZ + (living.posZ - living.lastTickPosZ);
+						drawESP(x, y, z, living, living.height - 0.1, living.width - 0.1);
+					}
 				}
 			}
 		}
 	}
 	
-	public void drawESP(double d, double d1, double d2, EntityLiving ep, double e, double f)
+	public void drawESP(double d, double d1, double d2, EntityLivingBase ep, double e, double f)
 	{
 	        GL11.glPushMatrix();
 	        GL11.glEnable(3042);

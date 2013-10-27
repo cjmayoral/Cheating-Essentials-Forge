@@ -62,7 +62,7 @@ public class WindowRadar extends YAWWindow {
 						}
 						int xPosition = getX() + 2 + dragX;
 						int yPosition = getY() + (10 * count) + 13 + dragY;
-						Minecraft.getMinecraft().fontRenderer.drawString(text, xPosition, yPosition + 2, 0x55FFFF);
+						Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(text, xPosition, yPosition + 2, 0x55FFFF);
 						count++;
 					}
 				}

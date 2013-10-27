@@ -21,8 +21,13 @@ public class Step extends AbstractModule {
 	}
 
 	@Override
+	public String showHelp(){
+		return "Makes the player takes a entire block or more blocks as a slab, for jump automatically";
+	}
+	
+	@Override
 	public void tick(){
 		Object o = getPlayer();
-		ReflectionHelper.setField(Entity.class, o, 42, 1.0F);
+		ReflectionHelper.setField(Entity.class, o, 42, DEFAULT_STEP_HEIGHT);
 	}
 }

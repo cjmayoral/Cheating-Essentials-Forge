@@ -22,6 +22,11 @@ public class Tracers extends AbstractModule {
 	}
 	
 	@Override
+	public String showHelp(){
+		return "Traces a line to the players in MP";
+	}
+	
+	@Override
 	public void doRender(){
 		try{
 			GL11.glPushMatrix();
@@ -35,7 +40,7 @@ public class Tracers extends AbstractModule {
             GL11.glLineWidth(1.5F);
             for(Object entities: getMinecraft().theWorld.loadedEntityList){
             	if (entities != getMinecraft().thePlayer && entities != null){
-            		if (entities instanceof EntityPlayer){
+            		if (entities instanceof EntityPlayer){ //Add EntityMob also if you want to lol.
             			EntityPlayer entity = (EntityPlayer)entities;
                         float distance = getMinecraft().renderViewEntity.getDistanceToEntity(entity);
                         double posX = ((entity.lastTickPosX + (entity.posX - entity.lastTickPosX) - RenderManager.instance.renderPosX));
@@ -57,13 +62,13 @@ public class Tracers extends AbstractModule {
                         	else if (distance > 96F){
                         		GL11.glColor3f(0.1F, 0.6F, 255.0F);
                             }
-                        	}
-                                  GL11.glBegin(GL11.GL_LINE_LOOP);
-                                  GL11.glVertex3d(0, 0, 0);
-                                  GL11.glVertex3d(posX, posY, posZ);
-                                  GL11.glEnd();
-                                  }
+                       }
+                       GL11.glBegin(GL11.GL_LINE_LOOP);
+                       GL11.glVertex3d(0, 0, 0);
+                       GL11.glVertex3d(posX, posY, posZ);
+                       GL11.glEnd();
             		}
+            	}
           }
             
             GL11.glDisable(GL11.GL_BLEND);

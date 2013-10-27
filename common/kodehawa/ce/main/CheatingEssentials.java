@@ -16,7 +16,11 @@ import common.kodehawa.ce.commands.*;
 import common.kodehawa.ce.logger.DynamicLogger;
 import common.kodehawa.ce.module.man.ModuleManager;
 import common.kodehawa.ce.tick.TickHandler;
-import common.kodehawa.ce.util.*;
+import common.kodehawa.ce.util.CEConnectionHandler;
+import common.kodehawa.ce.util.CEInitializationError;
+import common.kodehawa.ce.util.ConfigManager;
+import common.kodehawa.ce.util.CrashManager;
+import common.kodehawa.ce.util.ForgeEvents;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -67,6 +71,7 @@ public class CheatingEssentials {
 		mMetadata.version = this.modVersion;
 		mMetadata.authorList = Arrays.asList(new String[] { "Kodehawa" });
 		mMetadata.url = "http://www.minecraftforum.net/topic/1846289-";
+		mMetadata.logoFile = "ce.png";
 		
 		/********* Cheating Essentials METADATA DECLARATION FINISH *********/
 	}
@@ -105,6 +110,7 @@ public class CheatingEssentials {
 		/* 7 */ command.registerCommand(new CommandStepHeight());
 		/* 8 */ command.registerCommand(new CommandBreadcrumbClear());
 		/* 9 */ command.registerCommand(new CommandBlockESP());
+		/* 10 */ command.registerCommand(new CommandModuleHelp());
 		
 		/* COMMAND REGISTERER FINISH */
 		

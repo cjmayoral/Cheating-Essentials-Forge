@@ -29,6 +29,11 @@ public class BlockFinder extends AbstractModule {
 	}
 	
 	@Override
+	public String showHelp(){
+		return "Allows to the player to find a specific kind of block easily when added to a list (55 block radius)";
+	}
+	
+	@Override
 	public void doRender(){
 		timer++;
 		if(timer >= 35){
@@ -44,7 +49,7 @@ public class BlockFinder extends AbstractModule {
 	
 	public void refresh(){
 		size = 0;
-		int radius = 65;
+		int radius = 55;
 		for(int y = 0; y < 128; y++) {
 			for(int x = 0; x < radius; x++) {
 			for(int z = 0; z < radius; z++) {

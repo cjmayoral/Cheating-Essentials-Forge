@@ -19,6 +19,11 @@ public class WaterWalk extends AbstractModule {
 	}
 	
 	@Override
+	public String showHelp(){
+		return "I'm jesus!";
+	}
+	
+	@Override
 	public void tick(){
 		if(getPlayer().isInWater()){
 			getMinecraft().gameSettings.keyBindJump.pressed = true;

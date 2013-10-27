@@ -15,6 +15,11 @@ public class Walk extends AbstractModule {
 		return "Auto Walk";
 	}
 	
+	@Override
+	public String showHelp(){
+		return "Makes the player to walk automatically.";
+	}
+	
 	public void tick(){
 		getMinecraft().gameSettings.keyBindForward.pressed = true;
 	}

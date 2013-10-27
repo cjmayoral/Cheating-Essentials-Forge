@@ -16,6 +16,11 @@ public class Unpushable extends AbstractModule {
 	}
 	
 	@Override
+	public String showHelp(){
+		return "No more knockback! :)";
+	}
+	
+	@Override
 	public void tick(){
 		if(getPlayer().hurtResistantTime > 0 && getPlayer().hurtTime > 0){
 			getPlayer().motionX = 0;

@@ -16,6 +16,11 @@ public class AutoSprint extends AbstractModule {
 	}
 	
 	@Override
+	public String showHelp(){
+		return "Makes the player sprint automatically (And walk too)";
+	}
+	
+	@Override
 	public void tick(){
 		getMinecraft().gameSettings.keyBindForward.pressed = true;
 		getPlayer().setSprinting(true);

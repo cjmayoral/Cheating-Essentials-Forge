@@ -18,6 +18,11 @@ public class HighJump extends AbstractModule {
 	}
 	
 	@Override
+	public String showHelp(){
+		return "Jump higher!";
+	}
+	
+	@Override
 	public void enable(){
 		getPlayer().addPotionEffect(new PotionEffect(Potion.jump.getId(), 9999999, 2));
 	}

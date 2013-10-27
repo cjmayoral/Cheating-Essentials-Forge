@@ -18,7 +18,7 @@ import common.kodehawa.ce.module.man.ModuleManager;
 
 public abstract class AbstractModule implements Listener {
 
-	public String moduleName, moduleVersion, moduleAuthor;
+	public String moduleName, moduleVersion, moduleAuthor, help = "NULL_HELP_REACHED";
 	public int keybinding = Keyboard.KEY_NONE;
 	public Category cat;
 	//Sorry godshawk, but your event system is not working c:
@@ -82,6 +82,7 @@ public abstract class AbstractModule implements Listener {
 	}
 	
 	public void toggle(){
+		//Register, register, call and REGISTER :)
 		state = !state;
 		if(state){
 			enable();
@@ -94,9 +95,16 @@ public abstract class AbstractModule implements Listener {
 			disable();
 			if(!(getCategory() == Category.NONE)){ ModuleManager.instance().enabled.remove(this.getModuleName()); }
 			if(getTick()){ EventHandler.getInstance().unRegisterListener(EventTick.class, this); }
-			if(getRender() && !forceRenderCancel){ EventHandler.getInstance().unRegisterListener(EventRender.class, this); }
+			if(getRender()){ EventHandler.getInstance().unRegisterListener(EventRender.class, this); }
 			if(getForgeEvent()){ MinecraftForge.EVENT_BUS.unregister(this); }
 		}
+		if(forceRenderCancel){
+			EventHandler.getInstance().unRegisterListener(EventRender.class, this);
+		}
+	}
+	
+	public String showHelp(){
+		return help;
 	}
 	
 	public Minecraft getMinecraft(){

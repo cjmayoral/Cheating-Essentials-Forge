@@ -1,20 +1,16 @@
 package common.kodehawa.reeszrbteam.ce.util;
 
-import java.util.Scanner;
-
 import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 
 public class BlockFilter {
 
-	public static String idToBlockName(final int id){
-		 for (final Block e : Block.blocksList) {
-			   if (e == null) {
-			    continue;
+	public static String idToBlockName(int id){
+		 for (Block block : Block.blocksList) {
+			   if (block == null) {
+				   continue;
 			   }
-
-			   if (e.blockID == id) {
-			    return e.getLocalizedName();
+			   if (block.blockID == id) {
+				   return block.getLocalizedName();
 			   }
 		 }
 		 
@@ -22,14 +18,14 @@ public class BlockFilter {
 	}
 	
 	public static int blockNametoID(String name){
-		for (final Block e : Block.blocksList) {
-			   if (e == null) {
-			    continue;
+		for (Block block : Block.blocksList) {
+			   if (block == null) {
+				   continue;
 			   }
 			   
-			   String s = e.getLocalizedName().replaceAll(" ", "").toLowerCase();
+			   String s = block.getLocalizedName().replaceAll(" ", "").toLowerCase();
 			   if(name.equalsIgnoreCase(s)){
-				   return e.blockID;
+				   return block.blockID;
 			   }
 		 }
 		 

@@ -2,8 +2,11 @@ package common.kodehawa.reeszrbteam.ce.gui.click;
 
 import java.util.ArrayList;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
-
+import net.minecraft.util.EnumChatFormatting;
+import common.kodehawa.ce.main.CheatingEssentials;
+import common.kodehawa.ce.module.man.ModuleManager;
 import common.kodehawa.reeszrbteam.ce.gui.click.elements.YAWWindow;
 import common.kodehawa.reeszrbteam.ce.gui.click.windows.WindowActives;
 import common.kodehawa.reeszrbteam.ce.gui.click.windows.WindowHub;
@@ -53,6 +56,7 @@ public class YouAlwaysWinClickGui extends GuiScreen
 	
 	public void drawScreen(int x, int y, float f)
 	{
+		Minecraft.getMinecraft().fontRenderer.drawStringWithShadow("Cheating Essentials V"+CheatingEssentials.mainInstance().modVersion+", by Kodehawa and ReesZRB (v1.6.4) - Modules: "+ModuleManager.instance().avModules.size(), this.width / Minecraft.getMinecraft().displayWidth + 7, this.height / Minecraft.getMinecraft().displayHeight + 2, 0x00FFFF);
 		for(YAWWindow window: windows)
 		{
 			window.draw(x, y);

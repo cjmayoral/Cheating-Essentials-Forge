@@ -18,6 +18,11 @@ public class Fullbright extends AbstractModule {
 	}
 	
 	@Override
+	public String showHelp(){
+		return "Makes the world brighter";
+	}
+	
+	@Override
 	public void enable(){
 		float[] bright = getWorld().provider.lightBrightnessTable;
 		for(int i = 0; i < bright.length; i++){

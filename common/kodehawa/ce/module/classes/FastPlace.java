@@ -20,6 +20,11 @@ public class FastPlace extends AbstractModule {
 	public String getModuleName(){
 		return "Fast Place";
 	}
+	
+	@Override
+	public String showHelp(){
+		return "Makes the player to put blocks fastest than normal in the MC world";
+	}
 
 	@Override
 	public void tick(){

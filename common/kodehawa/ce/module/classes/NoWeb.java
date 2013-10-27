@@ -23,6 +23,11 @@ public class NoWeb extends AbstractModule {
 	}
 	
 	@Override
+	public String showHelp(){
+		return "No more webs annoying you! Removes web slowdown";
+	}
+	
+	@Override
 	public void tick(){
 		Object o = getPlayer();
 		if(o instanceof EntityPlayerSP){

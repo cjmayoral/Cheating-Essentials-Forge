@@ -36,6 +36,11 @@ public class ChestFinder extends AbstractModule {
 		return "Chest Finder";
 	}
 	
+	@Override
+	public String showHelp(){
+		return "Allows to the player to localize chests easily (128 blocks radius)";
+	}
+	
 	private int size = 0, timer = 0;
 	
 	@Override
@@ -53,7 +58,7 @@ public class ChestFinder extends AbstractModule {
 	
 	public void refresh(){
 		size = 0;
-		int radius = 65;
+		int radius = 128;
 		for(int y = 0; y < 128; y++) {
 			for(int x = 0; x < radius; x++) {
 			for(int z = 0; z < radius; z++) {

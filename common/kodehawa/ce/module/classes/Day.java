@@ -1,6 +1,5 @@
 package common.kodehawa.ce.module.classes;
 
-import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.WorldServer;
 
@@ -18,7 +17,14 @@ public class Day extends AbstractModule {
 		return "Set Day";
 	}
 	
+	@Override
+	public String showHelp(){
+		return "Sets the Minecraft time to day.s";
+	}
+	
 	public void enable(){
-		
+		for(WorldServer worldserver : MinecraftServer.getServer().worldServers){
+			worldserver.setWorldTime(200);
+		}
 	}
 }

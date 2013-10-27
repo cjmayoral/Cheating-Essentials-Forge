@@ -1,12 +1,12 @@
 package common.kodehawa.ce.module.classes;
 
-import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.Entity;
 
 import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.enums.Category;
 import common.kodehawa.ce.module.man.ModuleManager;
+import common.kodehawa.ce.util.EntitySpectator;
 
 public class Spectate extends AbstractModule {
 	
@@ -18,6 +18,11 @@ public class Spectate extends AbstractModule {
 	
 	public String getModuleName(){
 		return "Spectator";
+	}
+	
+	@Override
+	public String showHelp(){
+		return "Creates another player entity (EntitySpectator) for be able to spectate your own player";
 	}
 
 	public void enable(){
@@ -33,7 +38,7 @@ public class Spectate extends AbstractModule {
 	public void doSpectate(){
 		if(getWorld() instanceof WorldClient){
 			loc = new LocationHelper(getPlayer());
-			EntityOtherPlayerMP spectator = new EntityOtherPlayerMP(getWorld(), getPlayer().username);
+			EntitySpectator spectator = new EntitySpectator(getWorld(), getPlayer().username);
 			spectator.setPositionAndRotation(loc.posX, loc.posY, loc.posZ, loc.rotationYaw, loc.rotationPitch);
 			spectator.inventory.copyInventory(getPlayer().inventory);
 			getWorld().addEntityToWorld(-1, spectator);

@@ -22,9 +22,9 @@ public class ModuleManager {
 	private void load(String packageName){
 		String[] moduleClasses = new String[]{
 				"Fly", "Speed", "DynamicFly", "FastPlace", "Fullbright", "HighJump", "Sprint", "FastBreak", "Step", "WaterWalk",
-				"MCUtil_ReloadChunks", "AutoRespawn", "Event_NoFall", "NoFall", "CreativeFly", "ChestFinder", "InvisiblePlayer", "NoWeb", "BlockFinder",
-				"AnimalESP", "MCUtil_AdvancedTooltips", "Spectate", "Sneak", "AutoSprint", "Walk", "Unpushable", "Day",
-				"MCUtil_MobHitbox", "XRay", "MobAura", "Breadcrumb", "Tracers" 
+				"MCUtil_ReloadChunks", "AutoRespawn", "Event_NoFall", "NoFall", "CreativeFly", "ChestFinder", "InvisiblePlayer", 
+				"NoWeb", "BlockFinder", "AnimalESP", "PlayerESP", "MCUtil_AdvancedTooltips", "Spectate", "Sneak", "AutoSprint", "Walk", 
+				"Unpushable", "Day", "MCUtil_MobHitbox", "XRay", "MobAura", "Breadcrumb", "Tracers" 
 		};
 		
 		for(int i = 0; i < moduleClasses.length; ++i){
@@ -38,7 +38,7 @@ public class ModuleManager {
 					DynamicLogger.instance().writeLog("Not recognized module", Level.INFO);
 				}
 			} catch (Exception e) {
-				DynamicLogger.instance().writeLog("Can't load some mode module: "+e, Level.WARNING);
+				DynamicLogger.instance().writeLog("Can't load some module: "+e, Level.WARNING);
 			}
 		}
 	}

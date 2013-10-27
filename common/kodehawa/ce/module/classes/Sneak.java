@@ -14,6 +14,11 @@ public class Sneak extends AbstractModule {
 	public String getModuleName(){
 		return "Auto Sneak";
 	}
+	
+	@Override
+	public String showHelp(){
+		return "Makes the player to sneak automatically";
+	}
 
 	public void tick(){
 		getMinecraft().gameSettings.keyBindSneak.pressed = true;

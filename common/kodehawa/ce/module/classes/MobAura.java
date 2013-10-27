@@ -19,6 +19,10 @@ public class MobAura extends AbstractModule {
 		return "Auto Hit";
 	}
 
+	public String showHelp(){
+		return "Hit mobs automatically!";
+	}
+	
 	@Override
 	public void tick(){
 		for (int i = 0; i < getMinecraft().theWorld.loadedEntityList.size(); i++)

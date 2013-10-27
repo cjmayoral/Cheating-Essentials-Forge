@@ -18,6 +18,11 @@ public class FastBreak extends AbstractModule {
 	}
 	
 	@Override
+	public String showHelp(){
+		return "Applies Haste III for help the player to break blocks faster. Works in MP";
+	}
+	
+	@Override
 	public void enable(){
 		getPlayer().addPotionEffect(new PotionEffect(Potion.digSpeed.getId(), 9999999));
 	}

@@ -25,6 +25,11 @@ public class Breadcrumb extends AbstractModule {
 		return "Breadcrumb";
 	}
 	
+	@Override
+	public String showHelp(){
+		return "Draws a line to show the player trajectory (Start drawing on the player feet)";
+	}
+	
 	static int count = 0;
 
     public void tick() {

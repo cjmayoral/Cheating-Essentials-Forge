@@ -16,6 +16,11 @@ public class AutoRespawn extends AbstractModule {
 	}
 	
 	@Override
+	public String showHelp(){
+		return "Auto Respawn the player when dead.";
+	}
+	
+	@Override
 	public void tick(){
 		if(getPlayer().isDead){
 			getPlayer().respawnPlayer();
