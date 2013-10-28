@@ -48,7 +48,7 @@ import cpw.mods.fml.relauncher.Side;
  */
 
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
-@Mod(modid="Cheating-Essentials", name="Cheating Essentials Reloaded", version="4.0.0")
+@Mod(modid="Cheating-Essentials", name="Cheating Essentials Reloaded", version="4.0.0B1")
 public class CheatingEssentials {
 
 	@Instance("Cheating-Essentials")
@@ -126,6 +126,6 @@ public class CheatingEssentials {
 		return main;
 	}
 	
-	private String majorVersion = "4", minorVersion = "0", revision = "0", status = "Alpha";
-	public final String modVersion = majorVersion+"."+minorVersion+"."+revision+" "+status;
+	private String majorVersion = "4", minorVersion = "0", revision = "0", status = "B1";
+	public final String modVersion = majorVersion+"."+minorVersion+"."+revision+status;
 }
