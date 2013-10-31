@@ -8,12 +8,12 @@ public class CommandStepHeight extends CommandBase {
 
 	@Override
 	public String getCommandName() {
-		return "cestepheight";
+		return "cesh";
 	}
 
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender) {
-		return "number of blocks to step";
+		return "/cesh number of blocks to step";
 	}
 
 	@Override

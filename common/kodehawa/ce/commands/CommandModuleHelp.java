@@ -15,7 +15,7 @@ public class CommandModuleHelp extends CommandBase {
 
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender) {
-		return "<name of the mod>";
+		return "/modulehelp <name of the mod>";
 	}
 
 	@Override

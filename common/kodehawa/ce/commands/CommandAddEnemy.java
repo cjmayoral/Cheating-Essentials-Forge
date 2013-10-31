@@ -10,14 +10,12 @@ public class CommandAddEnemy extends CommandBase {
 
 	@Override
 	public String getCommandName() {
-		// TODO Auto-generated method stub
 		return "ceenemy";
 	}
 
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender) {
-		// TODO Auto-generated method stub
-		return "add <enemy name> or delete <enemy name>";
+		return "/ceenemy add <enemy name> or delete <enemy name>";
 	}
 
 	@Override

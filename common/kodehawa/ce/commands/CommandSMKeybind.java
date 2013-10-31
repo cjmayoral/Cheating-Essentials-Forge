@@ -19,7 +19,7 @@ public class CommandSMKeybind extends CommandBase {
 
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender) {
-		return "add <module> <key> or delete <module> <key>";
+		return "/smkey add <module> <key> or delete <module> <key>";
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class CommandSMKeybind extends CommandBase {
 				}
 			}
 			if(!successful){
-				icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText("Can't recognize module: "+astring[1]+" or command: "+astring[0]));
+				icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText("Can't recognize module: "+astring[1]+" or subcommand: "+astring[0]));
 			}
 		}
 	

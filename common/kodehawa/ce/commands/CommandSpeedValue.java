@@ -1,28 +1,26 @@
 package common.kodehawa.ce.commands;
 
-import common.kodehawa.ce.module.classes.Breadcrumb;
+import common.kodehawa.ce.module.classes.Speed;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 
-public class CommandBreadcrumbClear extends CommandBase {
+public class CommandSpeedValue extends CommandBase {
 
 	@Override
 	public String getCommandName() {
-		return "cecb";
+		return "cesv";
 	}
 
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender) {
-		return "/cecb";
+		return "/cesv <speed value>";
 	}
 
 	@Override
 	public void processCommand(ICommandSender icommandsender, String[] astring) {
-		Breadcrumb.positionsList.clear();
+		Double speedvalue = Double.parseDouble(astring[0]);
+		Speed.SPEED_VALUE = speedvalue;
 	}
-	
-	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender icommandsender) {
-		return true;
-	}
+
 }

@@ -16,7 +16,7 @@ public class CommandModuleToggle extends CommandBase {
 
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender) {
-		return "<module name to enable>";
+		return "/module <module name to enable>";
 	}
 
 	@Override

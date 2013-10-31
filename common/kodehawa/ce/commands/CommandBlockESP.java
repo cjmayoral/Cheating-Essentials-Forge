@@ -10,13 +10,13 @@ public class CommandBlockESP extends CommandBase {
 	@Override
 	public String getCommandName() {
 		// TODO Auto-generated method stub
-		return "ceblockesp";
+		return "cebe";
 	}
 
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender) {
 		// TODO Auto-generated method stub
-		return "add/remove block id";
+		return "/ceblockesp add/remove block id";
 	}
 
 	@Override

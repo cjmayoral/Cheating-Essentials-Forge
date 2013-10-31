@@ -17,7 +17,7 @@ public class CommandAddFriend extends CommandBase {
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender) {
 		// TODO Auto-generated method stub
-		return "add <friend name> or delete <friend name>";
+		return "/cefriend add <friend name> or delete <friend name>";
 	}
 
 	@Override

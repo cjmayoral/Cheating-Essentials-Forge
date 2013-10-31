@@ -8,7 +8,6 @@ import common.kodehawa.ce.module.enums.Category;
 import common.kodehawa.ce.reflect.ReflectionHelper;
 import common.kodehawa.ce.util.Beta;
 
-@Beta
 public class Speed extends AbstractModule {
 
 	public Speed() {
@@ -25,11 +24,13 @@ public class Speed extends AbstractModule {
 		return "Makes the player to run faster.";
 	}
 	
+	public static double SPEED_VALUE = 1.3;
+	
 	public void tick(){
 		Object o = getPlayer();
 		if(getPlayer().onGround && !Minecraft.getMinecraft().gameSettings.keyBindJump.pressed){
-			getPlayer().motionX *= 1.5;
-			getPlayer().motionZ *= 1.5;
+			getPlayer().motionX *= SPEED_VALUE;
+			getPlayer().motionZ *= SPEED_VALUE;
 		}
 	}
 }

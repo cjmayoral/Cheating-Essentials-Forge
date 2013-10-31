@@ -13,7 +13,7 @@ public class CommandFlySpeed extends CommandBase {
 
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender) {
-		return "velocity in numbers (since 0.01 to 0.7)";
+		return "/flyspeed velocity in numbers (since 0.01 to 0.7)";
 	}
 
 	@Override
