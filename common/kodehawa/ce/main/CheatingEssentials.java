@@ -11,9 +11,9 @@ import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
-
 import common.kodehawa.ce.commands.*;
 import common.kodehawa.ce.logger.DynamicLogger;
+import common.kodehawa.ce.module.classes.Gui;
 import common.kodehawa.ce.module.man.ModuleManager;
 import common.kodehawa.ce.tick.TickHandler;
 import common.kodehawa.ce.util.CEConnectionHandler;
@@ -21,7 +21,6 @@ import common.kodehawa.ce.util.CEInitializationError;
 import common.kodehawa.ce.util.ConfigManager;
 import common.kodehawa.ce.util.CrashManager;
 import common.kodehawa.ce.util.ForgeEvents;
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -79,18 +78,14 @@ public class CheatingEssentials {
 	@EventHandler
 	public void initialization(FMLInitializationEvent e){
 		TickRegistry.registerScheduledTickHandler(tickhandler, Side.CLIENT);
-		try{
-			load();
-		}
-		catch(CEInitializationError error){
-			CrashManager.instance().propagate("Error on Cheating Essentials Instance Loading", error);
-		}
 	}
 	
 	@EventHandler
 	public void postInitialization(FMLPostInitializationEvent e){
 		Minecraft.getMinecraft().mcProfiler.startSection("Cheating Essentials Start");
+		ModuleManager.instance().avModules.add(new Gui());
 		DynamicLogger.instance().writeLog("Cheating Essentials v4 succefully started in Minecraft 1.6.4", Level.INFO);
+		DynamicLogger.instance().writeInfo("Copyright (C) 2013-2014 Kodehawa. This mod comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute itunder certain conditions.");
 	}
 	
 	@EventHandler
@@ -116,7 +111,7 @@ public class CheatingEssentials {
 		
 	}
 	
-	private void load() throws CEInitializationError {
+	public void load() throws CEInitializationError {
 		NetworkRegistry.instance().registerConnectionHandler(new CEConnectionHandler());
 		ModuleManager.instance();
 		ConfigManager.instance();

@@ -17,10 +17,7 @@ import cpw.mods.fml.common.TickType;
 
 public class TickHandler implements IScheduledTickHandler {
 
-	private int mode = 0;
-	private YouAlwaysWinClickGui click = new YouAlwaysWinClickGui();
-	private CheatingEssentialsGui ce = new CheatingEssentialsGui();
-	
+
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData) {
 		Keybinding.instance().handle();
@@ -30,15 +27,6 @@ public class TickHandler implements IScheduledTickHandler {
 	public void tickEnd(EnumSet<TickType> type, Object... tickData) {
 		if(FMLClientHandler.instance().getClient().theWorld != null && FMLClientHandler.instance().getClient().thePlayer != null ){
 			EventHandler.getInstance().call(new EventTick(this));
-			if(Keybinding.instance().checkKey(Keyboard.KEY_G)){
-				switch(mode){
-				case 0: FMLClientHandler.instance().getClient().displayGuiScreen(click); break;
-				case 1: FMLClientHandler.instance().getClient().displayGuiScreen(ce); break;
-				}
-				if(Keybinding.instance().checkKey(Keyboard.KEY_NUMPAD5)){
-					AbstractModule.forceRenderCancel = !AbstractModule.forceRenderCancel;
-				}
-			}
 		}
 	}
 

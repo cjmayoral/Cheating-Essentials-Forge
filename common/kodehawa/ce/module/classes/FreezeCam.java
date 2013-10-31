@@ -43,7 +43,7 @@ public class FreezeCam extends AbstractModule {
 		if(getWorld() instanceof WorldClient){
 			location = new LocationHelper(getPlayer());
 			EntitySpectator spectator = new EntitySpectator(getWorld(), getPlayer().username);
-			spectator.setPositionAndRotation(location.posX, location.posY - 1, location.posZ, location.rotationYaw, location.rotationPitch);
+			spectator.setPositionAndRotation(location.posX, location.posY - 1.5, location.posZ, location.rotationYaw, location.rotationPitch);
 			spectator.inventory.copyInventory(getPlayer().inventory);
 			getWorld().addEntityToWorld(-1, spectator);
 			getMinecraft().renderViewEntity = spectator;

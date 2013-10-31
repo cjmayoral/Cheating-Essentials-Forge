@@ -5,13 +5,14 @@ import net.minecraft.network.INetworkManager;
 import net.minecraft.network.NetLoginHandler;
 import net.minecraft.network.packet.NetHandler;
 import net.minecraft.network.packet.Packet1Login;
-import net.minecraft.network.packet.Packet3Chat;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.integrated.IntegratedServer;
-import net.minecraft.util.EnumChatFormatting;
+
 import common.kodehawa.ce.logger.DynamicLogger;
 import common.kodehawa.ce.main.CheatingEssentials;
+import common.kodehawa.ce.module.classes.Gui;
 import common.kodehawa.ce.module.man.ModuleManager;
+
 import cpw.mods.fml.common.network.IConnectionHandler;
 import cpw.mods.fml.common.network.Player;
 
@@ -23,7 +24,10 @@ public class CEConnectionHandler implements IConnectionHandler {
 	
 	public void clientLoggedIn(NetHandler clientHandler, INetworkManager manager, Packet1Login login) {
 		DynamicLogger.instance().writeInfo("Client (in Internal Server "+ IntegratedServer.class.toString() +") logged in - Cheating Essentials is handling it... (username: "+Minecraft.getMinecraft().thePlayer.username+")");
-		//Some methods here.
+		try{ 
+			CheatingEssentials.mainInstance().load();
+		}
+		catch(CEInitializationError error){ CrashManager.instance().propagate("Error on Cheating Essentials Instance Loading", error); }
 	}
 
 	public String connectionReceived(NetLoginHandler netHandler, INetworkManager manager) { return null; }

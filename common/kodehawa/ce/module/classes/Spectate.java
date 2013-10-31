@@ -39,7 +39,7 @@ public class Spectate extends AbstractModule {
 		if(getWorld() instanceof WorldClient){
 			loc = new LocationHelper(getPlayer());
 			EntitySpectator spectator = new EntitySpectator(getWorld(), getPlayer().username);
-			spectator.setPositionAndRotation(loc.posX, loc.posY - 1, loc.posZ, loc.rotationYaw, loc.rotationPitch);
+			spectator.setPositionAndRotation(loc.posX, loc.posY - 1.5, loc.posZ, loc.rotationYaw, loc.rotationPitch);
 			spectator.inventory.copyInventory(getPlayer().inventory);
 			getWorld().addEntityToWorld(-1, spectator);
 		}

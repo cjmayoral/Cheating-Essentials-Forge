@@ -39,6 +39,7 @@ public class ModuleManager {
 				}
 			} catch (Exception e) {
 				DynamicLogger.instance().writeLog("Can't load some module: "+e, Level.WARNING);
+				e.printStackTrace();
 			}
 		}
 	}

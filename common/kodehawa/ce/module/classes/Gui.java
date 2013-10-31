@@ -2,12 +2,15 @@ package common.kodehawa.ce.module.classes;
 
 import org.lwjgl.input.Keyboard;
 
+import common.kodehawa.ce.gui.CheatingEssentialsGui;
 import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.enums.Category;
 import common.kodehawa.reeszrbteam.ce.gui.click.YouAlwaysWinClickGui;
 
 public class Gui extends AbstractModule {
 
+	private int mode = 0;
+	private YouAlwaysWinClickGui click = new YouAlwaysWinClickGui();;
 	
 	public Gui() {
 		super(Category.NONE);
@@ -16,11 +19,11 @@ public class Gui extends AbstractModule {
 	
 	@Override
 	public void enable(){
-		getMinecraft().displayGuiScreen(new YouAlwaysWinClickGui());
+		getMinecraft().displayGuiScreen(click);
 	}
 	
 	@Override
 	public void disable(){
-		getMinecraft().displayGuiScreen(new YouAlwaysWinClickGui());
+		getMinecraft().displayGuiScreen(click);
 	}
 }
