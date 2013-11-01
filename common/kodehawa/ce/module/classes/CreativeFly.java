@@ -22,13 +22,13 @@ public class CreativeFly extends AbstractModule {
 	
 	@Override
 	public void enable(){
-		getPlayer().capabilities.allowFlying = true;
-		getPlayer().sendPlayerAbilities();
+		player.capabilities.allowFlying = true;
+		player.sendPlayerAbilities();
 	}
 
 	@Override
 	public void disable(){
-		getPlayer().capabilities.allowFlying = false;
-		getPlayer().sendPlayerAbilities();
+		player.capabilities.allowFlying = false;
+		player.sendPlayerAbilities();
 	}
 }

@@ -25,8 +25,8 @@ public class WaterWalk extends AbstractModule {
 	
 	@Override
 	public void tick(){
-		if(getPlayer().isInWater()){
-			getMinecraft().gameSettings.keyBindJump.pressed = true;
+		if(player.isInWater()){
+			minecraft.gameSettings.keyBindJump.pressed = true;
 		}
 	}
 }

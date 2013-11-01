@@ -16,6 +16,6 @@ public class MCUtil_ReloadChunks extends AbstractModule {
 	
 	@Override
 	public void enable(){
-		getMinecraft().renderGlobal.loadRenderers();
+		minecraft.renderGlobal.loadRenderers();
 	}
 }

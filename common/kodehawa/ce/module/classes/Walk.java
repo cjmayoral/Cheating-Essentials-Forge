@@ -21,10 +21,10 @@ public class Walk extends AbstractModule {
 	}
 	
 	public void tick(){
-		getMinecraft().gameSettings.keyBindForward.pressed = true;
+		minecraft.gameSettings.keyBindForward.pressed = true;
 	}
 	
 	public void disable(){
-		getMinecraft().gameSettings.keyBindForward.pressed = false;
+		minecraft.gameSettings.keyBindForward.pressed = false;
 	}
 }

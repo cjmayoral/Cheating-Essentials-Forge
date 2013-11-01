@@ -3,6 +3,7 @@ package common.kodehawa.ce.module.core;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.profiler.Profiler;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.commons.lang3.StringUtils;
@@ -13,6 +14,7 @@ import common.kodehawa.ce.event.EventHandler;
 import common.kodehawa.ce.event.Listener;
 import common.kodehawa.ce.event.events.EventRender;
 import common.kodehawa.ce.event.events.EventTick;
+import common.kodehawa.ce.main.CheatingEssentials;
 import common.kodehawa.ce.module.enums.Category;
 import common.kodehawa.ce.module.man.ModuleManager;
 
@@ -22,7 +24,11 @@ public abstract class AbstractModule implements Listener {
 	public int keybinding = Keyboard.KEY_NONE;
 	public Category cat;
 	private boolean state, forgeEvt, tick, render;
-	public static boolean forceRenderCancel;
+	public Minecraft minecraft = Minecraft.getMinecraft();
+	public Profiler profiler = Minecraft.getMinecraft().mcProfiler;
+	public WorldClient world = Minecraft.getMinecraft().theWorld;
+	public EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
+	public CheatingEssentials main = CheatingEssentials.mainInstance();
 	
 	public AbstractModule(Category category){
 		cat = category;
@@ -97,25 +103,10 @@ public abstract class AbstractModule implements Listener {
 			if(getRender()){ EventHandler.getInstance().unRegisterListener(EventRender.class, this); }
 			if(getForgeEvent()){ MinecraftForge.EVENT_BUS.unregister(this); }
 		}
-		if(forceRenderCancel){
-			EventHandler.getInstance().unRegisterListener(EventRender.class, this);
-		}
 	}
 	
 	public String showHelp(){
 		return help;
-	}
-	
-	public Minecraft getMinecraft(){
-		return Minecraft.getMinecraft();
-	}
-	
-	public EntityClientPlayerMP getPlayer(){
-		return getMinecraft().thePlayer;
-	}
-	
-	public WorldClient getWorld(){
-		return getMinecraft().theWorld;
 	}
 	
 	@Override

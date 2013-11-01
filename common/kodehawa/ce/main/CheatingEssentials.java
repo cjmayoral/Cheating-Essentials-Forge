@@ -78,6 +78,7 @@ public class CheatingEssentials {
 	@EventHandler
 	public void initialization(FMLInitializationEvent e){
 		TickRegistry.registerScheduledTickHandler(tickhandler, Side.CLIENT);
+		NetworkRegistry.instance().registerConnectionHandler(new CEConnectionHandler());
 	}
 	
 	@EventHandler
@@ -89,30 +90,27 @@ public class CheatingEssentials {
 	}
 	
 	@EventHandler
-	public void serverStarting(FMLServerStartingEvent ev){
-		/* COMMAND REGISTERER START */
-		
+	public void serverStarting(FMLServerStartingEvent ev){		
+		Minecraft.getMinecraft().mcProfiler.startSection("Cheating Essentials Console Registerer");
 		MinecraftServer server = MinecraftServer.getServer();
 		ICommandManager icommand = server.getCommandManager();
 		ServerCommandManager command = ((ServerCommandManager) icommand);
 		
-		/* 1 */ command.registerCommand(new CommandModuleList());
-		/* 2 */ command.registerCommand(new CommandModuleToggle());
-		/* 3 */ command.registerCommand(new CommandSMKeybind());
-		/* 4 */ command.registerCommand(new CommandAddFriend());
-		/* 5 */ command.registerCommand(new CommandAddEnemy());
-		/* 6 */ command.registerCommand(new CommandFlySpeed());
-		/* 7 */ command.registerCommand(new CommandStepHeight());
-		/* 8 */ command.registerCommand(new CommandBreadcrumbClear());
-		/* 9 */ command.registerCommand(new CommandBlockESP());
-		/* 10 */ command.registerCommand(new CommandModuleHelp());
-		
-		/* COMMAND REGISTERER FINISH */
-		
+		command.registerCommand(new CommandModuleList());
+		command.registerCommand(new CommandModuleToggle());
+		command.registerCommand(new CommandSMKeybind());
+		command.registerCommand(new CommandAddFriend());
+		command.registerCommand(new CommandAddEnemy());
+		command.registerCommand(new CommandFlySpeed());
+		command.registerCommand(new CommandStepHeight());
+		command.registerCommand(new CommandBreadcrumbClear());
+		command.registerCommand(new CommandBlockESP());
+		command.registerCommand(new CommandModuleHelp());
+		command.registerCommand(new CommandSpeedValue());		
 	}
 	
 	public void load() throws CEInitializationError {
-		NetworkRegistry.instance().registerConnectionHandler(new CEConnectionHandler());
+		Minecraft.getMinecraft().mcProfiler.endStartSection("Cheating Essentials ML Stage");
 		ModuleManager.instance();
 		ConfigManager.instance();
 	}

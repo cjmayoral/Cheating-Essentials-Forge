@@ -50,7 +50,9 @@ public class ChestFinder extends AbstractModule {
 			refresh();
 			timer = 0;
 		}
-		for(int cur = 0; cur < size; cur++) {
+		
+		for(int cur = 0; cur < size; cur++)
+		{
 			CEBlockCoord curBlock = cBlocks[cur];
 			GLHelper.startDrawingESPs(curBlock.getDeltaX(), curBlock.getDeltaY(), curBlock.getDeltaZ(), 1.5F, 0.8F, 1.0F);
 		}
@@ -62,10 +64,10 @@ public class ChestFinder extends AbstractModule {
 		for(int y = 0; y < 128; y++) {
 			for(int x = 0; x < radius; x++) {
 			for(int z = 0; z < radius; z++) {
-				int cX = (int)getMinecraft().thePlayer.posX - (int)radius/2+x;
+				int cX = (int)player.posX - (int)radius/2+x;
 				int cY = y;
-				int cZ = (int)getMinecraft().thePlayer.posZ - (int)radius/2+z;
-				int ids = getWorld().getBlockId(cX, cY, cZ);
+				int cZ = (int)player.posZ - (int)radius/2+z;
+				int ids = world.getBlockId(cX, cY, cZ);
 				if (cList.contains(ids)) {
 					cBlocks[size++] = new CEBlockCoord(cX, cY, cZ);
 				}

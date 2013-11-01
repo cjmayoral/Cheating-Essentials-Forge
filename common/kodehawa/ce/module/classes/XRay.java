@@ -35,12 +35,12 @@ public class XRay extends AbstractModule{
 	
 	@Override
 	public void enable(){
-		getMinecraft().renderGlobal.loadRenderers();
+		minecraft.renderGlobal.loadRenderers();
 	}
 	
 	@Override
 	public void disable(){
-		getMinecraft().renderGlobal.loadRenderers();
+		minecraft.renderGlobal.loadRenderers();
 	}
 	
 	@Override

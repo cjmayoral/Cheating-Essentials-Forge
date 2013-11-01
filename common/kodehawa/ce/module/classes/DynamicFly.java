@@ -25,19 +25,19 @@ public class DynamicFly extends AbstractModule {
 	
 	@Override 
 	public void tick(){
-		Object o = getPlayer();
-		getPlayer().jumpMovementFactor = 0.4F;
-		ReflectionHelper.setField(EntityLivingBase.class, o, 56 /* landMovementFactor */, 0.4F);
-		getPlayer().motionX = 0;
-		getPlayer().motionY = 0;
-		getPlayer().motionZ = 0;
-		getPlayer().jumpMovementFactor *= 3;
+		Object o = player;
+		player.jumpMovementFactor = 0.4F;
+		ReflectionHelper.setField(EntityLivingBase.class, o, 56, 0.4F);
+		player.motionX = 0;
+		player.motionY = 0;
+		player.motionZ = 0;
+		player.jumpMovementFactor *= 3;
 		
-		if(getMinecraft().gameSettings.keyBindJump.pressed){
-			getPlayer().motionY += 1;
+		if(minecraft.gameSettings.keyBindJump.pressed){
+			player.motionY += 1;
 		}
-		if(getMinecraft().gameSettings.keyBindSneak.pressed){
-			getPlayer().motionY -= 1;
+		if(minecraft.gameSettings.keyBindSneak.pressed){
+			player.motionY -= 1;
 		}
 	}
 }

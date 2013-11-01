@@ -14,6 +14,6 @@ public class MCUtil_AdvancedTooltips extends AbstractModule {
 	}
 
 	public void enable(){
-		getMinecraft().gameSettings.advancedItemTooltips = !getMinecraft().gameSettings.advancedItemTooltips;
+		minecraft.gameSettings.advancedItemTooltips = !minecraft.gameSettings.advancedItemTooltips;
 	}
 }

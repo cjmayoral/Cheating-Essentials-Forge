@@ -25,8 +25,8 @@ public class Sprint extends AbstractModule {
 	
 	@Override
 	public void tick(){
-		if(getPlayer().moveForward > 0){
-			getPlayer().setSprinting(true);
+		if(player.moveForward > 0){
+			player.setSprinting(true);
 		}
 	}
 }

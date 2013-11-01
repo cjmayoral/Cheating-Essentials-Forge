@@ -36,18 +36,18 @@ public class Spectate extends AbstractModule {
 	}
 	
 	public void doSpectate(){
-		if(getWorld() instanceof WorldClient){
-			loc = new LocationHelper(getPlayer());
-			EntitySpectator spectator = new EntitySpectator(getWorld(), getPlayer().username);
+		if(world instanceof WorldClient){
+			loc = new LocationHelper(player);
+			EntitySpectator spectator = new EntitySpectator(world, player.username);
 			spectator.setPositionAndRotation(loc.posX, loc.posY - 1.5, loc.posZ, loc.rotationYaw, loc.rotationPitch);
-			spectator.inventory.copyInventory(getPlayer().inventory);
-			getWorld().addEntityToWorld(-1, spectator);
+			spectator.inventory.copyInventory(player.inventory);
+			world.addEntityToWorld(-1, spectator);
 		}
 	}
 	
 	public void undoSpectate(){
-		getWorld().removeEntityFromWorld(-1);
-		getPlayer().setPositionAndRotation(loc.posX, loc.posY, loc.posZ, loc.rotationYaw, loc.rotationPitch);
+		world.removeEntityFromWorld(-1);
+		player.setPositionAndRotation(loc.posX, loc.posY, loc.posZ, loc.rotationYaw, loc.rotationPitch);
 	}
 	
 	public class LocationHelper {

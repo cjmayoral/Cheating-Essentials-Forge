@@ -29,7 +29,7 @@ public class NoWeb extends AbstractModule {
 	
 	@Override
 	public void tick(){
-		Object o = getPlayer();
+		Object o = player;
 		if(o instanceof EntityPlayerSP){
 			ReflectionHelper.setField(Entity.class, o, 27, false);
 		}

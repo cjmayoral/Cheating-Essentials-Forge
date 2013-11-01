@@ -12,7 +12,7 @@ public class Sneak extends AbstractModule {
 	
 	@Override
 	public String getModuleName(){
-		return "Auto Sneak";
+		return "Sneak";
 	}
 	
 	@Override
@@ -21,10 +21,10 @@ public class Sneak extends AbstractModule {
 	}
 
 	public void tick(){
-		getMinecraft().gameSettings.keyBindSneak.pressed = true;
+		minecraft.gameSettings.keyBindSneak.pressed = true;
 	}
 	
 	public void disable(){
-		getMinecraft().gameSettings.keyBindSneak.pressed = false;
+		minecraft.gameSettings.keyBindSneak.pressed = false;
 	}
 }

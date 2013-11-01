@@ -22,7 +22,7 @@ public class AutoSprint extends AbstractModule {
 	
 	@Override
 	public void tick(){
-		getMinecraft().gameSettings.keyBindForward.pressed = true;
-		getPlayer().setSprinting(true);
+		minecraft.gameSettings.keyBindForward.pressed = true;
+		player.setSprinting(true);
 	}
 }
