@@ -53,10 +53,10 @@ public class BlockFinder extends AbstractModule {
 		for(int y = 0; y < 128; y++) {
 			for(int x = 0; x < radius; x++) {
 			for(int z = 0; z < radius; z++) {
-				int cX = (int)minecraft.thePlayer.posX - (int)radius/2+x;
+				int cX = (int)minecraft().thePlayer.posX - (int)radius/2+x;
 				int cY = y;
-				int cZ = (int)minecraft.thePlayer.posZ - (int)radius/2+z;
-				int ids = world.getBlockId(cX, cY, cZ);
+				int cZ = (int)minecraft().thePlayer.posZ - (int)radius/2+z;
+				int ids = world().getBlockId(cX, cY, cZ);
 				if (espList.contains(ids)) {
 					espBlocks[size++] = new CEBlockCoord(cX, cY, cZ);
 				}

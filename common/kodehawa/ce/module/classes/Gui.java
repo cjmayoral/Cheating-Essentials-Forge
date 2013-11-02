@@ -19,11 +19,11 @@ public class Gui extends AbstractModule {
 	
 	@Override
 	public void enable(){
-		minecraft.displayGuiScreen(click);
+		minecraft().displayGuiScreen(click);
 	}
 	
 	@Override
 	public void disable(){
-		minecraft.displayGuiScreen(click);
+		minecraft().displayGuiScreen(click);
 	}
 }

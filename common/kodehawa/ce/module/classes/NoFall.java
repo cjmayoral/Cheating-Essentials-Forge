@@ -27,7 +27,7 @@ public class NoFall extends AbstractModule {
 	
 	@Override
 	public void tick(){
-		player.sendQueue.addToSendQueue(new Packet13PlayerLookMove(player.motionX, -999.0D, -999.0D, player.motionZ,
-				player.rotationYaw, player.rotationPitch, !player.onGround));
+		player().sendQueue.addToSendQueue(new Packet13PlayerLookMove(player().motionX, -999.0D, -999.0D, player().motionZ,
+				player().rotationYaw, player().rotationPitch, !player().onGround));
 	}
 }

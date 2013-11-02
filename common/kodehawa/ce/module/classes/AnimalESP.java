@@ -26,7 +26,7 @@ public class AnimalESP extends AbstractModule {
 	@Override
 	public void doRender(){
 		if(isActive()){
-			for(Object o : world.loadedEntityList){
+			for(Object o : world().loadedEntityList){
 				if(o instanceof EntityLivingBase){
 					EntityLivingBase living = (EntityLivingBase)o;
 					if(!(living instanceof EntityClientPlayerMP) && !(living instanceof EntityOtherPlayerMP)){

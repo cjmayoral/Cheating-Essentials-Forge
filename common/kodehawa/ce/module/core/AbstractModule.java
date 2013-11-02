@@ -24,12 +24,7 @@ public abstract class AbstractModule implements Listener {
 	public int keybinding = Keyboard.KEY_NONE;
 	public Category cat;
 	private boolean state, forgeEvt, tick, render;
-	public Minecraft minecraft = Minecraft.getMinecraft();
-	public Profiler profiler = Minecraft.getMinecraft().mcProfiler;
-	public WorldClient world = Minecraft.getMinecraft().theWorld;
-	public EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
-	public CheatingEssentials main = CheatingEssentials.mainInstance();
-	
+
 	public AbstractModule(Category category){
 		cat = category;
 	}
@@ -105,8 +100,28 @@ public abstract class AbstractModule implements Listener {
 		}
 	}
 	
-	public String showHelp(){
+	public String showHelp()
+	{
 		return help;
+	}
+	
+	public Minecraft minecraft()
+	{
+		return Minecraft.getMinecraft();
+	}
+	
+	public EntityClientPlayerMP player()
+	{
+		return Minecraft.getMinecraft().thePlayer;
+	}
+	
+	public WorldClient world()
+	{
+		return Minecraft.getMinecraft().theWorld;
+	}
+	
+	public Profiler profiler(){
+		return Minecraft.getMinecraft().mcProfiler;
 	}
 	
 	@Override

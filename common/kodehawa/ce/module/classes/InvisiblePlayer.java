@@ -24,10 +24,10 @@ public class InvisiblePlayer extends AbstractModule {
 	
 	@Override
 	public void tick(){
-		player.setInvisible(true);
+		player().setInvisible(true);
 	}
 	
 	public void disable(){
-		player.setInvisible(false);
+		player().setInvisible(false);
 	}
 }

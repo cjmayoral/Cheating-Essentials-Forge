@@ -24,11 +24,11 @@ public class HighJump extends AbstractModule {
 	
 	@Override
 	public void enable(){
-		player.addPotionEffect(new PotionEffect(Potion.jump.getId(), 9999999, 2));
+		player().addPotionEffect(new PotionEffect(Potion.jump.getId(), 9999999, 2));
 	}
 	
 	@Override
 	public void disable(){
-		player.removePotionEffect(Potion.jump.getId());
+		player().removePotionEffect(Potion.jump.getId());
 	}
 }

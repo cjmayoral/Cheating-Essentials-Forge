@@ -40,11 +40,11 @@ public class Breadcrumb extends AbstractModule {
                     positionsList.remove(0);
                 }
             }
-            for(Object o : minecraft.theWorld.playerEntities){
+            for(Object o : minecraft().theWorld.playerEntities){
                 if(o instanceof EntityPlayer) {
                     EntityPlayer player1 = (EntityPlayer)o;
 
-                    boolean shouldBreadCrumb = (player1 == minecraft.thePlayer) && ((minecraft.thePlayer.movementInput.moveForward != 0) || (minecraft.thePlayer.movementInput.moveStrafe != 0));
+                    boolean shouldBreadCrumb = (player1 == minecraft().thePlayer) && ((minecraft().thePlayer.movementInput.moveForward != 0) || (minecraft().thePlayer.movementInput.moveStrafe != 0));
 
                     if(shouldBreadCrumb) {
                         double x =  (RenderManager.renderPosX);

@@ -10,12 +10,12 @@ public class CommandModuleHelp extends CommandBase {
 
 	@Override
 	public String getCommandName() {
-		return "modulehelp";
+		return "cemh";
 	}
 
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender) {
-		return "/modulehelp <name of the mod>";
+		return "/cemh <name of the mod>";
 	}
 
 	@Override

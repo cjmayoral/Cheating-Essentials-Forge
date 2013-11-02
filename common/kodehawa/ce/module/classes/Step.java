@@ -27,7 +27,7 @@ public class Step extends AbstractModule {
 	
 	@Override
 	public void tick(){
-		Object o = player;
+		Object o = player();
 		ReflectionHelper.setField(Entity.class, o, 42, DEFAULT_STEP_HEIGHT);
 	}
 }

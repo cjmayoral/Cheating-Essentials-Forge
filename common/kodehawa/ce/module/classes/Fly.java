@@ -24,14 +24,14 @@ public class Fly extends AbstractModule {
 	}
 
 	public void enable(){
-		player.capabilities.isFlying = true;
+		player().capabilities.isFlying = true;
 	}
 	
 	public void disable(){
-		player.capabilities.isFlying = false;
+		player().capabilities.isFlying = false;
 	}
 
 	public void tick(){
-		player.capabilities.isFlying = true;
+		player().capabilities.isFlying = true;
 	}
 }

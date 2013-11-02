@@ -27,9 +27,9 @@ public class Speed extends AbstractModule {
 	public static double SPEED_VALUE = 1.3;
 	
 	public void tick(){
-		if(player.onGround && !Minecraft.getMinecraft().gameSettings.keyBindJump.pressed){
-			player.motionX *= SPEED_VALUE;
-			player.motionZ *= SPEED_VALUE;
+		if(player().onGround && !Minecraft.getMinecraft().gameSettings.keyBindJump.pressed){
+			player().motionX *= SPEED_VALUE;
+			player().motionZ *= SPEED_VALUE;
 		}
 	}
 }

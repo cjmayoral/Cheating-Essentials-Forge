@@ -21,10 +21,10 @@ public class Sneak extends AbstractModule {
 	}
 
 	public void tick(){
-		minecraft.gameSettings.keyBindSneak.pressed = true;
+		minecraft().gameSettings.keyBindSneak.pressed = true;
 	}
 	
 	public void disable(){
-		minecraft.gameSettings.keyBindSneak.pressed = false;
+		minecraft().gameSettings.keyBindSneak.pressed = false;
 	}
 }

@@ -24,10 +24,6 @@ public class CEConnectionHandler implements IConnectionHandler {
 	
 	public void clientLoggedIn(NetHandler clientHandler, INetworkManager manager, Packet1Login login) {
 		DynamicLogger.instance().writeInfo("Client (in Internal Server "+ IntegratedServer.class.toString() +") logged in - Cheating Essentials is handling it... (username: "+Minecraft.getMinecraft().thePlayer.username+")");
-		try{ 
-			CheatingEssentials.mainInstance().load();
-		}
-		catch(CEInitializationError error){ CrashManager.instance().propagate("Error on Cheating Essentials Instance Loading", error); }
 	}
 
 	public String connectionReceived(NetLoginHandler netHandler, INetworkManager manager) { return null; }

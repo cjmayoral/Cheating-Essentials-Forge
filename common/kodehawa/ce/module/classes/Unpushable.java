@@ -22,9 +22,9 @@ public class Unpushable extends AbstractModule {
 	
 	@Override
 	public void tick(){
-		if(player.hurtResistantTime > 0 && player.hurtTime > 0){
-			player.motionX = 0;
-			player.motionZ = 0;
+		if(player().hurtResistantTime > 0 && player().hurtTime > 0){
+			player().motionX = 0;
+			player().motionZ = 0;
 		}
 	}
 

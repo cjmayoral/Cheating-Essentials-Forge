@@ -64,10 +64,10 @@ public class ChestFinder extends AbstractModule {
 		for(int y = 0; y < 128; y++) {
 			for(int x = 0; x < radius; x++) {
 			for(int z = 0; z < radius; z++) {
-				int cX = (int)player.posX - (int)radius/2+x;
+				int cX = (int)player().posX - (int)radius/2+x;
 				int cY = y;
-				int cZ = (int)player.posZ - (int)radius/2+z;
-				int ids = world.getBlockId(cX, cY, cZ);
+				int cZ = (int)player().posZ - (int)radius/2+z;
+				int ids = world().getBlockId(cX, cY, cZ);
 				if (cList.contains(ids)) {
 					cBlocks[size++] = new CEBlockCoord(cX, cY, cZ);
 				}

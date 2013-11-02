@@ -40,19 +40,19 @@ public class FreezeCam extends AbstractModule {
 	}
 	
 	public void doFreezeCam(){
-		if(world instanceof WorldClient){
-			location = new LocationHelper(player);
-			EntitySpectator spectator = new EntitySpectator(world, player.username);
+		if(world() instanceof WorldClient){
+			location = new LocationHelper(player());
+			EntitySpectator spectator = new EntitySpectator(world(), player().username);
 			spectator.setPositionAndRotation(location.posX, location.posY - 1.5, location.posZ, location.rotationYaw, location.rotationPitch);
-			spectator.inventory.copyInventory(player.inventory);
-			world.addEntityToWorld(-1, spectator);
-			minecraft.renderViewEntity = spectator;
+			spectator.inventory.copyInventory(player().inventory);
+			world().addEntityToWorld(-1, spectator);
+			minecraft().renderViewEntity = spectator;
 		}
 	}
 	
 	public void undoFreezeCam(){
-		world.removeEntityFromWorld(-1);
-		minecraft.renderViewEntity = player;
+		world().removeEntityFromWorld(-1);
+		minecraft().renderViewEntity = player();
 	}
 	
     class LocationHelper {

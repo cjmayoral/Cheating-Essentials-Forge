@@ -11,16 +11,16 @@ import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
+
 import common.kodehawa.ce.commands.*;
 import common.kodehawa.ce.logger.DynamicLogger;
 import common.kodehawa.ce.module.classes.Gui;
 import common.kodehawa.ce.module.man.ModuleManager;
 import common.kodehawa.ce.tick.TickHandler;
 import common.kodehawa.ce.util.CEConnectionHandler;
-import common.kodehawa.ce.util.CEInitializationError;
 import common.kodehawa.ce.util.ConfigManager;
-import common.kodehawa.ce.util.CrashManager;
 import common.kodehawa.ce.util.ForgeEvents;
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -41,21 +41,26 @@ import cpw.mods.fml.relauncher.Side;
  * But it's my code, it's not skidded and the HC GUI and the Module System is the thing that makes this looks like a HC, but this is
  * NOT. ReesZRB, one of the persons that's working in CE since 3.1, is a HC coder, and he obviously makes the GUI looks like that, 
  * but I like how it looks. A lot of people likes how it looks. We have the RIGHT to do anything that we want with our code.
- * If this is Open Source IT'S for let's people to LEARN, not for see you making criticism to it with VERY BAD arguments.
- * Thanks.-
+ * If this is Open Source IT'S for let's people to LEARN, not for see you doing criticism to it with VERY BAD arguments.
+ * Thanks
+ * Main Cheating Essentials class. This class loads all the things that the mod needs. The classes that loads other classes too :)
  * @author Kodehawa
+ * @since 22/10/2013
+ * @version 4.0
  */
 
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 @Mod(modid="Cheating-Essentials", name="Cheating Essentials Reloaded", version="4.0.0B1")
-public class CheatingEssentials {
+public class CheatingEssentials
+{
 
 	@Instance("Cheating-Essentials")
 	public static CheatingEssentials main;
 	TickHandler tickhandler = new TickHandler();
 	
 	@EventHandler
-	public void preInitialization(FMLPreInitializationEvent e){
+	public void preInitialization(FMLPreInitializationEvent e)
+	{
 		DynamicLogger.instance().writeLog("Loading Cheating Essentials "+modVersion+" in " + MinecraftForge.getBrandingVersion(), Level.INFO);
 		MinecraftForge.EVENT_BUS.register(new ForgeEvents());
 
@@ -76,22 +81,24 @@ public class CheatingEssentials {
 	}
 	
 	@EventHandler
-	public void initialization(FMLInitializationEvent e){
+	public void initialization(FMLInitializationEvent e)
+	{
 		TickRegistry.registerScheduledTickHandler(tickhandler, Side.CLIENT);
 		NetworkRegistry.instance().registerConnectionHandler(new CEConnectionHandler());
+		this.load();
 	}
 	
 	@EventHandler
-	public void postInitialization(FMLPostInitializationEvent e){
-		Minecraft.getMinecraft().mcProfiler.startSection("Cheating Essentials Start");
+	public void postInitialization(FMLPostInitializationEvent e)
+	{
 		ModuleManager.instance().avModules.add(new Gui());
 		DynamicLogger.instance().writeLog("Cheating Essentials v4 succefully started in Minecraft 1.6.4", Level.INFO);
-		DynamicLogger.instance().writeInfo("Copyright (C) 2013-2014 Kodehawa. This mod comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute itunder certain conditions.");
+		DynamicLogger.instance().writeSimple("Copyright (C) 2013-2014 Kodehawa. This mod comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute itunder certain conditions.");
 	}
 	
 	@EventHandler
-	public void serverStarting(FMLServerStartingEvent ev){		
-		Minecraft.getMinecraft().mcProfiler.startSection("Cheating Essentials Console Registerer");
+	public void serverStarting(FMLServerStartingEvent ev)
+	{		
 		MinecraftServer server = MinecraftServer.getServer();
 		ICommandManager icommand = server.getCommandManager();
 		ServerCommandManager command = ((ServerCommandManager) icommand);
@@ -109,16 +116,17 @@ public class CheatingEssentials {
 		command.registerCommand(new CommandSpeedValue());		
 	}
 	
-	public void load() throws CEInitializationError {
-		Minecraft.getMinecraft().mcProfiler.endStartSection("Cheating Essentials ML Stage");
+	private void load() 
+	{
 		ModuleManager.instance();
 		ConfigManager.instance();
 	}
 	
-	public static CheatingEssentials mainInstance(){
+	public static CheatingEssentials mainInstance()
+	{
 		return main;
 	}
 	
-	private String majorVersion = "4", minorVersion = "0", revision = "0", status = "B1";
+	private String majorVersion = "4", minorVersion = "0", revision = "1", status = "B4";
 	public final String modVersion = majorVersion+"."+minorVersion+"."+revision+status;
 }

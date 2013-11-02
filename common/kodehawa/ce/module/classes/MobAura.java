@@ -25,9 +25,9 @@ public class MobAura extends AbstractModule {
 	
 	@Override
 	public void tick(){
-		for (int i = 0; i < minecraft.theWorld.loadedEntityList.size(); i++)
+		for (int i = 0; i < minecraft().theWorld.loadedEntityList.size(); i++)
         {
-            Entity ent = (Entity) minecraft.theWorld.loadedEntityList.get(i);
+            Entity ent = (Entity) minecraft().theWorld.loadedEntityList.get(i);
             int id = ent.entityId;
             long now = System.currentTimeMillis();
             Watcher tracked = EntityUtils.getLastAffected(id);
@@ -42,15 +42,15 @@ public class MobAura extends AbstractModule {
 
             EntityUtils.setLastAffected(id, ent);
 
-            if ((ent == minecraft.thePlayer) || !(ent instanceof EntityLiving) || ent.isDead)
+            if ((ent == minecraft().thePlayer) || !(ent instanceof EntityLiving) || ent.isDead)
             {
                 continue;
             }
 
-            if ((player.getDistanceSqToEntity(ent) <= 15.0D) && !ent.isDead && minecraft.thePlayer.canEntityBeSeen(ent))
+            if ((player().getDistanceSqToEntity(ent) <= 15.0D) && !ent.isDead && minecraft().thePlayer.canEntityBeSeen(ent))
             {
-            	minecraft.playerController.attackEntity(player, ent);
-            	player.swingItem();
+            	minecraft().playerController.attackEntity(player(), ent);
+            	player().swingItem();
             }
         } 
 	}

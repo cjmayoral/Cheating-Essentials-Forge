@@ -24,11 +24,11 @@ public class FastBreak extends AbstractModule {
 	
 	@Override
 	public void enable(){
-		player.addPotionEffect(new PotionEffect(Potion.digSpeed.getId(), 9999999));
+		player().addPotionEffect(new PotionEffect(Potion.digSpeed.getId(), 9999999));
 	}
 	
 	@Override
 	public void disable(){
-		player.removePotionEffect(Potion.digSpeed.getId());
+		player().removePotionEffect(Potion.digSpeed.getId());
 	}
 }

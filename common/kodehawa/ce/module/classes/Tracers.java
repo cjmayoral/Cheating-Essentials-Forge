@@ -38,11 +38,11 @@ public class Tracers extends AbstractModule {
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glLineWidth(1.5F);
-            for(Object entities: minecraft.theWorld.loadedEntityList){
-            	if (entities != minecraft.thePlayer && entities != null){
+            for(Object entities: minecraft().theWorld.loadedEntityList){
+            	if (entities != minecraft().thePlayer && entities != null){
             		if (entities instanceof EntityPlayer){ //Add EntityMob also if you want to lol.
             			EntityPlayer entity = (EntityPlayer)entities;
-                        float distance = minecraft.renderViewEntity.getDistanceToEntity(entity);
+                        float distance = minecraft().renderViewEntity.getDistanceToEntity(entity);
                         double posX = ((entity.lastTickPosX + (entity.posX - entity.lastTickPosX) - RenderManager.instance.renderPosX));
                         double posY = ((entity.lastTickPosY + 1.4 + (entity.posY - entity.lastTickPosY) - RenderManager.instance.renderPosY));
                         double posZ = ((entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) - RenderManager.instance.renderPosZ));

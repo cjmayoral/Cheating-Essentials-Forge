@@ -24,7 +24,7 @@ public class PlayerESP extends AbstractModule {
 
 	public void doRender(){
 		if(this.isActive()){
-			for(Object o : world.loadedEntityList){
+			for(Object o : world().loadedEntityList){
 				if(o instanceof EntityPlayer){
 					EntityPlayer entityplayer = (EntityPlayer)o;
 					if(!(entityplayer instanceof EntitySpectator) && !(entityplayer instanceof EntityClientPlayerMP)){

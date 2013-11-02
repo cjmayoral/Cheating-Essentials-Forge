@@ -24,7 +24,7 @@ public class Fullbright extends AbstractModule {
 	
 	@Override
 	public void enable(){
-		float[] bright = world.provider.lightBrightnessTable;
+		float[] bright = world().provider.lightBrightnessTable;
 		for(int i = 0; i < bright.length; i++){
 			bright[i] = 1.0F;
 		}
@@ -32,6 +32,6 @@ public class Fullbright extends AbstractModule {
 	
 	@Override
 	public void disable(){
-		world.provider.registerWorld(world);
+		world().provider.registerWorld(world());
 	}
 }
