@@ -45,7 +45,7 @@ public class CommandSMKeybind extends CommandBase {
 					if(astring[1].equalsIgnoreCase(m.getModuleName().replaceAll(" ", ""))){
 						successful = true;
 						m.setKeybinding(0);
-						icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText("Removed key: "+m.getKeybind()+"("+astring[2]+")"+" for module: "+m.getModuleName()));
+						icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText("Removed key for module: "+m.getModuleName()));
 						ConfigManager.instance().writeKeybindConfig();
 						break;
 					}

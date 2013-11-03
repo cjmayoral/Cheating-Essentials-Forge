@@ -70,7 +70,7 @@ public class WindowRadar extends YAWWindow {
 				if(rect == 0 && count == 0)
 				{
 					CEUtils.drawGradientBorderedRect(getX() + dragX, getY() + 14 + dragY, getX() + 90 + dragX, getY() + 24.5 + dragY, 0.5F, 0xFF000000, 0xFF999999, 0xFF777777);
-					Minecraft.getMinecraft().fontRenderer.drawString("No one in range.", getX() + 2 + dragX, getY() + 15 + dragY, 0x55FFFF);
+					Minecraft.getMinecraft().fontRenderer.drawStringWithShadow("No one in range.", getX() + 2 + dragX, getY() + 15 + dragY, 0x55FFFF);
 				}
 				
 				for(YAWButton button: buttons)
