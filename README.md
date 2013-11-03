@@ -1,4 +1,4 @@
-Cheating Essentials Mod - Minecraft 1.6.4
+Cheating Essentials Mod
 =========================
 
 Package declaration:

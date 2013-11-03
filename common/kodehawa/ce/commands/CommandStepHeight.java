@@ -3,6 +3,7 @@ package common.kodehawa.ce.commands;
 import common.kodehawa.ce.module.classes.Step;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.util.ChatMessageComponent;
 
 public class CommandStepHeight extends CommandBase {
 
@@ -22,9 +23,10 @@ public class CommandStepHeight extends CommandBase {
 			float string = Float.parseFloat(astring[0]);
 			if(string < 100F){
 				Step.DEFAULT_STEP_HEIGHT = string;
+				icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText("Set step height to: "+string));
 			}
 			else{
-				System.out.println("lalalal");
+				icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText("Can't set step height more than 100 blocks!"));
 			}
 		}
 		catch(Exception e){}

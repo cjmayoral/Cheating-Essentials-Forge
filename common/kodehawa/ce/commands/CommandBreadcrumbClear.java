@@ -3,6 +3,7 @@ package common.kodehawa.ce.commands;
 import common.kodehawa.ce.module.classes.Breadcrumb;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.util.ChatMessageComponent;
 
 public class CommandBreadcrumbClear extends CommandBase {
 
@@ -19,6 +20,7 @@ public class CommandBreadcrumbClear extends CommandBase {
 	@Override
 	public void processCommand(ICommandSender icommandsender, String[] astring) {
 		Breadcrumb.positionsList.clear();
+		icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText("Deleted breadcrumbs"));
 	}
 	
 	@Override
