@@ -12,7 +12,7 @@ public class ReflectionHelper {
         Field[] fields = clazz.getDeclaredFields();
         for (int i = 0; i < fields.length; i++){
             if (fields[i].getName().equals(s)){
-            	 DynamicLogger.instance().writeLog("Fix Reflection usage: Use \""+i+"\" instead of \""+s+"\"!", Level.WARNING);
+            	DynamicLogger.instance().writeLog("Fix Reflection usage: Use \""+i+"\" instead of \""+s+"\"!", Level.WARNING);
                 setField(clazz, o, i, val);
                 return;
             }
