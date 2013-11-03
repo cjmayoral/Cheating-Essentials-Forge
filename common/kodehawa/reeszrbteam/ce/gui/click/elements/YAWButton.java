@@ -1,8 +1,8 @@
 package common.kodehawa.reeszrbteam.ce.gui.click.elements;
 
 import net.minecraft.client.Minecraft;
+
 import common.kodehawa.ce.module.core.AbstractModule;
-import common.kodehawa.ce.util.CEFontRenderer;
 import common.kodehawa.reeszrbteam.ce.gui.click.YouAlwaysWinClickGui;
 import common.kodehawa.reeszrbteam.ce.util.CEUtils;
 

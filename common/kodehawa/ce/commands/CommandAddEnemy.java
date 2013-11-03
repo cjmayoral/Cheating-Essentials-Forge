@@ -14,12 +14,14 @@ public class CommandAddEnemy extends CommandBase {
 	}
 
 	@Override
-	public String getCommandUsage(ICommandSender icommandsender) {
+	public String getCommandUsage(ICommandSender icommandsender) 
+	{
 		return "/ceenemy add <enemy name> or delete <enemy name>";
 	}
 
 	@Override
-	public void processCommand(ICommandSender icommandsender, String[] astring) {
+	public void processCommand(ICommandSender icommandsender, String[] astring) 
+	{
 		if(astring[0].equalsIgnoreCase("add")){
 			for(String s : ConfigManager.instance().enemies){
 				icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText("Added enemy: "+astring[1]));
@@ -35,7 +37,8 @@ public class CommandAddEnemy extends CommandBase {
 	}
 
 	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender icommandsender) {
+	public boolean canCommandSenderUseCommand(ICommandSender icommandsender) 
+	{
 		return true;
 	}
 }

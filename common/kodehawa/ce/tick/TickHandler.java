@@ -2,15 +2,10 @@ package common.kodehawa.ce.tick;
 
 import java.util.EnumSet;
 
-import org.lwjgl.input.Keyboard;
-
 import common.kodehawa.ce.event.EventHandler;
 import common.kodehawa.ce.event.events.EventTick;
-import common.kodehawa.ce.gui.CheatingEssentialsGui;
-import common.kodehawa.ce.module.core.AbstractModule;
-import common.kodehawa.ce.util.ConfigManager;
 import common.kodehawa.ce.util.Keybinding;
-import common.kodehawa.reeszrbteam.ce.gui.click.YouAlwaysWinClickGui;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.IScheduledTickHandler;
 import cpw.mods.fml.common.TickType;

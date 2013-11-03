@@ -18,10 +18,15 @@ import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 
 import com.google.common.collect.Lists;
+
 import common.kodehawa.ce.logger.DynamicLogger;
 import common.kodehawa.ce.module.core.AbstractModule;
 import common.kodehawa.ce.module.man.ModuleManager;
 
+/**
+ * Class that loads / writes all the configurations in Cheating Essentials.
+ * @author Kodehawa
+ */
 public class ConfigManager {
 
 	private static ConfigManager instance = new ConfigManager();
@@ -35,9 +40,9 @@ public class ConfigManager {
 	public ArrayList<String> friends = Lists.newArrayList();
 	public ArrayList<String> enemies = Lists.newArrayList();
 	public boolean universalDebug = false;
-	public boolean universalTest = false;
 	
-	public ConfigManager() {
+	public ConfigManager() 
+	{
 		addDefaultFriends();
 		write();
 		readBooleanConfig();
@@ -45,7 +50,8 @@ public class ConfigManager {
 		readKeybindConfig();
 	}
 	
-	public void writeKeybindConfig(){
+	public void writeKeybindConfig()
+	{
 		DynamicLogger.instance().writeLog("[CM] Writting Keybinding Configuration File...", Level.INFO);
 		try{
 			FileWriter filewriter = new FileWriter(keybindConfig);
@@ -61,11 +67,13 @@ public class ConfigManager {
 		}
 	}
 	
-	public void readKeybindConfig(){
+	public void readKeybindConfig()
+	{
 		try {
 			DynamicLogger.instance().writeLog("[CM] Reading Keybinding Configuration File...", Level.INFO);
 			FileInputStream imputstream = new FileInputStream(keybindConfig.getAbsolutePath());
 			DataInputStream datastream = new DataInputStream(imputstream);
+			@SuppressWarnings("resource")
 			BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(datastream));
 			String key;
 			while((key = bufferedreader.readLine()) != null){
@@ -91,12 +99,14 @@ public class ConfigManager {
 				}
 			}
 		}
-		catch (Exception e) {
+		catch (Exception e) 
+		{
 			e.printStackTrace();
 		}
 	}
 	
-	public void writeFriendsConfig(){
+	public void writeFriendsConfig()
+	{
 		try{
 			FileWriter filewriter = new FileWriter(friendConfig);
 			BufferedWriter bufferedwriter = new BufferedWriter(filewriter);
@@ -110,7 +120,8 @@ public class ConfigManager {
 		}
 	}
 	
-	public void readFriendsConfig(){
+	public void readFriendsConfig()
+	{
 		DynamicLogger.instance().writeLog("[CM] Loading Friend Config File...", Level.INFO);
 		try{
 			FileInputStream imputstream = new FileInputStream(friendConfig.getAbsolutePath());
@@ -126,12 +137,12 @@ public class ConfigManager {
 		}
 	}
 	
-	public void writeBooleanConfig(){
+	public void writeBooleanConfig()
+	{
 		try{
 			FileWriter filewriter = new FileWriter(debugConfig);
 			BufferedWriter bufferedwriter = new BufferedWriter(filewriter);
 			String s = String.valueOf(universalDebug);
-			String string = String.valueOf(universalTest);
 			bufferedwriter.write("ce.config.enableDebug:" + s);
 			bufferedwriter.close();
 		}
@@ -140,7 +151,8 @@ public class ConfigManager {
 		}
 	}
 	
-	public void readBooleanConfig(){
+	public void readBooleanConfig()
+	{
 		FileInputStream imputstream;
 		try {
 			imputstream = new FileInputStream(debugConfig.getAbsolutePath());
@@ -170,31 +182,61 @@ public class ConfigManager {
 		}
 	}
 
-	private void addDefaultFriends(){
+	private void addDefaultFriends()
+	{
 		friends.add("Kodehawa");
 		friends.add("ReesZRB");
 	}
 	
-	private void write(){
-		if(!keybindConfig.exists()){
+	private void write()
+	{
+		//if's everywhere.
+		if(!keybindConfig.exists())
+		{ 
 			keybindConfig.getParentFile().mkdirs();
-			try { keybindConfig.createNewFile(); } catch (IOException e) { e.printStackTrace(); }
+			try { 
+				keybindConfig.createNewFile(); 
+			} 
+			catch (IOException e) 
+			{ 
+				e.printStackTrace();
+			}
+			
 			writeKeybindConfig();
 		}
-		if(!debugConfig.exists()){
+		
+		if(!debugConfig.exists())
+		{ 
 			debugConfig.getParentFile().mkdirs();
-			try{ debugConfig.createNewFile(); } catch(Exception e){ e.printStackTrace(); }
+			try{
+				debugConfig.createNewFile();
+			} 
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			
 			writeBooleanConfig();
 		}
-		if(!friendConfig.exists()){
+		
+		if(!friendConfig.exists())
+		{
 			friendConfig.getParentFile().mkdirs();
-			try{ friendConfig.createNewFile(); } catch(Exception e){ e.printStackTrace(); }
+			try{ 
+				friendConfig.createNewFile();
+			}
+			catch(Exception e)
+			{ 
+				e.printStackTrace();
+			}
+			
 			writeFriendsConfig();
 		}
 	}
 
 	
-	public static ConfigManager instance(){
+	public static ConfigManager instance()
+	{
 		return instance;
 	}
 }

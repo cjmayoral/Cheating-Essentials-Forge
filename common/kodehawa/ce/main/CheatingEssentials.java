@@ -12,7 +12,17 @@ import net.minecraft.command.ServerCommandManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
 
-import common.kodehawa.ce.commands.*;
+import common.kodehawa.ce.commands.CommandAddEnemy;
+import common.kodehawa.ce.commands.CommandAddFriend;
+import common.kodehawa.ce.commands.CommandBlockESP;
+import common.kodehawa.ce.commands.CommandBreadcrumbClear;
+import common.kodehawa.ce.commands.CommandFlySpeed;
+import common.kodehawa.ce.commands.CommandModuleHelp;
+import common.kodehawa.ce.commands.CommandModuleList;
+import common.kodehawa.ce.commands.CommandModuleToggle;
+import common.kodehawa.ce.commands.CommandSMKeybind;
+import common.kodehawa.ce.commands.CommandSpeedValue;
+import common.kodehawa.ce.commands.CommandStepHeight;
 import common.kodehawa.ce.logger.DynamicLogger;
 import common.kodehawa.ce.module.classes.Gui;
 import common.kodehawa.ce.module.man.ModuleManager;
@@ -29,6 +39,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -50,7 +61,8 @@ import cpw.mods.fml.relauncher.Side;
  */
 
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
-@Mod(modid="Cheating-Essentials", name="Cheating Essentials Reloaded", version="4.0.0B1")
+@Mod(modid="Cheating-Essentials", name="Cheating Essentials Reloaded", version="4.1.0-RC1")
+@NetworkMod(clientSideRequired = false)
 public class CheatingEssentials
 {
 
@@ -63,8 +75,6 @@ public class CheatingEssentials
 	{
 		DynamicLogger.instance().writeLog("Loading Cheating Essentials "+modVersion+" in " + MinecraftForge.getBrandingVersion(), Level.INFO);
 		MinecraftForge.EVENT_BUS.register(new ForgeEvents());
-
-		Minecraft.getMinecraft().mcProfiler.startSection("Cheating Essentials Starting");
 		
 		/********* Cheating Essentials METADATA DECLARATION START *********/
 		
@@ -127,6 +137,6 @@ public class CheatingEssentials
 		return main;
 	}
 	
-	private String majorVersion = "4", minorVersion = "0", revision = "1", status = "B4";
+	private String majorVersion = "4", minorVersion = "1", revision = "0", status = "-RC1";
 	public final String modVersion = majorVersion+"."+minorVersion+"."+revision+status;
 }

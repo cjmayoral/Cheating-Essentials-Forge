@@ -8,12 +8,11 @@ import common.kodehawa.ce.logger.DynamicLogger;
 import net.minecraft.crash.CrashReport;
 import cpw.mods.fml.client.FMLClientHandler;
 
-public class CrashManager implements IReport {
+public class CrashManager {
 
 	private volatile static CrashManager instance = new CrashManager();
 	public CrashManager() {}
 
-	@Override
 	public void propagate(String string, Throwable throwable) {
 		DynamicLogger.instance().writeLogWithPrefix("Crash", "FATAL ERROR IN CHEATING ESSENTIALS, CRASH REPORT WILL BE DISPLAYED.", Level.WARNING, 1);
 		System.err.println("FATAL ERROR IN CHEATING ESSENTIALS, CRASH REPORT WILL BE DISPLAYED.");
